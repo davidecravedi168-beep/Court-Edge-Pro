@@ -1,6 +1,21 @@
-import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {applyPortfolioGuard,euroSeasonCodes} from '../live-board.mjs';
 const s=fs.readFileSync(new URL('../live-board.mjs',import.meta.url),'utf8');
+
 test('secrets stay server-side',()=>{assert.match(s,/process\.env\.BDL_API_KEY/);assert.match(s,/process\.env\.ODDS_API_KEY/);assert.doesNotMatch(s,/apiKey=['"][A-Za-z0-9_-]{16,}/)});
 test('NBA and EuroLeague providers present',()=>{assert.match(s,/basketball_nba/);assert.match(s,/basketball_euroleague/);assert.match(s,/api-live\.euroleague\.net/)});
 test('fail closed and no fabrication contract',()=>{assert.match(s,/PAPER_ONLY/);assert.match(s,/strict_no_fabrication:true/);assert.match(s,/NO_FEED/)});
-test('provider fetch has timeout and retries',()=>{assert.match(s,/AbortController/);assert.match(s,/retries=2/)});
+test('provider fetch has timeout retries retry-after and cleanup',()=>{assert.match(s,/AbortController/);assert.match(s,/retries=2/);assert.match(s,/HTTP 429/);assert.match(s,/retryAfterMs/);assert.match(s,/finally\{\s*clearTimeout\(t\)/)});
+test('NBA history uses cursor pagination',()=>{assert.match(s,/next_cursor/);assert.match(s,/q\.set\('cursor'/)});
+test('BDL calls are globally serialized and paced',()=>{assert.match(s,/bdlQueue/);assert.match(s,/BDL_MIN_INTERVAL_MS/);assert.match(s,/Math\.max\(12000/)});
+test('prediction lock is distinct from radar',()=>{assert.match(s,/LOCK_MAX_HOURS=36/);assert.match(s,/hrs>LOCK_MAX_HOURS/);assert.match(s,/EARLY RADAR/)});
+test('market consensus devigs each bookmaker pair',()=>{assert.match(s,/fairHome:d\.a/);assert.match(s,/fairHome=median/);assert.match(s,/marketProb/)});
+test('anomaly signals are review only',()=>{assert.match(s,/signal_state:anomaly\?'REVIEW'/);assert.match(s,/MODEL_MARKET_GAP/)});
+test('persistent prediction lock and settlement engine are wired',()=>{assert.match(s,/mergePredictionLocks/);assert.match(s,/settleLocks/);assert.match(s,/lock_persistence=true/);assert.match(s,/clv_proxy/)});
+test('NBA availability endpoint is optional and plan-aware',()=>{assert.match(s,/player_injuries/);assert.match(s,/status:'VERIFIED'/);assert.match(s,/status:'LIMITED'/)});
+test('EuroLeague seasons are derived dynamically',()=>{assert.deepEqual(euroSeasonCodes(new Date('2026-08-25T00:00:00Z')),['E2025','E2026']);assert.deepEqual(euroSeasonCodes(new Date('2027-01-10T00:00:00Z')),['E2025','E2026'])});
+test('commercial mode blocks unlicensed EuroLeague research feed',()=>{assert.match(s,/COMMERCIAL_MODE/);assert.match(s,/EUROLEAGUE_COMMERCIAL_LICENSED/);assert.match(s,/commercial_license_gate/)});
+test('challenger shadow is a real secondary model',()=>{assert.match(s,/challengerRaw=blendProbabilities/);assert.match(s,/challengerGap/);assert.match(s,/status:'SHADOW'/)});
+test('portfolio guard caps new exposure while preserving existing bets',()=>{const prev=[{event_id:'old',verdict:'PAPER BET',locked_stake_units:.4}];const rows=[{event_id:'old',verdict:'PAPER BET',locked_stake_units:.4,opportunity:80},{event_id:'a',verdict:'PAPER BET',locked_stake_units:.4,stake_units:.4,opportunity:90,reason_codes:[]},{event_id:'b',verdict:'PAPER BET',locked_stake_units:.4,stake_units:.4,opportunity:70,reason_codes:[]}];const out=applyPortfolioGuard(rows,prev,.8);assert.equal(out.find(x=>x.event_id==='a').verdict,'PAPER BET');assert.equal(out.find(x=>x.event_id==='b').verdict,'WAIT');assert.ok(out.find(x=>x.event_id==='b').reason_codes.includes('PORTFOLIO_EXPOSURE'))});
