@@ -3,13 +3,13 @@
     "league": "EUROLEAGUE",
     "status": "LIVE_READY",
     "model_health": "COLD",
-    "data_health": "NO_FEED",
-    "market_health": "NO_FEED",
-    "risk_mode": "PAPER_ONLY",
-    "updated_at": null,
-    "source": "EuroLeague research feed + The Odds API",
+    "data_health": "GOOD",
+    "market_health": "LIVE",
+    "risk_mode": "PAPER",
+    "updated_at": "2026-08-25T21:53:21.028Z",
+    "source": "EuroLeague upstream research feed + The Odds API",
     "model_version": "CEP-3.2.0-EUROLEAGUE",
-    "note": "Feed placeholder 3.2: il feed statistico EuroLeague è research-only finché non viene verificata/licenziata la commercializzazione.",
+    "note": "Pipeline EuroLeague live in modalità research: verificare licenza dati prima di monetizzare.",
     "lock_window_hours": [
       0.75,
       36
@@ -28,33 +28,164 @@
   "risk": {
     "exposure_units": 0,
     "max_exposure_units": 2,
-    "mode": "PAPER_ONLY",
-    "portfolio_guard": "ON"
+    "portfolio_guard": "ON",
+    "mode": "PAPER"
   },
   "learning": {
     "calibration": {
-      "active": false
+      "active": false,
+      "mode": "MONITOR_ONLY"
     },
     "drift": {
       "health": "COLD"
     },
     "challenger": {
       "status": "SHADOW",
-      "sample": 0
+      "sample": 0,
+      "note": "Formula alternativa usata solo come disagreement guard; nessuna promozione senza validazione out-of-sample."
     }
   },
-  "radar": [],
+  "radar": [
+    {
+      "event_id": "01ea6f67bf560b8721e5ec0bcf82de3f",
+      "league": "EUROLEAGUE",
+      "away_team": "Real Madrid",
+      "home_team": "Dubai Basketball",
+      "start_at": "2026-09-24T16:00:00Z",
+      "pre_status": "EARLY RADAR",
+      "favorite_name": "Dubai Basketball",
+      "favorite_prob": 0.5313428775948866,
+      "challenger_prob": 0.5307846344760129,
+      "challenger_gap": 0.000558243118873758,
+      "confidence": 96.19897172017338,
+      "priority": 81.13428775948867,
+      "hours_to_start": 714.0782202777777,
+      "model_sample": 76,
+      "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
+    },
+    {
+      "event_id": "7b90c9b503886387c57381c4cf6c9860",
+      "league": "EUROLEAGUE",
+      "away_team": "FC Bayern München",
+      "home_team": "Hapoel Tel Aviv",
+      "start_at": "2026-09-24T17:00:00Z",
+      "pre_status": "EARLY RADAR",
+      "favorite_name": "Hapoel Tel Aviv",
+      "favorite_prob": 0.5,
+      "challenger_prob": 0.5,
+      "challenger_gap": 0,
+      "confidence": 83.40879478399572,
+      "priority": 50,
+      "hours_to_start": 715.0782202777777,
+      "model_sample": 0,
+      "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
+    },
+    {
+      "event_id": "9589ba32c87b929e1447aa201f0b6d45",
+      "league": "EUROLEAGUE",
+      "away_team": "Žalgiris",
+      "home_team": "KK Crvena zvezda",
+      "start_at": "2026-09-24T18:00:00Z",
+      "pre_status": "EARLY RADAR",
+      "favorite_name": "KK Crvena zvezda",
+      "favorite_prob": 0.5,
+      "challenger_prob": 0.5,
+      "challenger_gap": 0,
+      "confidence": 83.40879478399572,
+      "priority": 50,
+      "hours_to_start": 716.0782202777777,
+      "model_sample": 0,
+      "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
+    },
+    {
+      "event_id": "8703f7a657f3360ec99010955336c102",
+      "league": "EUROLEAGUE",
+      "away_team": "Paris Basketball",
+      "home_team": "Panathinaikos",
+      "start_at": "2026-09-24T18:15:00Z",
+      "pre_status": "EARLY RADAR",
+      "favorite_name": "Panathinaikos",
+      "favorite_prob": 0.5,
+      "challenger_prob": 0.5,
+      "challenger_gap": 0,
+      "confidence": 80.90497519939946,
+      "priority": 50,
+      "hours_to_start": 716.3282202777777,
+      "model_sample": 0,
+      "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
+    },
+    {
+      "event_id": "e8d3cdc6502bcc2a38a248f08bbe4270",
+      "league": "EUROLEAGUE",
+      "away_team": "Anadolu Efes",
+      "home_team": "FC Barcelona Bàsquet",
+      "start_at": "2026-09-24T18:30:00Z",
+      "pre_status": "EARLY RADAR",
+      "favorite_name": "FC Barcelona Bàsquet",
+      "favorite_prob": 0.5,
+      "challenger_prob": 0.5,
+      "challenger_gap": 0,
+      "confidence": 83.40879478399572,
+      "priority": 50,
+      "hours_to_start": 716.5782202777777,
+      "model_sample": 0,
+      "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
+    },
+    {
+      "event_id": "0cea0577735cca24d37e62e37517e6d7",
+      "league": "EUROLEAGUE",
+      "away_team": "Olympiacos",
+      "home_team": "Saski Baskonia",
+      "start_at": "2026-09-24T18:30:00Z",
+      "pre_status": "EARLY RADAR",
+      "favorite_name": "Saski Baskonia",
+      "favorite_prob": 0.5,
+      "challenger_prob": 0.5,
+      "challenger_gap": 0,
+      "confidence": 83.40879478399572,
+      "priority": 50,
+      "hours_to_start": 716.5782202777777,
+      "model_sample": 0,
+      "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
+    },
+    {
+      "event_id": "99de5bf0e14b822c885749de574d369a",
+      "league": "EUROLEAGUE",
+      "away_team": "Maccabi Tel Aviv",
+      "home_team": "ASVEL Lyon Villeurbanne",
+      "start_at": "2026-09-24T18:45:00Z",
+      "pre_status": "EARLY RADAR",
+      "favorite_name": "ASVEL Lyon Villeurbanne",
+      "favorite_prob": 0.5,
+      "challenger_prob": 0.5,
+      "challenger_gap": 0,
+      "confidence": 83.40879478399572,
+      "priority": 50,
+      "hours_to_start": 716.8282202777777,
+      "model_sample": 0,
+      "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
+    }
+  ],
   "upcoming": [],
   "history": [],
   "integrity": {
     "strict_no_fabrication": true,
-    "generated_at": null,
+    "generated_at": "2026-08-25T21:53:21.028Z",
     "market_consensus": "same-book de-vig median",
     "prediction_lock": "0.75-36h pre-tip",
     "anomaly_gate": true,
+    "portfolio_cap_enforced": true,
+    "challenger_shadow": true,
+    "historical_games": 782,
+    "market_events": 7,
+    "locked_events": 0,
+    "radar_events": 7,
+    "settled_events": 0,
     "lock_persistence": true,
     "clv_proxy": "last observed pre-settlement price",
-    "portfolio_cap_enforced": true,
-    "challenger_shadow": true
+    "availability_feed": {
+      "status": "LIMITED",
+      "source": "EuroLeague upstream research feed"
+    }
   }
 }
