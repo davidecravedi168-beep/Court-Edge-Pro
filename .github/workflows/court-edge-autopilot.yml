@@ -1,0 +1,65 @@
+name: Court Edge Pro Autopilot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */2 * * *'
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: court-edge-pages
+  cancel-in-progress: false
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build live boards
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: node live-board.mjs
+
+      - name: Test suite pass 1
+        run: npm test
+
+      - name: Test suite pass 2
+        run: npm test
+
+      - name: Static verification
+        run: node tests/static-check.mjs
+
+      - name: Save refreshed boards
+        run: |
+          git config user.name "court-edge-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/*.json
+          git diff --cached --quiet || git commit -m "chore: refresh live boards"
+          git push || true
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
