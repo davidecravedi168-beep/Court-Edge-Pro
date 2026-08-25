@@ -3,7 +3,7 @@ name: Court Edge Pro Autopilot
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 */2 * * *'
+    - cron: '17 */4 * * *'
   push:
     branches: [main]
 
@@ -19,6 +19,7 @@ concurrency:
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     environment:
       name: github-pages
@@ -32,9 +33,12 @@ jobs:
           node-version: '22'
 
       - name: Build live boards
+        if: github.event_name != 'push'
         env:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_REGIONS: eu
+          BDL_MIN_INTERVAL_MS: '13000'
         run: node live-board.mjs
 
       - name: Test suite pass 1
@@ -43,22 +47,42 @@ jobs:
       - name: Test suite pass 2
         run: npm test
 
+      - name: Syntax verification
+        run: |
+          node --check quant-engine.mjs
+          node --check lock-engine.mjs
+          node --check live-board.mjs
+          node --check sw.js
+
       - name: Static verification
         run: node tests/static-check.mjs
 
       - name: Save refreshed boards
+        if: github.event_name != 'push'
         run: |
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data/*.json
-          git diff --cached --quiet || git commit -m "chore: refresh live boards"
-          git push || true
+          if git diff --cached --quiet; then
+            echo "No board changes to persist"
+          else
+            git commit -m "chore: refresh live boards"
+            git push
+          fi
+
+      - name: Build production site
+        run: |
+          rm -rf _site
+          mkdir -p _site/assets _site/data
+          cp index.html legal.html manifest.webmanifest sw.js robots.txt _site/
+          cp assets/icon-192.png assets/icon-512.png _site/assets/
+          cp data/nba-quant-board.json data/euroleague-quant-board.json _site/data/
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy Pages
         id: deployment
