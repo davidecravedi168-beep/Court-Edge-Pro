@@ -1,0 +1,44 @@
+COURT EDGE PRO 3.2 APEX — RELEASE CERTIFICATE
+Date: 2026-08-25
+Release: CEP-3.2.0
+
+SHA-256 integrity manifest:
+647cbde96ad4237368b0bb81b50954978c8892243f5773735094463e8cd75fd5  index.html
+7724c2e3a828d97df29514784dbcf3c0305d6cfa7c50c19c95076e2a42b7f115  legal.html
+b19bc795d699a84ff536208144634f91555442aafb92749fd840aeb8d01f87b6  manifest.webmanifest
+6f1958f81ae91c85b64bfe09bf933c1f8ffc8768e539028eb47f9cfd74194ea4  sw.js
+16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95  robots.txt
+bc659244a5719bfa06662e8ef9f6a2c25fca9a9904380dcf2e74fc639501d80b  package.json
+4d98fd7e06708226761ef47e5409240cbbd603fdc96ee3338f7db381648d717b  quant-engine.mjs
+2677fbeed937403a18119d3a8402797734b66d9fc8f9900acd4900d2ca0f5822  lock-engine.mjs
+4b3f84fdbc7dbfd21c50baa22e2c0f5b8e7c5e6754ff2f35560cbdf71560ba16  live-board.mjs
+1150b05e9d58f656bef80468aa90c0e7452f797caacced110efb44579da69243  .github/workflows/court-edge-autopilot.yml
+c6e39b58033bc06e77551be22191399a1f1849c08dffbaf7e7583d3cf51312be  data/nba-quant-board.json
+3b32b5c351100b8691d0ba89dfc685c362154a9fa72d32e329c5d2e54870e48b  data/euroleague-quant-board.json
+55f5e08315439918eab92fe47024f14bf3c79643ac4f888ef2ac8d840695d4c0  assets/icon-192.png
+4d949205130be3263ee79fd93cbad7571d951c6236be47a55f8f176d7f7946b4  assets/icon-512.png
+d396161d01848b2d538240a73ea1726609ca23c57caf239558d76b5a3a628c03  tests/deploy.test.mjs
+c8919e46fa6085d6f1f2f0344760aee8da13e5424ab8e0ce598607917f0ba548  tests/live-board.test.mjs
+910ab0bdecc085c33086d529263678ee87bf598f397a22af550031ed099cf1fe  tests/lock-engine.test.mjs
+414eace96db98e62a2b35946346081c125444cc07e4a3a32f4aaa58bad4b81a3  tests/quant-engine.test.mjs
+c1d39da0e5496c0bba5eca965bcb4d29595068d71e11e77a2d80fcca9fd41221  tests/static-check.mjs
+aed56f8ed34e8d6b13a1aaebaae86aecb7ff04b5cccc449e724ad5e9c54a0921  README.md
+8f79c199b710e6c4bbe797ad7c70c4b89ddeb9145febd073e639490d941cd2e3  COMMERCIAL-READINESS.md
+470c3438ecfea292dbcd155e0c04495ec0446570d7234adf49b13cd0284bd41d  UPLOAD-ORDER.txt
+ddb7378a4774c8a78bfdb9a04060badafde94ea904fd31815889c82d09960402  TEST-REPORT.txt
+9f81f1b2b539c1fc1bd54bb8393fb7ccc2648fd538e77eb7b9df5aec899c1cc9  CHANGELOG-3.2.txt
+
+Certification gate:
+- 40/40 automated tests PASS x2
+- static verification PASS x2
+- JS/module syntax PASS
+- JSON/YAML parse PASS
+- production _site allowlist PASS
+- offline fail-closed builder PASS
+- clean-ZIP extraction/integrity PASS
+- clean-ZIP 40/40 automated tests PASS x2
+- clean-ZIP static verification PASS x2
+- clean-ZIP production allowlist PASS
+- clean-ZIP offline fail-closed builder PASS
+
+Scope note: this certificate validates release integrity and tested behavior; it is not a guarantee of betting profitability or third-party provider uptime.

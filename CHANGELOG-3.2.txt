@@ -1,0 +1,27 @@
+COURT EDGE PRO 3.2 APEX CERTIFIED — WHAT CHANGED
+
+1. API / QUOTA HARDENING
+- BALLDONTLIE global request queue, >=12s pacing for free-tier compatibility
+- Retry-After aware 429 handling and timeout cleanup
+- GitHub push deploys do not consume live Odds API credits
+- scheduled/manual runs remain the only live refresh path
+- board persistence push can no longer fail silently
+
+2. MODEL / RISK GOVERNANCE
+- real Challenger Shadow probability and disagreement gate
+- real Portfolio Guard enforcing max active exposure for new paper bets
+- tighter settlement matching window to reduce wrong-game matches
+- dynamic EuroLeague season code selection
+- optional NBA injuries feed detection; VERIFIED when the subscribed endpoint is available, LIMITED otherwise
+
+3. COMMERCIAL HARDENING
+- COMMERCIAL_MODE license gate for EuroLeague research stats
+- Legal & Data Policy page
+- visible 18+ / analytics-only disclaimer
+- CSP/referrer hardening
+- production deploy contains only files needed by the client
+
+4. PWA / RELEASE SAFETY
+- service-worker v3.2 network-first navigation and live-board fetches
+- versioned cache invalidation
+- standalone artifact excludes tests/engines from deployed Pages surface

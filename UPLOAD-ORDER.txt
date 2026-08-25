@@ -1,0 +1,37 @@
+COURT EDGE PRO 3.2 APEX CERTIFIED — ORDINE AGGIORNAMENTO
+
+Il repository esiste già e i Secrets restano validi. Aggiorna il workflow PER ULTIMO.
+
+1) ROOT CORE
+- index.html
+- legal.html
+- robots.txt
+- manifest.webmanifest
+- sw.js
+- package.json
+- quant-engine.mjs
+- lock-engine.mjs
+- live-board.mjs
+- README.md
+- COMMERCIAL-READINESS.md
+
+2) TESTS
+- tests/deploy.test.mjs
+- tests/live-board.test.mjs
+- tests/lock-engine.test.mjs
+- tests/quant-engine.test.mjs
+- tests/static-check.mjs
+
+3) DATA PLACEHOLDER
+- data/nba-quant-board.json
+- data/euroleague-quant-board.json
+
+4) WORKFLOW — SEMPRE ULTIMO
+- .github/workflows/court-edge-autopilot.yml
+
+5) DOPO IL COMMIT DEL WORKFLOW
+- Actions → Court Edge Pro Autopilot → Run workflow
+- attendi verde
+- apri Pages e ricarica
+
+NON reinserire ODDS_API_KEY o BDL_API_KEY: i Repository Secrets già presenti restano invariati.

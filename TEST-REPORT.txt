@@ -1,0 +1,63 @@
+COURT EDGE PRO 3.2 APEX CERTIFIED — PRE-RELEASE TEST REPORT
+
+AUTOMATED UNIT / INTEGRITY SUITE
+- 40 tests total
+- Pass 1: 40/40 PASS
+- Pass 2: 40/40 PASS
+- Static verification: PASS x2
+- quant-engine.mjs syntax: PASS
+- lock-engine.mjs syntax: PASS
+- live-board.mjs syntax: PASS
+- sw.js syntax: PASS
+- NBA board JSON parse: PASS
+- EuroLeague board JSON parse: PASS
+- manifest JSON parse: PASS
+- GitHub Actions YAML parse: PASS
+
+PRODUCTION SURFACE CHECK
+- index.html: HTTP 200
+- legal.html: HTTP 200
+- manifest.webmanifest: HTTP 200
+- sw.js: HTTP 200
+- robots.txt: HTTP 200
+- assets/icon-192.png: HTTP 200
+- assets/icon-512.png: HTTP 200
+- data/nba-quant-board.json: HTTP 200
+- data/euroleague-quant-board.json: HTTP 200
+
+MODEL / RISK COVERAGE
+- same-book two-way de-vig
+- market consensus aggregation
+- stale-price exclusion
+- EV and robust probability penalties
+- model sample gate
+- model/market gap anomaly gate
+- extreme EV anomaly gate
+- availability fail-closed policy
+- bounded fractional Kelly stake
+- Brier score / log-loss / CLV calculations
+- NBA cursor pagination
+- BALLDONTLIE global pacing for free tier
+- provider timeout / retry / Retry-After handling
+- Radar / 36h Prediction Lock separation
+- persistent immutable model lock
+- WAIT repricing without rewriting locked model
+- issued PAPER BET odds/stake immutability
+- model-flip audit after lock
+- automatic settlement and P/L
+- CLV proxy from last observed price
+- Challenger Shadow disagreement guard
+- real Portfolio Guard exposure cap
+- no-fabrication contract
+- server-side secret protection
+- production-only Pages artifact
+- Odds API quota guard: 1 region, h2h only, 4h cadence, no refresh on code push
+- commercial license gate for EuroLeague research statistics
+
+EXTERNAL ASSUMPTIONS RE-VERIFIED 2026-08-25
+- BALLDONTLIE Free tier: 5 requests/min; Games available on Free; Player Injuries requires paid tier.
+- The Odds API: basketball_nba and basketball_euroleague supported; h2h costs 1 credit per region per market.
+- EuroLeague upstream statistics are research/non-commercial for this build and must not be used for a paid gambling-related product without the required rights/licence.
+
+IMPORTANT
+Passing software tests does not establish predictive edge or profitability. Court Edge Pro remains PAPER-FIRST until a sufficiently large out-of-sample settled sample validates calibration, CLV, ROI and drawdown stability. Third-party provider availability and terms can change and must be monitored before commercial launch.
