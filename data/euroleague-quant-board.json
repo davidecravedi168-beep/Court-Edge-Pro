@@ -6,7 +6,7 @@
     "data_health": "GOOD",
     "market_health": "LIVE",
     "risk_mode": "PAPER",
-    "updated_at": "2026-08-26T10:09:49.220Z",
+    "updated_at": "2026-08-26T14:30:28.532Z",
     "source": "EuroLeague upstream research feed + The Odds API",
     "model_version": "CEP-3.2.0-EUROLEAGUE",
     "note": "Pipeline EuroLeague live in modalità research: verificare licenza dati prima di monetizzare.",
@@ -59,7 +59,7 @@
       "challenger_gap": 0.000558243118873758,
       "confidence": 96.19897172017338,
       "priority": 81.13428775948867,
-      "hours_to_start": 701.8037488888889,
+      "hours_to_start": 697.4594747222222,
       "model_sample": 76,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -76,7 +76,7 @@
       "challenger_gap": 0,
       "confidence": 83.40879478399572,
       "priority": 50,
-      "hours_to_start": 702.8037488888889,
+      "hours_to_start": 698.4594747222222,
       "model_sample": 0,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -93,7 +93,7 @@
       "challenger_gap": 0,
       "confidence": 83.40879478399572,
       "priority": 50,
-      "hours_to_start": 703.8037488888889,
+      "hours_to_start": 699.4594747222222,
       "model_sample": 0,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -110,7 +110,7 @@
       "challenger_gap": 0,
       "confidence": 80.90497519939946,
       "priority": 50,
-      "hours_to_start": 704.0537488888889,
+      "hours_to_start": 699.7094747222222,
       "model_sample": 0,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -127,7 +127,7 @@
       "challenger_gap": 0,
       "confidence": 83.40879478399572,
       "priority": 50,
-      "hours_to_start": 704.3037488888889,
+      "hours_to_start": 699.9594747222222,
       "model_sample": 0,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -144,7 +144,7 @@
       "challenger_gap": 0,
       "confidence": 83.40879478399572,
       "priority": 50,
-      "hours_to_start": 704.3037488888889,
+      "hours_to_start": 699.9594744444445,
       "model_sample": 0,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -161,7 +161,7 @@
       "challenger_gap": 0,
       "confidence": 83.40879478399572,
       "priority": 50,
-      "hours_to_start": 704.5537488888889,
+      "hours_to_start": 700.2094744444445,
       "model_sample": 0,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     }
@@ -170,7 +170,7 @@
   "history": [],
   "integrity": {
     "strict_no_fabrication": true,
-    "generated_at": "2026-08-26T10:09:49.220Z",
+    "generated_at": "2026-08-26T14:30:28.532Z",
     "market_consensus": "same-book de-vig median",
     "prediction_lock": "0.75-36h pre-tip",
     "anomaly_gate": true,
