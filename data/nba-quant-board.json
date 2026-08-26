@@ -6,7 +6,7 @@
     "data_health": "GOOD",
     "market_health": "LIVE",
     "risk_mode": "PAPER",
-    "updated_at": "2026-08-26T05:58:56.248Z",
+    "updated_at": "2026-08-26T10:09:49.220Z",
     "source": "BALLDONTLIE + The Odds API",
     "model_version": "CEP-3.2.0-NBA",
     "note": "Pipeline NBA live attiva; injuries endpoint non incluso nel piano corrente, applicata penalità availability.",
@@ -59,7 +59,7 @@
       "challenger_gap": 0.006916276861267279,
       "confidence": 80.89637211575238,
       "priority": 80.40049151457154,
-      "hours_to_start": 1332.9850944444445,
+      "hours_to_start": 1328.803751388889,
       "model_sample": 58,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -76,7 +76,7 @@
       "challenger_gap": 0.006004227781312599,
       "confidence": 79.3521745725239,
       "priority": 100,
-      "hours_to_start": 1336.9850941666666,
+      "hours_to_start": 1332.803751388889,
       "model_sample": 64,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -93,7 +93,7 @@
       "challenger_gap": 0.004114583007058692,
       "confidence": 81.3614905080173,
       "priority": 84.62547462178006,
-      "hours_to_start": 1339.4850941666666,
+      "hours_to_start": 1335.303751111111,
       "model_sample": 65,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -110,7 +110,7 @@
       "challenger_gap": 0.010568660448427969,
       "confidence": 69.12653436428243,
       "priority": 88.05017155016091,
-      "hours_to_start": 1361.1517608333334,
+      "hours_to_start": 1356.9704177777778,
       "model_sample": 55,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -127,7 +127,7 @@
       "challenger_gap": 0.0007706215442866426,
       "confidence": 79.68069517158196,
       "priority": 85.00497325362505,
-      "hours_to_start": 1361.1517608333334,
+      "hours_to_start": 1356.9704177777778,
       "model_sample": 50,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -144,7 +144,7 @@
       "challenger_gap": 0.0033189407862860842,
       "confidence": 81.39510121550344,
       "priority": 100,
-      "hours_to_start": 1361.6517605555555,
+      "hours_to_start": 1357.4704177777778,
       "model_sample": 53,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -161,7 +161,7 @@
       "challenger_gap": 0.023151120097825606,
       "confidence": 64.77033713937772,
       "priority": 91.06347244565285,
-      "hours_to_start": 1361.6517605555555,
+      "hours_to_start": 1357.4704177777778,
       "model_sample": 51,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -178,7 +178,7 @@
       "challenger_gap": 0.008835540157211996,
       "confidence": 73.43610271036019,
       "priority": 86.31005187010012,
-      "hours_to_start": 1362.1517605555555,
+      "hours_to_start": 1357.9704177777778,
       "model_sample": 49,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -195,7 +195,7 @@
       "challenger_gap": 0.020299796348330124,
       "confidence": 65.97403887320753,
       "priority": 83.68511281939413,
-      "hours_to_start": 1362.1517605555555,
+      "hours_to_start": 1357.9704175,
       "model_sample": 50,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -212,7 +212,7 @@
       "challenger_gap": 0.009421940250469829,
       "confidence": 77.01304880822279,
       "priority": 96.02680087318379,
-      "hours_to_start": 1362.6517605555555,
+      "hours_to_start": 1358.4704175,
       "model_sample": 49,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -229,7 +229,7 @@
       "challenger_gap": 0.014723708510650968,
       "confidence": 71.93214580984947,
       "priority": 90.85224547457489,
-      "hours_to_start": 1364.1517605555555,
+      "hours_to_start": 1359.9704175,
       "model_sample": 52,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -246,7 +246,7 @@
       "challenger_gap": 0.008526469656107483,
       "confidence": 79.42987943589476,
       "priority": 85.76641874014146,
-      "hours_to_start": 1364.1517605555555,
+      "hours_to_start": 1359.9704175,
       "model_sample": 56,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -263,7 +263,7 @@
       "challenger_gap": 0.0017955422044704794,
       "confidence": 83.15036933443851,
       "priority": 78.14857474837463,
-      "hours_to_start": 1385.1517605555555,
+      "hours_to_start": 1380.9704175,
       "model_sample": 64,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -280,7 +280,7 @@
       "challenger_gap": 0.014055865186098693,
       "confidence": 74.25012322826642,
       "priority": 88.3541240040935,
-      "hours_to_start": 1387.6517605555555,
+      "hours_to_start": 1383.4704175,
       "model_sample": 57,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -297,7 +297,7 @@
       "challenger_gap": 0.0026777906037440125,
       "confidence": 80.6071725263512,
       "priority": 82.8120052994885,
-      "hours_to_start": 1409.1517605555555,
+      "hours_to_start": 1404.9704175,
       "model_sample": 58,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -314,7 +314,7 @@
       "challenger_gap": 0.010401060284608299,
       "confidence": 76.26389668155575,
       "priority": 90.47175530583438,
-      "hours_to_start": 1411.6517602777778,
+      "hours_to_start": 1407.4704175,
       "model_sample": 59,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -331,7 +331,7 @@
       "challenger_gap": 0.00045719794443699335,
       "confidence": 80.19264561526033,
       "priority": 100,
-      "hours_to_start": 1577.1517602777778,
+      "hours_to_start": 1572.9704175,
       "model_sample": 52,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -348,7 +348,7 @@
       "challenger_gap": 0.0059230671104150145,
       "confidence": 80.81744576066527,
       "priority": 100,
-      "hours_to_start": 1577.6517602777778,
+      "hours_to_start": 1573.4704175,
       "model_sample": 51,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -365,7 +365,7 @@
       "challenger_gap": 0.0009622920605686924,
       "confidence": 84.65486112073664,
       "priority": 100,
-      "hours_to_start": 1577.6517602777778,
+      "hours_to_start": 1573.4704175,
       "model_sample": 53,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -382,7 +382,7 @@
       "challenger_gap": 0.013008459343594514,
       "confidence": 74.22016681588903,
       "priority": 97.63051300170994,
-      "hours_to_start": 1577.6517602777778,
+      "hours_to_start": 1573.4704175,
       "model_sample": 64,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -399,7 +399,7 @@
       "challenger_gap": 0.004741679234314733,
       "confidence": 78.81125430046797,
       "priority": 88.00016221848271,
-      "hours_to_start": 1578.1517602777778,
+      "hours_to_start": 1573.9704175,
       "model_sample": 49,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -416,7 +416,7 @@
       "challenger_gap": 0.0017499476204198006,
       "confidence": 83.01276567649417,
       "priority": 96.73091054746371,
-      "hours_to_start": 1578.1517602777778,
+      "hours_to_start": 1573.9704175,
       "model_sample": 50,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -433,7 +433,7 @@
       "challenger_gap": 0.003051936207114081,
       "confidence": 83.58685245576297,
       "priority": 84.51392012671559,
-      "hours_to_start": 1580.1517602777778,
+      "hours_to_start": 1575.9704175,
       "model_sample": 57,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -450,7 +450,7 @@
       "challenger_gap": 0.00940721376173037,
       "confidence": 74.70179997502375,
       "priority": 81.9964965674672,
-      "hours_to_start": 1580.1517602777778,
+      "hours_to_start": 1575.9704175,
       "model_sample": 52,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -467,7 +467,7 @@
       "challenger_gap": 0.004893720262690748,
       "confidence": 81.94836608763099,
       "priority": 87.332091695714,
-      "hours_to_start": 1746.6517602777778,
+      "hours_to_start": 1742.4704175,
       "model_sample": 64,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -484,7 +484,7 @@
       "challenger_gap": 0.005308376954794247,
       "confidence": 82.44175762582559,
       "priority": 85.9497483242533,
-      "hours_to_start": 1749.1517602777778,
+      "hours_to_start": 1744.9704172222223,
       "model_sample": 56,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -501,7 +501,7 @@
       "challenger_gap": 0.007126300795117502,
       "confidence": 78.29637211567055,
       "priority": 100,
-      "hours_to_start": 1914.1517602777778,
+      "hours_to_start": 1909.9704172222223,
       "model_sample": 50,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -518,7 +518,7 @@
       "challenger_gap": 0.009025498823019173,
       "confidence": 78.46173057870534,
       "priority": 100,
-      "hours_to_start": 1916.6517602777778,
+      "hours_to_start": 1912.4704172222223,
       "model_sample": 52,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     },
@@ -535,7 +535,7 @@
       "challenger_gap": 0.007238485527563454,
       "confidence": 79.28164855480345,
       "priority": 83.1034289815398,
-      "hours_to_start": 2085.1517602777776,
+      "hours_to_start": 2080.9704172222223,
       "model_sample": 57,
       "preview_reason": "Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata."
     }
@@ -544,7 +544,7 @@
   "history": [],
   "integrity": {
     "strict_no_fabrication": true,
-    "generated_at": "2026-08-26T05:58:56.248Z",
+    "generated_at": "2026-08-26T10:09:49.220Z",
     "market_consensus": "same-book de-vig median",
     "prediction_lock": "0.75-36h pre-tip",
     "anomaly_gate": true,
