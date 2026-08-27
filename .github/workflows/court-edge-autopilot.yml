@@ -1,10 +1,12 @@
-name: Court Edge Pro Autopilot
+name: Court Edge Pro V4 Autopilot
 
 on:
   workflow_dispatch:
   schedule:
     - cron: '17 */4 * * *'
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
 
 permissions:
@@ -13,17 +15,13 @@ permissions:
   id-token: write
 
 concurrency:
-  group: court-edge-pages
+  group: court-edge-v4-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  build-test-deploy:
+  verify-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 28
 
     steps:
       - uses: actions/checkout@v4
@@ -32,58 +30,87 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Build live boards
-        if: github.event_name != 'push'
+      - name: Legacy regression suite
+        run: npm test
+
+      - name: V4 syntax verification
+        run: |
+          node --check quant-engine.mjs
+          node --check lock-engine.mjs
+          node --check live-board.mjs
+          node --check court-edge-v4.mjs
+          node --check sw.js
+
+      - name: V4 deterministic tests
+        run: node tests/court-edge-v4.test.mjs
+
+      - name: V4 stress tests
+        run: node tests/court-edge-v4-stress.mjs
+
+      - name: V4 static contract
+        run: node tests/static-v4-check.mjs
+
+      - name: Build V4 live boards
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         env:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDS_REGIONS: eu
           BDL_MIN_INTERVAL_MS: '13000'
-        run: node live-board.mjs
+          COMMERCIAL_MODE: 'false'
+        run: node court-edge-v4.mjs
 
-      - name: Test suite pass 1
-        run: npm test
-
-      - name: Test suite pass 2
-        run: npm test
-
-      - name: Syntax verification
+      - name: Validate generated V4 boards
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
-          node --check quant-engine.mjs
-          node --check lock-engine.mjs
-          node --check live-board.mjs
-          node --check sw.js
+          node - <<'NODE'
+          const fs=require('fs');
+          for(const f of ['data/nba-v4-board.json','data/euroleague-v4-board.json']){
+            const j=JSON.parse(fs.readFileSync(f,'utf8'));
+            if(!j.meta || !j.integrity || !Array.isArray(j.markets) || !Array.isArray(j.best_bets) || !Array.isArray(j.history)) throw new Error(`Invalid V4 board contract: ${f}`);
+            if(j.integrity.strict_no_fabrication!==true) throw new Error(`Fail-closed flag missing: ${f}`);
+          }
+          console.log('V4 board contract PASS');
+          NODE
 
-      - name: Static verification
-        run: node tests/static-check.mjs
-
-      - name: Save refreshed boards
-        if: github.event_name != 'push'
-        run: |
-          git config user.name "court-edge-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add data/*.json
-          if git diff --cached --quiet; then
-            echo "No board changes to persist"
-          else
-            git commit -m "chore: refresh live boards"
-            git push
-          fi
-
-      - name: Build production site
+      - name: Build V4 Pages artifact
+        if: github.event_name != 'pull_request'
         run: |
           rm -rf _site
           mkdir -p _site/assets _site/data
           cp index.html legal.html manifest.webmanifest sw.js robots.txt _site/
           cp assets/icon-192.png assets/icon-512.png _site/assets/
-          cp data/nba-quant-board.json data/euroleague-quant-board.json _site/data/
+          cp data/nba-v4-board.json data/euroleague-v4-board.json _site/data/
 
       - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
 
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
           path: '_site'
 
+      - name: Save refreshed V4 boards
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "court-edge-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/nba-v4-board.json data/euroleague-v4-board.json
+          if git diff --cached --quiet; then
+            echo "No V4 board changes to persist"
+          else
+            git commit -m "chore: refresh v4 betting boards"
+            git push
+          fi
+
+  deploy-pages:
+    if: github.event_name != 'pull_request'
+    needs: verify-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy Pages
         id: deployment
         uses: actions/deploy-pages@v4
