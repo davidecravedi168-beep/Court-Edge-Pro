@@ -21,7 +21,7 @@ jobs:
       - name: Detect bootstrap payload
         id: boot
         run: |
-          if [ -f .bootstrap/index.html.gz.b64 ]; then
+          if [ -f .bootstrap/index.html.gz.b64 ] && [ -f .bootstrap/engine.part1 ] && [ -f .bootstrap/engine.part2 ] && [ -f .bootstrap/engine.part3 ] && [ -f .bootstrap/engine.part4 ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
@@ -34,7 +34,7 @@ jobs:
           decode(){ base64 -d "$1" | gunzip > "$2"; }
           mkdir -p tests data
           decode .bootstrap/index.html.gz.b64 index.html
-          decode .bootstrap/court-edge-v4.mjs.gz.b64 court-edge-v4.mjs
+          cat .bootstrap/engine.part1 .bootstrap/engine.part2 .bootstrap/engine.part3 .bootstrap/engine.part4 | base64 -d | gunzip > court-edge-v4.mjs
           decode .bootstrap/court-edge-v4.test.mjs.gz.b64 tests/court-edge-v4.test.mjs
           decode .bootstrap/court-edge-v4-stress.mjs.gz.b64 tests/court-edge-v4-stress.mjs
           node - <<'NODE'
@@ -50,9 +50,14 @@ jobs:
           fs.writeFileSync('data/euroleague-v4-board.json',JSON.stringify(board('EUROLEAGUE',2.0),null,2));
           NODE
 
-      - name: Regression + V4 tests
+      - name: Verify exact payload + regression + V4 tests
         if: steps.boot.outputs.run == 'true'
         run: |
+          set -euo pipefail
+          test "$(git hash-object index.html)" = "bbc6a1e5b15481d45aeea88d6663d94246c8a0bb"
+          test "$(git hash-object court-edge-v4.mjs)" = "35c5436888cbe0078a89e833d2fd2b59827d16d3"
+          test "$(git hash-object tests/court-edge-v4.test.mjs)" = "52be5edf0c28be4f283086f18757db7aabc32dba"
+          test "$(git hash-object tests/court-edge-v4-stress.mjs)" = "173003f743389930548df8daa3779fb1033df494"
           npm test
           node --check court-edge-v4.mjs
           node tests/court-edge-v4.test.mjs
@@ -65,7 +70,7 @@ jobs:
           rm -rf .bootstrap
           git config user.name "court-edge-v4-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add index.html court-edge-v4.mjs tests/court-edge-v4.test.mjs tests/court-edge-v4-stress.mjs data/nba-v4-board.json data/euroleague-v4-board.json .bootstrap
+          git add -A
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
