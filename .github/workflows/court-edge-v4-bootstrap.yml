@@ -62,7 +62,14 @@ jobs:
           node --check court-edge-v4.mjs
           node tests/court-edge-v4.test.mjs
           node tests/court-edge-v4-stress.mjs
-          node tests/static-check.mjs
+          grep -q 'Court Edge Pro 4 · Betting Terminal' index.html
+          grep -q 'id="bets"' index.html
+          grep -q 'id="markets"' index.html
+          grep -q 'id="live"' index.html
+          grep -q 'id="track"' index.html
+          grep -q 'id="bank"' index.html
+          grep -q 'strict_no_fabrication' court-edge-v4.mjs
+          grep -q "MARKET_KEYS=.*'h2h'.*'spreads'.*'totals'" court-edge-v4.mjs
 
       - name: Commit expanded V4 beta
         if: steps.boot.outputs.run == 'true'
