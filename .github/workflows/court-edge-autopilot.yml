@@ -19,13 +19,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-test-deploy:
+  verify-build:
     runs-on: ubuntu-latest
     timeout-minutes: 28
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - uses: actions/checkout@v4
@@ -77,20 +73,7 @@ jobs:
           console.log('V4 board contract PASS');
           NODE
 
-      - name: Save refreshed V4 boards
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: |
-          git config user.name "court-edge-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add data/nba-v4-board.json data/euroleague-v4-board.json
-          if git diff --cached --quiet; then
-            echo "No V4 board changes to persist"
-          else
-            git commit -m "chore: refresh v4 betting boards"
-            git push
-          fi
-
-      - name: Build V4 site
+      - name: Build V4 Pages artifact
         if: github.event_name != 'pull_request'
         run: |
           rm -rf _site
@@ -107,7 +90,27 @@ jobs:
         with:
           path: '_site'
 
+      - name: Save refreshed V4 boards
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "court-edge-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/nba-v4-board.json data/euroleague-v4-board.json
+          if git diff --cached --quiet; then
+            echo "No V4 board changes to persist"
+          else
+            git commit -m "chore: refresh v4 betting boards"
+            git push
+          fi
+
+  deploy-pages:
+    if: github.event_name != 'pull_request'
+    needs: verify-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy Pages
-        if: github.event_name != 'pull_request'
         id: deployment
         uses: actions/deploy-pages@v4
