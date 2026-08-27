@@ -1,0 +1,74 @@
+name: Court Edge Pro V4 Bootstrap
+
+on:
+  push:
+    branches: [court-edge-4-betting-terminal]
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap-v4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Detect bootstrap payload
+        id: boot
+        run: |
+          if [ -f .bootstrap/index.html.gz.b64 ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Expand V4 source
+        if: steps.boot.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          decode(){ base64 -d "$1" | gunzip > "$2"; }
+          mkdir -p tests data
+          decode .bootstrap/index.html.gz.b64 index.html
+          decode .bootstrap/court-edge-v4.mjs.gz.b64 court-edge-v4.mjs
+          decode .bootstrap/court-edge-v4.test.mjs.gz.b64 tests/court-edge-v4.test.mjs
+          decode .bootstrap/court-edge-v4-stress.mjs.gz.b64 tests/court-edge-v4-stress.mjs
+          node - <<'NODE'
+          const fs=require('fs');
+          function board(league,maxExposure){return {
+            meta:{league,status:'BETA_WAIT',data_health:'NO_FEED',market_health:'NO_FEED',model_health:'COLD',risk_mode:'PAPER_ONLY',updated_at:null,source:'Court Edge Pro V4',model_version:'COURT-EDGE-4.0-BETTING-TERMINAL',note:'Placeholder fail-closed. Run the V4 Autopilot with configured API secrets to build a real board.',injury_health:'UNKNOWN'},
+            stats:{closed:0,by_market:{h2h:{roi:null},spreads:{roi:null},totals:{roi:null}}},
+            risk:{mode:'PAPER_ONLY',exposure_units:0,max_exposure_units:maxExposure},
+            radar:[],markets:[],best_bets:[],live:[],history:[],market_history:[],
+            integrity:{strict_no_fabrication:true,generated_at:null,prediction_lock:true,multi_market:true,test_markets_fail_closed:true,source:'placeholder'}
+          }}
+          fs.writeFileSync('data/nba-v4-board.json',JSON.stringify(board('NBA',2.5),null,2));
+          fs.writeFileSync('data/euroleague-v4-board.json',JSON.stringify(board('EUROLEAGUE',2.0),null,2));
+          NODE
+
+      - name: Regression + V4 tests
+        if: steps.boot.outputs.run == 'true'
+        run: |
+          npm test
+          node --check court-edge-v4.mjs
+          node tests/court-edge-v4.test.mjs
+          node tests/court-edge-v4-stress.mjs
+          node tests/static-check.mjs
+
+      - name: Commit expanded V4 beta
+        if: steps.boot.outputs.run == 'true'
+        run: |
+          rm -rf .bootstrap
+          git config user.name "court-edge-v4-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html court-edge-v4.mjs tests/court-edge-v4.test.mjs tests/court-edge-v4-stress.mjs data/nba-v4-board.json data/euroleague-v4-board.json .bootstrap
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "feat: expand Court Edge Pro 4 betting terminal"
+            git push
+          fi
