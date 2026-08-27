@@ -1,1 +1,48 @@
-{"meta":{"league":"NBA","version":"COURT-EDGE-4.0-BETTING-TERMINAL","status":"PAPER BETA","data_health":"WAIT","injury_health":"WAIT"},"hero":null,"best_bets":[],"markets":[],"radar":[],"live":[],"history":[],"stats":{"closed":0,"by_market":{}},"market_history":{},"integrity":{"strict_no_fabrication":true}}
+{
+  "meta": {
+    "league": "NBA",
+    "status": "BETA_WAIT",
+    "data_health": "NO_FEED",
+    "market_health": "NO_FEED",
+    "model_health": "COLD",
+    "risk_mode": "PAPER_ONLY",
+    "updated_at": null,
+    "source": "Court Edge Pro V4",
+    "model_version": "COURT-EDGE-4.0-BETTING-TERMINAL",
+    "note": "Placeholder fail-closed. Run the V4 Autopilot with configured API secrets to build a real board.",
+    "injury_health": "UNKNOWN"
+  },
+  "stats": {
+    "closed": 0,
+    "by_market": {
+      "h2h": {
+        "roi": null
+      },
+      "spreads": {
+        "roi": null
+      },
+      "totals": {
+        "roi": null
+      }
+    }
+  },
+  "risk": {
+    "mode": "PAPER_ONLY",
+    "exposure_units": 0,
+    "max_exposure_units": 2.5
+  },
+  "radar": [],
+  "markets": [],
+  "best_bets": [],
+  "live": [],
+  "history": [],
+  "market_history": [],
+  "integrity": {
+    "strict_no_fabrication": true,
+    "generated_at": null,
+    "prediction_lock": true,
+    "multi_market": true,
+    "test_markets_fail_closed": true,
+    "source": "placeholder"
+  }
+}
