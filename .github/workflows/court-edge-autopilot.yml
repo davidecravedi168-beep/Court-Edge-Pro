@@ -66,6 +66,7 @@ jobs:
           node --check lock-engine.mjs
           node --check live-board.mjs
           node --check court-edge-v4.mjs
+          node --check betting-ux.js
           node --check scripts/run-v4-budgeted.mjs
           node --check scripts/write-automation-health.mjs
           node --check sw.js
@@ -106,24 +107,24 @@ jobs:
           fi
 
       - name: Build production site
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: |
           rm -rf _site
           mkdir -p _site/assets _site/data
-          cp index.html legal.html manifest.webmanifest sw.js robots.txt _site/
+          cp index.html betting-ux.js legal.html manifest.webmanifest sw.js robots.txt _site/
           cp assets/icon-192.png assets/icon-512.png _site/assets/
           cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json _site/data/
 
       - uses: actions/configure-pages@v5
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
 
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
           path: '_site'
 
   deploy-pages:
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: verify-build
     runs-on: ubuntu-latest
     environment:
