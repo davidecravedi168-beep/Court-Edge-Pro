@@ -1,5 +1,5 @@
-const CACHE='court-edge-pro-v4-2-0';
-const CORE=['./','./index.html','./betting-ux.js','./match-details.js','./legal.html','./manifest.webmanifest','./assets/icon-192.png','./assets/icon-512.png'];
+const CACHE='court-edge-pro-v4-3-0';
+const CORE=['./','./index.html','./betting-ux.js','./match-details-v43.js','./legal.html','./manifest.webmanifest','./assets/icon-192.png','./assets/icon-512.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{
