@@ -1,0 +1,45 @@
+name: Court Edge V4 Provider Smoke
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: court-edge-v4-provider-smoke
+  cancel-in-progress: true
+
+jobs:
+  provider-smoke:
+    if: github.head_ref == 'court-edge-4-release-candidate'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build one real multi-market snapshot
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_REGIONS: eu
+          ODDS_MARKETS: h2h,spreads,totals
+          BDL_MIN_INTERVAL_MS: '13000'
+          COMMERCIAL_MODE: 'false'
+        run: node scripts/run-v4-budgeted.mjs
+      - name: Verify real-provider boards fail closed
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const out={};
+          for(const f of ['data/nba-v4-board.json','data/euroleague-v4-board.json']){
+            const b=JSON.parse(fs.readFileSync(f,'utf8'));
+            if(b.integrity?.strict_no_fabrication!==true) throw new Error(`${f}: fail-closed missing`);
+            if(!Array.isArray(b.markets)||!Array.isArray(b.best_bets)||!Array.isArray(b.radar)) throw new Error(`${f}: invalid contract`);
+            out[b.meta?.league||f]={source:b.meta?.source,data_health:b.meta?.data_health,market_health:b.meta?.market_health,injury_health:b.meta?.injury_health||null,markets:b.markets.length,best_bets:b.best_bets.length,radar:b.radar.length,live:Array.isArray(b.live)?b.live.length:0,updated_at:b.meta?.updated_at||null};
+          }
+          console.log(JSON.stringify({ok:true,provider_smoke:out},null,2));
+          NODE
