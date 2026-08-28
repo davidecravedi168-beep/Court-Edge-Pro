@@ -1,0 +1,86 @@
+name: Court Edge V4 RC Real Data Smoke
+
+on:
+  push:
+    branches: [court-edge-4-release-candidate]
+    paths:
+      - '.github/workflows/court-edge-v4-rc-realdata.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: court-edge-v4-rc-realdata
+  cancel-in-progress: false
+
+jobs:
+  real-data-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: court-edge-4-release-candidate
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build real V4 multi-market boards
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_REGIONS: eu
+          ODDS_MARKETS: h2h,spreads,totals
+          BDL_MIN_INTERVAL_MS: '13000'
+          COMMERCIAL_MODE: 'false'
+        run: node scripts/run-v4-budgeted.mjs
+
+      - name: Run full test suite twice
+        run: |
+          npm test
+          npm test
+          node tests/static-v4-check.mjs
+
+      - name: Validate real-data invariants
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          for(const f of ['data/nba-v4-board.json','data/euroleague-v4-board.json']){
+            const b=JSON.parse(fs.readFileSync(f,'utf8'));
+            if(b.integrity?.strict_no_fabrication!==true) throw new Error(`${f}: no-fabrication disabled`);
+            for(const k of ['markets','best_bets','radar','history']) if(!Array.isArray(b[k])) throw new Error(`${f}: ${k} invalid`);
+            const seen=new Set();
+            for(const x of b.best_bets){
+              if(seen.has(x.event_id)) throw new Error(`${f}: multiple best bets for ${x.event_id}`);
+              seen.add(x.event_id);
+              if(x.validation_state==='TEST' && x.decision==='PAPER BET') throw new Error(`${f}: TEST market promoted to PAPER BET`);
+              if(Number.isFinite(x.price_to_bet) && !(x.price_to_bet>1)) throw new Error(`${f}: invalid price-to-bet`);
+            }
+            for(const x of b.markets){
+              if(x.validation_state==='TEST' && x.decision==='PAPER BET') throw new Error(`${f}: TEST market promoted in market board`);
+              if(Number.isFinite(x.robust_prob) && !(x.robust_prob>0&&x.robust_prob<1)) throw new Error(`${f}: invalid robust probability`);
+            }
+            if((b.live||[]).some(x=>x.mode!=='LIVE RESEARCH')) throw new Error(`${f}: live escaped research mode`);
+            console.log(f,JSON.stringify({updated:b.meta?.updated_at,markets:b.markets.length,best:b.best_bets.length,radar:b.radar.length,live:(b.live||[]).length,closed:b.stats?.closed||0}));
+          }
+          NODE
+
+      - name: Write V4 Edge Core receipt
+        env:
+          COURT_BOARD_PROFILE: V4
+          ODDS_MARKETS: h2h,spreads,totals
+          GITHUB_EVENT_NAME: rc_realdata_smoke
+        run: node scripts/write-automation-health.mjs
+
+      - name: Persist smoke-test boards for inspection
+        run: |
+          git config user.name "court-edge-rc-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json
+          if git diff --cached --quiet; then
+            echo "No real-data board changes"
+          else
+            git commit -m "test: persist V4 RC real-data smoke boards"
+            git push origin HEAD:court-edge-4-release-candidate
+          fi
