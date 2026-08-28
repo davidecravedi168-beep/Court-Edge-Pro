@@ -1,1 +1,0 @@
-RC checkpoint before latest-main synchronization.
