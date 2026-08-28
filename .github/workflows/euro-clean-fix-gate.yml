@@ -1,0 +1,80 @@
+name: Court Edge EuroLeague Clean Fix Gate
+
+on:
+  push:
+    branches: [court-edge-euro-clean-fix]
+    paths:
+      - 'scripts/apply-euro-clean-fix.mjs'
+      - '.github/workflows/euro-clean-fix-gate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-test-build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply EuroLeague history fix
+        run: node scripts/apply-euro-clean-fix.mjs
+      - name: Build fresh real boards
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_REGIONS: eu
+          ODDS_MARKETS: h2h,spreads,totals
+          BDL_MIN_INTERVAL_MS: '13000'
+          COMMERCIAL_MODE: 'false'
+        run: node scripts/run-v4-budgeted.mjs
+      - name: Full test suite
+        run: npm test
+      - name: Stress gate
+        run: node tests/court-edge-v4-stress.mjs
+      - name: EuroLeague sanity gate
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const b=JSON.parse(fs.readFileSync('data/euroleague-v4-board.json','utf8'));
+          if(b.integrity?.strict_no_fabrication!==true) throw new Error('fail-closed missing');
+          if(!Array.isArray(b.radar)||!b.radar.length) throw new Error('Euro radar empty');
+          let ready=0,thin=0;
+          for(const x of b.radar){
+            if(x.forecast_state==='READY'){
+              ready++;
+              if(!(x.projected_winner_prob>=.5&&x.projected_winner_prob<=1)) throw new Error('invalid winner probability');
+              const hp=x.team_stats?.home?.avg_pf, ap=x.team_stats?.away?.avg_pf;
+              if(!(hp>40&&hp<130&&ap>40&&ap<130)) throw new Error('implausible Euro PF detected');
+            } else if(x.forecast_state==='THIN'){
+              thin++;
+              if(x.projected_winner!=null||x.projected_winner_prob!=null||x.home_win_prob!=null) throw new Error('THIN forecast emitted winner');
+            }
+          }
+          if(!ready) throw new Error('no READY Euro forecasts');
+          console.log(JSON.stringify({radar:b.radar.length,ready,thin,model_stats:b.model_stats}));
+          NODE
+      - name: Match-details regression guard
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const html=fs.readFileSync('index.html','utf8');
+          const js=fs.readFileSync('match-details.js','utf8');
+          if(!html.includes('match-details.js?v=4.2')) throw new Error('match details lost');
+          for(const t of ['MATCH INTELLIGENCE','PUNTI FATTI / G','BET ≥']) if(!js.includes(t)) throw new Error('details regression '+t);
+          console.log('match-details regression guard PASS');
+          NODE
+      - name: Commit validated fix and fresh boards
+        run: |
+          git config user.name 'court-edge-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add court-edge-v4.mjs index.html data/nba-v4-board.json data/euroleague-v4-board.json
+          if git diff --cached --quiet; then
+            echo 'No changes'
+          else
+            git commit -m 'fix: reject future Euro history and suppress thin forecasts'
+            git push
+          fi
