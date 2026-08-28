@@ -2,8 +2,17 @@ name: Court Edge Pro Autopilot
 
 on:
   workflow_dispatch:
+    inputs:
+      recovery:
+        description: 'Watchdog recovery run'
+        required: false
+        default: false
+        type: boolean
   schedule:
-    - cron: '17 */4 * * *'
+    # Four low-cost Moneyline snapshots per day.
+    - cron: '17 */6 * * *'
+    # One daily multi-market research snapshot. Total budget: <=420 market units/month.
+    - cron: '43 20 * * *'
   push:
     branches: [main]
 
@@ -38,6 +47,7 @@ jobs:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDS_REGIONS: eu
+          ODDS_MARKETS: ${{ github.event.schedule == '43 20 * * *' && 'h2h,spreads,totals' || 'h2h' }}
           BDL_MIN_INTERVAL_MS: '13000'
         run: node live-board.mjs
 
@@ -49,13 +59,21 @@ jobs:
 
       - name: Syntax verification
         run: |
+          node --check edge-core.mjs
           node --check quant-engine.mjs
           node --check lock-engine.mjs
           node --check live-board.mjs
+          node --check scripts/write-automation-health.mjs
           node --check sw.js
 
       - name: Static verification
         run: node tests/static-check.mjs
+
+      - name: Write signed automation receipt
+        env:
+          GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
+          ODDS_MARKETS: ${{ github.event.schedule == '43 20 * * *' && 'h2h,spreads,totals' || 'h2h' }}
+        run: node scripts/write-automation-health.mjs
 
       - name: Save refreshed boards
         if: github.event_name != 'push'
@@ -76,7 +94,7 @@ jobs:
           mkdir -p _site/assets _site/data
           cp index.html legal.html manifest.webmanifest sw.js robots.txt _site/
           cp assets/icon-192.png assets/icon-512.png _site/assets/
-          cp data/nba-quant-board.json data/euroleague-quant-board.json _site/data/
+          cp data/nba-quant-board.json data/euroleague-quant-board.json data/automation-health.json _site/data/
 
       - uses: actions/configure-pages@v5
 

@@ -3,6 +3,7 @@ import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {analyzeMarket,blendProbabilities,clamp,brierScore,logLoss,devigTwoWay,VERSION} from './quant-engine.mjs';
 import {mergePredictionLocks,settleLocks} from './lock-engine.mjs';
+import {assertPublicBoard,EDGE_CORE_VERSION} from './edge-core.mjs';
 
 const ROOT=process.cwd();
 const DATA=path.join(ROOT,'data');
@@ -75,12 +76,12 @@ function bdlFetch(url,options={}){
 
 function baseBoard(league,source,note=''){
   return {
-    meta:{league,status:'LIVE_READY',model_health:'COLD',data_health:'NO_FEED',market_health:'NO_FEED',risk_mode:'PAPER_ONLY',updated_at:ISO,source,model_version:`${VERSION}-${league}`,note,lock_window_hours:[LOCK_MIN_HOURS,LOCK_MAX_HOURS],radar_horizon_days:RADAR_MAX_DAYS},
+    meta:{league,status:'LIVE_READY',model_health:'COLD',data_health:'NO_FEED',market_health:'NO_FEED',risk_mode:'PAPER_ONLY',updated_at:ISO,source,model_version:`${VERSION}-${league}`,edge_core_version:EDGE_CORE_VERSION,domain_profile:'BASKETBALL',note,lock_window_hours:[LOCK_MIN_HOURS,LOCK_MAX_HOURS],radar_horizon_days:RADAR_MAX_DAYS},
     stats:{closed_picks:0,hit_rate:null,roi:null,brier:null,log_loss:null,avg_clv:null,max_drawdown_units:0},
     risk:{exposure_units:0,max_exposure_units:league==='NBA'?2.5:2,portfolio_guard:'ON',mode:'PAPER_ONLY'},
     learning:{calibration:{active:false,mode:'MONITOR_ONLY'},drift:{health:'COLD'},challenger:{status:'SHADOW',sample:0,note:'Formula alternativa usata solo come disagreement guard; nessuna promozione senza validazione out-of-sample.'}},
     radar:[],upcoming:[],history:[],
-    integrity:{strict_no_fabrication:true,generated_at:ISO,market_consensus:'same-book de-vig median',prediction_lock:'0.75-36h pre-tip',anomaly_gate:true,portfolio_cap_enforced:true,challenger_shadow:true}
+    integrity:{strict_no_fabrication:true,secrets_server_side:true,generated_at:ISO,market_consensus:'same-book de-vig median',prediction_lock:'0.75-36h pre-tip',anomaly_gate:true,portfolio_cap_enforced:true,challenger_shadow:true,secondary_markets:'PAPER_RESEARCH_UNTIL_SETTLED_SAMPLE'}
   };
 }
 
@@ -100,21 +101,23 @@ function metrics(history=[]){
 
 function modelFromGames(games,league){
   const m=new Map(),homeAdj=league==='NBA'?55:60;
-  const get=n=>{const k=norm(n);if(!m.has(k))m.set(k,{name:n,elo:1500,games:0,margins:[],recent:[],last:null});return m.get(k)};
+  const get=n=>{const k=norm(n);if(!m.has(k))m.set(k,{name:n,elo:1500,games:0,margins:[],recent:[],totals:[],pointsFor:[],pointsAgainst:[],last:null});return m.get(k)};
   for(const g of [...games].sort((a,b)=>new Date(a.date)-new Date(b.date))){
     if(!g.home||!g.away||!Number.isFinite(g.hs)||!Number.isFinite(g.as))continue;
     const h=get(g.home),a=get(g.away),ex=1/(1+10**(-((h.elo+homeAdj)-a.elo)/400)),act=g.hs>g.as?1:0,k=18,delta=k*(act-ex);
     h.elo+=delta;a.elo-=delta;h.games++;a.games++;
     h.margins.push(g.hs-g.as);a.margins.push(g.as-g.hs);h.recent.push(g.hs-g.as);a.recent.push(g.as-g.hs);
+    h.totals.push(g.hs+g.as);a.totals.push(g.hs+g.as);h.pointsFor.push(g.hs);h.pointsAgainst.push(g.as);a.pointsFor.push(g.as);a.pointsAgainst.push(g.hs);
     if(h.recent.length>12)h.recent.shift();if(a.recent.length>12)a.recent.shift();if(h.margins.length>40)h.margins.shift();if(a.margins.length>40)a.margins.shift();
+    for(const z of [h,a])for(const key of ['totals','pointsFor','pointsAgainst'])if(z[key].length>40)z[key].shift();
     h.last=g.date;a.last=g.date;
   }
   return {teams:m,homeAdj};
 }
 
 function probs(model,home,away,startAt){
-  const h=model.teams.get(norm(home))||{elo:1500,games:0,margins:[],recent:[],last:null};
-  const a=model.teams.get(norm(away))||{elo:1500,games:0,margins:[],recent:[],last:null};
+  const h=model.teams.get(norm(home))||{elo:1500,games:0,margins:[],recent:[],totals:[],pointsFor:[],pointsAgainst:[],last:null};
+  const a=model.teams.get(norm(away))||{elo:1500,games:0,margins:[],recent:[],totals:[],pointsFor:[],pointsAgainst:[],last:null};
   const elo=1/(1+10**(-((h.elo+model.homeAdj)-a.elo)/400));
   const form=1/(1+Math.exp(-(weightedRecent(h.recent)-weightedRecent(a.recent)+2)/11));
   const margin=1/(1+Math.exp(-(avg(h.margins)-avg(a.margins)+2)/13));
@@ -134,11 +137,17 @@ function probs(model,home,away,startAt){
   const engineSpread=Math.max(...parts)-Math.min(...parts);
   const dis=Math.max(engineSpread,challengerGap*1.25);
   const unc=clamp(.025+(sd(h.recent)+sd(a.recent))/210+Math.max(0,16-sample)/180,.025,.14);
-  return {p,challengerP,challengerGap,parts:parts.map(x=>.5+(x-.5)*reliability),dis,unc,sample,rest:{home:hr,away:ar}};
+  const projectedMargin=sample>=8?clamp((avg(h.margins)-avg(a.margins))/2+model.homeAdj/20,-25,25):null;
+  const totalPool=[...(h.totals||[]).slice(-12),...(a.totals||[]).slice(-12)];
+  const projectedTotal=sample>=8&&totalPool.length>=12?clamp(avg(totalPool),leagueBaseTotal(model.homeAdj)*.72,leagueBaseTotal(model.homeAdj)*1.28):null;
+  const baseTotal=leagueBaseTotal(model.homeAdj);
+  return {p,challengerP,challengerGap,parts:parts.map(x=>.5+(x-.5)*reliability),dis,unc,sample,rest:{home:hr,away:ar,edge_home:hr-ar},projectedMargin,projectedTotal,paceIndex:projectedTotal==null?null:projectedTotal/baseTotal*100};
 }
 
-function markets(ev){
-  const rows=[];
+function leagueBaseTotal(homeAdj){return homeAdj===55?225:162}
+
+export function markets(ev){
+  const rows=[],spreadRows=[],totalRows=[];
   for(const b of ev.bookmakers||[]){
     const m=(b.markets||[]).find(x=>x.key==='h2h');
     const ho=m?.outcomes?.find(x=>norm(x.name)===norm(ev.home_team));
@@ -147,11 +156,17 @@ function markets(ev){
       const d=devigTwoWay(+ho.price,+ao.price),updated=b.last_update||m.last_update,ageMin=updated?(Date.now()-new Date(updated).getTime())/60000:999;
       rows.push({book:b.title,home:+ho.price,away:+ao.price,fairHome:d.a,fairAway:d.b,overround:d.overround,updated,ageMin});
     }
+    const sm=(b.markets||[]).find(x=>x.key==='spreads'),sh=sm?.outcomes?.find(x=>norm(x.name)===norm(ev.home_team)),sa=sm?.outcomes?.find(x=>norm(x.name)===norm(ev.away_team));
+    if(Number.isFinite(+sh?.point)&&sh?.price>1&&sa?.price>1)spreadRows.push({book:b.title,homeLine:+sh.point,homeOdds:+sh.price,awayOdds:+sa.price,updated:b.last_update||sm.last_update});
+    const tm=(b.markets||[]).find(x=>x.key==='totals'),over=tm?.outcomes?.find(x=>norm(x.name)==='over'),under=tm?.outcomes?.find(x=>norm(x.name)==='under');
+    if(Number.isFinite(+over?.point)&&over?.price>1&&under?.price>1)totalRows.push({book:b.title,line:+over.point,overOdds:+over.price,underOdds:+under.price,updated:b.last_update||tm.last_update});
   }
   if(!rows.length)return null;
   const fresh=rows.filter(r=>r.ageMin<=120),use=fresh.length?fresh:rows;
   const fairHomes=use.map(r=>r.fairHome),fairHome=median(fairHomes),fairAway=1-fairHome,dispersion=use.length>1?sd(fairHomes):0,overround=median(use.map(r=>r.overround)),ageMin=median(use.map(r=>r.ageMin))??999;
-  return {books:use.length,bestHome:Math.max(...use.map(r=>r.home)),bestAway:Math.max(...use.map(r=>r.away)),fairHome,fairAway,dispersion,overround,ageMin,stability:clamp(94-dispersion*520-Math.min(35,ageMin/2.5),25,97)};
+  const spread=spreadRows.length?{state:'PAPER_RESEARCH',books:spreadRows.length,home_line:median(spreadRows.map(x=>x.homeLine)),best_home_odds:Math.max(...spreadRows.map(x=>x.homeOdds)),best_away_odds:Math.max(...spreadRows.map(x=>x.awayOdds))}:null;
+  const total=totalRows.length?{state:'PAPER_RESEARCH',books:totalRows.length,line:median(totalRows.map(x=>x.line)),best_over_odds:Math.max(...totalRows.map(x=>x.overOdds)),best_under_odds:Math.max(...totalRows.map(x=>x.underOdds))}:null;
+  return {books:use.length,bestHome:Math.max(...use.map(r=>r.home)),bestAway:Math.max(...use.map(r=>r.away)),fairHome,fairAway,dispersion,overround,ageMin,stability:clamp(94-dispersion*520-Math.min(35,ageMin/2.5),25,97),spread,total,marketFamilies:['MONEYLINE',...(spread?['SPREAD']:[]),...(total?['TOTAL']:[])]};
 }
 
 function hoursToStart(iso){return (new Date(iso).getTime()-Date.now())/3600000}
@@ -163,13 +178,14 @@ function buildEntries(league,odds,games,{availability='LIMITED',requireAvailabil
     const hrs=hoursToStart(ev.commence_time);
     if(hrs<=0||hrs>RADAR_MAX_DAYS*24)continue;
     const eventId=stableEventId(league,ev),p=probs(model,ev.home_team,ev.away_team,ev.commence_time),mk=markets(ev);
-    radar.push({event_id:eventId,league,away_team:ev.away_team,home_team:ev.home_team,start_at:ev.commence_time,pre_status:hrs<=LOCK_MAX_HOURS?'LOCK WINDOW':'EARLY RADAR',favorite_name:p.p>=.5?ev.home_team:ev.away_team,favorite_prob:Math.max(p.p,1-p.p),challenger_prob:p.p>=.5?p.challengerP:1-p.challengerP,challenger_gap:p.challengerGap,confidence:clamp(100-p.unc*100-p.dis*55-p.challengerGap*42,0,100),priority:clamp(50+Math.abs(p.p-.5)*100+Math.min(28,p.sample),0,100),hours_to_start:hrs,model_sample:p.sample,preview_reason:hrs<=LOCK_MAX_HOURS?'Dentro la finestra di lock: mercato e qualità dati possono essere validati.':'Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata.'});
+    const basketballIntel={state:p.sample>=8?'MODEL_DERIVED':'INSUFFICIENT_SAMPLE',projected_home_margin:p.projectedMargin,projected_total:p.projectedTotal,pace_index:p.paceIndex,home_rest_days:p.rest.home,away_rest_days:p.rest.away,rest_edge_home_days:p.rest.edge_home,back_to_back_home:p.rest.home<1.7,back_to_back_away:p.rest.away<1.7,provenance:'DERIVED_FROM_OBSERVED_FINAL_SCORES'};
+    radar.push({event_id:eventId,league,away_team:ev.away_team,home_team:ev.home_team,start_at:ev.commence_time,pre_status:hrs<=LOCK_MAX_HOURS?'LOCK WINDOW':'EARLY RADAR',favorite_name:p.p>=.5?ev.home_team:ev.away_team,favorite_prob:Math.max(p.p,1-p.p),challenger_prob:p.p>=.5?p.challengerP:1-p.challengerP,challenger_gap:p.challengerGap,confidence:clamp(100-p.unc*100-p.dis*55-p.challengerGap*42,0,100),priority:clamp(50+Math.abs(p.p-.5)*100+Math.min(28,p.sample),0,100),hours_to_start:hrs,model_sample:p.sample,basketball_intel:basketballIntel,preview_reason:hrs<=LOCK_MAX_HOURS?'Dentro la finestra di lock: mercato e qualità dati possono essere validati.':'Early radar: previsione sportiva osservata, nessuna decisione di mercato ancora bloccata.'});
     if(!mk||hrs<LOCK_MIN_HOURS||hrs>LOCK_MAX_HOURS)continue;
     const homePick=p.p>=.5,pick=homePick?ev.home_team:ev.away_team,probParts=homePick?p.parts:p.parts.map(x=>1-x),op=homePick?mk.bestHome:mk.bestAway,oo=homePick?mk.bestAway:mk.bestHome,marketProb=homePick?mk.fairHome:mk.fairAway;
     const dq=clamp(50+Math.min(35,p.sample*1.25)+(availability==='VERIFIED'?12:6)+Math.min(7,mk.books),45,96),penalty=availability==='VERIFIED'?0:.018;
     const a=analyzeMarket({engineProbs:probParts,engineWeights:[1.35,1,.95],oddsPick:op,oddsOther:oo,marketProb,overround:mk.overround,uncertainty:p.unc,disagreement:p.dis,challengerGap:p.challengerGap,dataQuality:dq,marketBooks:mk.books,oddsAgeMin:mk.ageMin,availabilityStatus:availability,requireAvailability,availabilityPenalty:penalty,marketStability:mk.stability,sampleSize:p.sample});
     const anomaly=a.gateReasons.includes('EV_ANOMALY')||a.gateReasons.includes('MODEL_MARKET_GAP')||a.gateReasons.includes('MARKET_INTEGRITY');
-    upcoming.push({event_id:eventId,league,away_team:ev.away_team,home_team:ev.home_team,start_at:ev.commence_time,predicted_at:ISO,hours_to_start:hrs,audit_id:`${league}-${eventId}`,verdict:a.decision,pick_team:pick,pick_name:`${pick} ML`,best_odds:op,market_home_odds:mk.bestHome,market_away_odds:mk.bestAway,market_home_prob:mk.fairHome,market_away_prob:mk.fairAway,market_overround:mk.overround,raw_ev:a.rawEV,robust_ev:a.robustEV,model_prob:a.modelProb,challenger_prob:homePick?p.challengerP:1-p.challengerP,challenger_gap:p.challengerGap,market_prob:a.marketProb,edge:a.edge,model_market_gap:a.modelMarketGap,confidence:a.confidence,data_quality:dq,market_books:mk.books,odds_age_min:mk.ageMin,market_dispersion:mk.dispersion,market_stability:mk.stability,model_sample:p.sample,model_disagreement:p.dis,uncertainty:p.unc,stake_units:a.stakeUnits,opportunity:a.opportunity,availability_status:availability,require_availability:requireAvailability,reason_codes:a.gateReasons,signal_state:anomaly?'REVIEW':a.decision,wait_reason:a.gateReasons.length?`${anomaly?'Integrity review':'Gate'}: ${a.gateReasons.join(', ')}`:null,case_for:`Elo, forma, margin profile e rest adjustment convergono su ${pick}; il prezzo è valutato contro consenso de-vig per bookmaker.`,case_against:anomaly?'Gap modello-mercato o integrità fuori range operativo: segnale escluso finché non viene confermato.':availability==='VERIFIED'?'Rischio residuo: varianza e line movement.':'Roster availability non completamente verificata: confidence e stake penalizzati.'});
+    upcoming.push({event_id:eventId,league,away_team:ev.away_team,home_team:ev.home_team,start_at:ev.commence_time,predicted_at:ISO,hours_to_start:hrs,audit_id:`${league}-${eventId}`,verdict:a.decision,pick_team:pick,pick_name:`${pick} ML`,best_odds:op,market_home_odds:mk.bestHome,market_away_odds:mk.bestAway,market_home_prob:mk.fairHome,market_away_prob:mk.fairAway,market_overround:mk.overround,market_families:mk.marketFamilies,market_ladder:{moneyline:{home:mk.bestHome,away:mk.bestAway,books:mk.books},spread:mk.spread,total:mk.total},basketball_intel:basketballIntel,raw_ev:a.rawEV,robust_ev:a.robustEV,model_prob:a.modelProb,challenger_prob:homePick?p.challengerP:1-p.challengerP,challenger_gap:p.challengerGap,market_prob:a.marketProb,edge:a.edge,model_market_gap:a.modelMarketGap,confidence:a.confidence,data_quality:dq,market_books:mk.books,odds_age_min:mk.ageMin,market_dispersion:mk.dispersion,market_stability:mk.stability,model_sample:p.sample,model_disagreement:p.dis,uncertainty:p.unc,stake_units:a.stakeUnits,opportunity:a.opportunity,availability_status:availability,require_availability:requireAvailability,reason_codes:a.gateReasons,signal_state:anomaly?'REVIEW':a.decision,wait_reason:a.gateReasons.length?`${anomaly?'Integrity review':'Gate'}: ${a.gateReasons.join(', ')}`:null,case_for:`Elo, forma, margin profile e rest adjustment convergono su ${pick}; il prezzo è valutato contro consenso de-vig per bookmaker.`,case_against:anomaly?'Gap modello-mercato o integrità fuori range operativo: segnale escluso finché non viene confermato.':availability==='VERIFIED'?'Rischio residuo: varianza e line movement.':'Roster availability non completamente verificata: confidence e stake penalizzati.'});
   }
   return {upcoming,radar};
 }
@@ -192,7 +208,9 @@ export function applyPortfolioGuard(rows,previous=[],maxExposure=2.5){
 
 async function oddsFor(key){
   if(!ODDS_KEY)return [];
-  return fetchJson(`https://api.the-odds-api.com/v4/sports/${key}/odds/?regions=${encodeURIComponent(ODDS_REGIONS)}&markets=h2h&oddsFormat=decimal&apiKey=${encodeURIComponent(ODDS_KEY)}`);
+  const requested=String(process.env.ODDS_MARKETS||'h2h').split(',').map(x=>x.trim()).filter(x=>['h2h','spreads','totals'].includes(x));
+  const markets=[...new Set(requested.length?requested:['h2h'])];
+  return fetchJson(`https://api.the-odds-api.com/v4/sports/${key}/odds/?regions=${encodeURIComponent(ODDS_REGIONS)}&markets=${encodeURIComponent(markets.join(','))}&oddsFormat=decimal&apiKey=${encodeURIComponent(ODDS_KEY)}`);
 }
 
 async function nbaGames(){
@@ -246,6 +264,7 @@ async function writeBoard(league,file,source,odds,games,opts,note,availabilityMe
     b.upcoming=rolled.activeUpcoming;b.history=rolled.history.slice(0,1200);b.stats=metrics(b.history);b.meta.note=note||'Feed incompleto: sistema fail-closed, nessun segnale inventato.';
     if(availabilityMeta)b.integrity.availability_feed=availabilityMeta;
   }
+  assertPublicBoard(b);
   await fs.writeFile(path.join(DATA,file),JSON.stringify(b,null,2));
   return b;
 }

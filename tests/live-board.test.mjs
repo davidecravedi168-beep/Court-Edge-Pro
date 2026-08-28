@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {applyPortfolioGuard,euroSeasonCodes} from '../live-board.mjs';
+import {applyPortfolioGuard,euroSeasonCodes,markets} from '../live-board.mjs';
 const s=fs.readFileSync(new URL('../live-board.mjs',import.meta.url),'utf8');
 
 test('secrets stay server-side',()=>{assert.match(s,/process\.env\.BDL_API_KEY/);assert.match(s,/process\.env\.ODDS_API_KEY/);assert.doesNotMatch(s,/apiKey=['"][A-Za-z0-9_-]{16,}/)});
@@ -12,6 +12,8 @@ test('NBA history uses cursor pagination',()=>{assert.match(s,/next_cursor/);ass
 test('BDL calls are globally serialized and paced',()=>{assert.match(s,/bdlQueue/);assert.match(s,/BDL_MIN_INTERVAL_MS/);assert.match(s,/Math\.max\(12000/)});
 test('prediction lock is distinct from radar',()=>{assert.match(s,/LOCK_MAX_HOURS=36/);assert.match(s,/hrs>LOCK_MAX_HOURS/);assert.match(s,/EARLY RADAR/)});
 test('market consensus devigs each bookmaker pair',()=>{assert.match(s,/fairHome:d\.a/);assert.match(s,/fairHome=median/);assert.match(s,/marketProb/)});
+test('basketball lab exposes model-derived rest margin pace and totals without promoting secondary markets',()=>{assert.match(s,/basketball_intel/);assert.match(s,/projectedMargin/);assert.match(s,/paceIndex/);assert.match(s,/PAPER_RESEARCH/);assert.match(s,/spreads/);assert.match(s,/totals/)});
+test('multi-market ladder parses moneyline spread and total without issuing a secondary bet',()=>{const m=markets({home_team:'Home',away_team:'Away',bookmakers:[{title:'Book',last_update:new Date().toISOString(),markets:[{key:'h2h',outcomes:[{name:'Home',price:1.8},{name:'Away',price:2.1}]},{key:'spreads',outcomes:[{name:'Home',price:1.91,point:-3.5},{name:'Away',price:1.91,point:3.5}]},{key:'totals',outcomes:[{name:'Over',price:1.9,point:222.5},{name:'Under',price:1.92,point:222.5}]}]}]});assert.equal(m.spread.state,'PAPER_RESEARCH');assert.equal(m.spread.home_line,-3.5);assert.equal(m.total.line,222.5);assert.deepEqual(m.marketFamilies,['MONEYLINE','SPREAD','TOTAL'])});
 test('anomaly signals are review only',()=>{assert.match(s,/signal_state:anomaly\?'REVIEW'/);assert.match(s,/MODEL_MARKET_GAP/)});
 test('persistent prediction lock and settlement engine are wired',()=>{assert.match(s,/mergePredictionLocks/);assert.match(s,/settleLocks/);assert.match(s,/lock_persistence=true/);assert.match(s,/clv_proxy/)});
 test('NBA availability endpoint is optional and plan-aware',()=>{assert.match(s,/player_injuries/);assert.match(s,/status:'VERIFIED'/);assert.match(s,/status:'LIMITED'/)});

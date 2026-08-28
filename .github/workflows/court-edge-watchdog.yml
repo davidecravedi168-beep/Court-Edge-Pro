@@ -1,0 +1,37 @@
+name: Court Edge Autopilot Watchdog
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7 * * * *'
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: court-edge-watchdog
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify board freshness and recover
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if node - <<'NODE'
+          const fs=require('fs');
+          const files=['data/nba-quant-board.json','data/euroleague-quant-board.json'];
+          const ages=files.map(f=>(Date.now()-Date.parse(JSON.parse(fs.readFileSync(f,'utf8')).meta?.updated_at||''))/3600000);
+          if(ages.some(x=>!Number.isFinite(x)||x>8.5))process.exit(1);
+          console.log('Court Edge boards fresh:',ages.map(x=>x.toFixed(2)+'h').join(', '));
+          NODE
+          then
+            exit 0
+          fi
+          gh workflow run court-edge-autopilot.yml -f recovery=true

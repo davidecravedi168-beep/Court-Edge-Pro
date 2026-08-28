@@ -1,8 +1,12 @@
-# COURT EDGE PRO 3.2 APEX CERTIFIED — NBA + EuroLeague
+# COURT EDGE PRO 4.0 EDGE CORE — NBA + EuroLeague
 
 Premium PWA di basketball decision intelligence per desktop, iOS e Android. NBA ed EuroLeague sono separate nell'UX ma condividono un motore quantitativo con audit, risk governance e fail-closed policy.
 
-## Cosa rende 3.2 più solida
+## Cosa rende 4.0 più solida
+- **Edge Core 1.0**: ricevuta pubblica di automazione, scansione anti-secret, watchdog e recovery fail-closed.
+- **Basketball Lab**: riposo/back-to-back, margin profile, total/pace projection e lineup availability, tutti marcati per provenienza.
+- **Multi-market research**: Moneyline operativa; Spread e Total restano `PAPER_RESEARCH` finché non maturano esiti chiusi per mercato.
+- **Budget zero-cost**: quattro snapshot Moneyline al giorno e un solo snapshot multi-market, massimo teorico 420 unità mercato/mese.
 - **Early Radar ≠ Prediction Lock**: radar fino a 90 giorni, lock tra 36h e 45 min dal tip-off.
 - **Same-book de-vig consensus**: ogni bookmaker viene de-viggato separatamente prima dell'aggregazione.
 - **Fresh-price filter** e **Apex anomaly gate**: quote stantie, gap estremi ed EV anomali non diventano BET.
