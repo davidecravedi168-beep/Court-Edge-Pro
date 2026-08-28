@@ -14,7 +14,7 @@ on:
     # One daily multi-market research snapshot.
     - cron: '43 20 * * *'
   push:
-    branches: [main]
+    branches: [main, court-edge-4-release-candidate]
   pull_request:
     branches: [main]
 
@@ -107,7 +107,7 @@ jobs:
           fi
 
       - name: Build production site
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: |
           rm -rf _site
           mkdir -p _site/assets _site/data
@@ -116,15 +116,15 @@ jobs:
           cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json _site/data/
 
       - uses: actions/configure-pages@v5
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
 
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
           path: '_site'
 
   deploy-pages:
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: verify-build
     runs-on: ubuntu-latest
     environment:
