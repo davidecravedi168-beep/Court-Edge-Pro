@@ -1,48 +1,496 @@
 {
   "meta": {
     "league": "EUROLEAGUE",
-    "status": "BETA_WAIT",
-    "data_health": "NO_FEED",
-    "market_health": "NO_FEED",
-    "model_health": "COLD",
+    "version": "COURT-EDGE-4.0-BETTING-TERMINAL",
+    "updated_at": "2026-08-28T08:41:44.094Z",
+    "status": "PAPER BETA",
+    "source": "EuroLeague upstream research feed + The Odds API",
     "risk_mode": "PAPER_ONLY",
-    "updated_at": null,
-    "source": "Court Edge Pro V4",
-    "model_version": "COURT-EDGE-4.0-BETTING-TERMINAL",
-    "note": "Placeholder fail-closed. Run the V4 Autopilot with configured API secrets to build a real board.",
-    "injury_health": "UNKNOWN"
+    "strict_no_fabrication": true,
+    "data_health": "GOOD",
+    "market_health": "LIVE",
+    "injury_health": "LIMITED"
   },
+  "hero": null,
+  "best_bets": [],
+  "markets": [],
+  "radar": [
+    {
+      "event_id": "01ea6f67bf560b8721e5ec0bcf82de3f",
+      "home_team": "Dubai Basketball",
+      "away_team": "Real Madrid",
+      "start_at": "2026-09-24T16:00:00Z",
+      "hours_to_start": 655.3044183333334,
+      "projected_margin": 1.06,
+      "projected_total": 120.89,
+      "projected_home_score": 61,
+      "projected_away_score": 59.9,
+      "home_win_prob": 0.5466,
+      "projected_winner": "Dubai Basketball",
+      "projected_winner_prob": 0.5466,
+      "model_sample": 76,
+      "reliability": 0.8636,
+      "margin_sigma": 9.04,
+      "total_sigma": 28,
+      "rest": {
+        "home": 0,
+        "away": 0
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1495,
+          "games": 76,
+          "avg_pf": 18.6,
+          "avg_pa": 18.5,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": "2027-04-16T18:00:00"
+        },
+        "away": {
+          "elo": 1526,
+          "games": 82,
+          "avg_pf": 18.6,
+          "avg_pa": 17.6,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": "2027-04-15T20:15:00"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "7b90c9b503886387c57381c4cf6c9860",
+      "home_team": "Hapoel Tel Aviv",
+      "away_team": "FC Bayern München",
+      "start_at": "2026-09-24T17:00:00Z",
+      "hours_to_start": 656.3044183333334,
+      "projected_margin": 0,
+      "projected_total": 162,
+      "projected_home_score": 81,
+      "projected_away_score": 81,
+      "home_win_prob": 0.5,
+      "projected_winner": "Hapoel Tel Aviv",
+      "projected_winner_prob": 0.5,
+      "model_sample": 0,
+      "reliability": 0,
+      "margin_sigma": 12.93,
+      "total_sigma": 28,
+      "rest": {
+        "home": 4,
+        "away": 4
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        },
+        "away": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "9589ba32c87b929e1447aa201f0b6d45",
+      "home_team": "KK Crvena zvezda",
+      "away_team": "Žalgiris",
+      "start_at": "2026-09-24T18:00:00Z",
+      "hours_to_start": 657.3044183333334,
+      "projected_margin": 0,
+      "projected_total": 162,
+      "projected_home_score": 81,
+      "projected_away_score": 81,
+      "home_win_prob": 0.5,
+      "projected_winner": "KK Crvena zvezda",
+      "projected_winner_prob": 0.5,
+      "model_sample": 0,
+      "reliability": 0,
+      "margin_sigma": 12.93,
+      "total_sigma": 28,
+      "rest": {
+        "home": 4,
+        "away": 4
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        },
+        "away": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "8703f7a657f3360ec99010955336c102",
+      "home_team": "Panathinaikos",
+      "away_team": "Paris Basketball",
+      "start_at": "2026-09-24T18:15:00Z",
+      "hours_to_start": 657.5544183333334,
+      "projected_margin": 0,
+      "projected_total": 141.57,
+      "projected_home_score": 70.8,
+      "projected_away_score": 70.8,
+      "home_win_prob": 0.5,
+      "projected_winner": "Panathinaikos",
+      "projected_winner_prob": 0.5,
+      "model_sample": 0,
+      "reliability": 0,
+      "margin_sigma": 12.93,
+      "total_sigma": 28,
+      "rest": {
+        "home": 4,
+        "away": 0
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        },
+        "away": {
+          "elo": 1477,
+          "games": 76,
+          "avg_pf": 19.1,
+          "avg_pa": 18.4,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": "2027-04-15T20:45:00"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "e8d3cdc6502bcc2a38a248f08bbe4270",
+      "home_team": "FC Barcelona Bàsquet",
+      "away_team": "Anadolu Efes",
+      "start_at": "2026-09-24T18:30:00Z",
+      "hours_to_start": 657.8044183333334,
+      "projected_margin": 0,
+      "projected_total": 162,
+      "projected_home_score": 81,
+      "projected_away_score": 81,
+      "home_win_prob": 0.5,
+      "projected_winner": "FC Barcelona Bàsquet",
+      "projected_winner_prob": 0.5,
+      "model_sample": 0,
+      "reliability": 0,
+      "margin_sigma": 12.93,
+      "total_sigma": 28,
+      "rest": {
+        "home": 4,
+        "away": 4
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        },
+        "away": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "0cea0577735cca24d37e62e37517e6d7",
+      "home_team": "Saski Baskonia",
+      "away_team": "Olympiacos",
+      "start_at": "2026-09-24T18:30:00Z",
+      "hours_to_start": 657.8044183333334,
+      "projected_margin": 0,
+      "projected_total": 162,
+      "projected_home_score": 81,
+      "projected_away_score": 81,
+      "home_win_prob": 0.5,
+      "projected_winner": "Saski Baskonia",
+      "projected_winner_prob": 0.5,
+      "model_sample": 0,
+      "reliability": 0,
+      "margin_sigma": 12.93,
+      "total_sigma": 28,
+      "rest": {
+        "home": 4,
+        "away": 4
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        },
+        "away": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "99de5bf0e14b822c885749de574d369a",
+      "home_team": "ASVEL Lyon Villeurbanne",
+      "away_team": "Maccabi Tel Aviv",
+      "start_at": "2026-09-24T18:45:00Z",
+      "hours_to_start": 658.0544183333334,
+      "projected_margin": 0,
+      "projected_total": 162,
+      "projected_home_score": 81,
+      "projected_away_score": 81,
+      "home_win_prob": 0.5,
+      "projected_winner": "ASVEL Lyon Villeurbanne",
+      "projected_winner_prob": 0.5,
+      "model_sample": 0,
+      "reliability": 0,
+      "margin_sigma": 12.93,
+      "total_sigma": 28,
+      "rest": {
+        "home": 4,
+        "away": 4
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        },
+        "away": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "dc99e0e074b58487bfcc3dbc7dbab372",
+      "home_team": "Fenerbahce SK",
+      "away_team": "Virtus Segafredo Bologna",
+      "start_at": "2026-09-25T17:45:00Z",
+      "hours_to_start": 681.0544183333334,
+      "projected_margin": 0,
+      "projected_total": 162,
+      "projected_home_score": 81,
+      "projected_away_score": 81,
+      "home_win_prob": 0.5,
+      "projected_winner": "Fenerbahce SK",
+      "projected_winner_prob": 0.5,
+      "model_sample": 0,
+      "reliability": 0,
+      "margin_sigma": 12.93,
+      "total_sigma": 28,
+      "rest": {
+        "home": 4,
+        "away": 4
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        },
+        "away": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "ae931f9c9c05e29991820c51e65e968a",
+      "home_team": "KK Partizan NIS",
+      "away_team": "Pallacanestro Olimpia Milano",
+      "start_at": "2026-09-25T18:45:00Z",
+      "hours_to_start": 682.0544183333334,
+      "projected_margin": 0,
+      "projected_total": 162,
+      "projected_home_score": 81,
+      "projected_away_score": 81,
+      "home_win_prob": 0.5,
+      "projected_winner": "KK Partizan NIS",
+      "projected_winner_prob": 0.5,
+      "model_sample": 0,
+      "reliability": 0,
+      "margin_sigma": 12.93,
+      "total_sigma": 28,
+      "rest": {
+        "home": 4,
+        "away": 4
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        },
+        "away": {
+          "elo": 1500,
+          "games": 0,
+          "avg_pf": 81,
+          "avg_pa": 81,
+          "recent_margin": 0,
+          "recent_total": 162,
+          "last_game": null
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    }
+  ],
+  "live": [],
+  "history": [],
   "stats": {
     "closed": 0,
     "by_market": {
       "h2h": {
-        "roi": null
+        "sample": 0,
+        "roi": null,
+        "profit_units": 0,
+        "hit_rate": null,
+        "max_drawdown_units": 0
       },
       "spreads": {
-        "roi": null
+        "sample": 0,
+        "roi": null,
+        "profit_units": 0,
+        "hit_rate": null,
+        "max_drawdown_units": 0
       },
       "totals": {
-        "roi": null
+        "sample": 0,
+        "roi": null,
+        "profit_units": 0,
+        "hit_rate": null,
+        "max_drawdown_units": 0
       }
     }
   },
-  "risk": {
-    "mode": "PAPER_ONLY",
-    "exposure_units": 0,
-    "max_exposure_units": 2
-  },
-  "radar": [],
-  "markets": [],
-  "best_bets": [],
-  "live": [],
-  "history": [],
-  "market_history": [],
+  "market_history": {},
   "integrity": {
     "strict_no_fabrication": true,
-    "generated_at": null,
-    "prediction_lock": true,
-    "multi_market": true,
-    "test_markets_fail_closed": true,
-    "source": "placeholder"
+    "featured_markets": [
+      "h2h",
+      "spreads",
+      "totals"
+    ],
+    "price_to_bet": true,
+    "line_movement": true,
+    "synthetic_hold": true,
+    "injury_feed": false,
+    "commercial_license_gate": true,
+    "historical_games": 782,
+    "market_events": 9,
+    "market_rows": 0,
+    "best_bets": 0
+  },
+  "model_stats": {
+    "historical_games": 782,
+    "teams": 23,
+    "league_avg_total": 162,
+    "league_margin_sd": 8.4,
+    "league_total_sd": 87,
+    "forecast_games": 9
   }
 }

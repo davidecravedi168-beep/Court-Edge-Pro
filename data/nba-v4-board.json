@@ -1,48 +1,1671 @@
 {
   "meta": {
     "league": "NBA",
-    "status": "BETA_WAIT",
-    "data_health": "NO_FEED",
-    "market_health": "NO_FEED",
-    "model_health": "COLD",
+    "version": "COURT-EDGE-4.0-BETTING-TERMINAL",
+    "updated_at": "2026-08-28T08:41:44.094Z",
+    "status": "PAPER BETA",
+    "source": "BALLDONTLIE + The Odds API",
     "risk_mode": "PAPER_ONLY",
-    "updated_at": null,
-    "source": "Court Edge Pro V4",
-    "model_version": "COURT-EDGE-4.0-BETTING-TERMINAL",
-    "note": "Placeholder fail-closed. Run the V4 Autopilot with configured API secrets to build a real board.",
-    "injury_health": "UNKNOWN"
+    "strict_no_fabrication": true,
+    "data_health": "GOOD",
+    "market_health": "LIVE",
+    "injury_health": "LIMITED"
   },
+  "hero": null,
+  "best_bets": [],
+  "markets": [],
+  "radar": [
+    {
+      "event_id": "26b036ff107f3c658258eaf4a6f26228",
+      "home_team": "Detroit Pistons",
+      "away_team": "Boston Celtics",
+      "start_at": "2026-10-20T19:00:00Z",
+      "hours_to_start": 1282.3044183333334,
+      "projected_margin": 2.64,
+      "projected_total": 218.23,
+      "projected_home_score": 110.4,
+      "projected_away_score": 107.8,
+      "home_win_prob": 0.5586,
+      "projected_winner": "Detroit Pistons",
+      "projected_winner_prob": 0.5586,
+      "model_sample": 82,
+      "reliability": 0.8723,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.68,
+      "rest": {
+        "home": 173.83333333333334,
+        "away": 172.79166666666666
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1628,
+          "games": 82,
+          "avg_pf": 116.2,
+          "avg_pa": 107.6,
+          "recent_margin": 3.2,
+          "recent_total": 212.8,
+          "last_game": "2026-04-29T23:00:00.000Z"
+        },
+        "away": {
+          "elo": 1631,
+          "games": 82,
+          "avg_pf": 112.4,
+          "avg_pa": 104.1,
+          "recent_margin": 2.5,
+          "recent_total": 212.8,
+          "last_game": "2026-05-01T00:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "2b042ddad3d3c6c6fe5b7005dc26c775",
+      "home_team": "New York Knicks",
+      "away_team": "Philadelphia 76ers",
+      "start_at": "2026-10-20T23:00:00Z",
+      "hours_to_start": 1286.3044183333334,
+      "projected_margin": 8.81,
+      "projected_total": 220.36,
+      "projected_home_score": 114.6,
+      "projected_away_score": 105.8,
+      "home_win_prob": 0.6862,
+      "projected_winner": "New York Knicks",
+      "projected_winner_prob": 0.6862,
+      "model_sample": 84,
+      "reliability": 0.875,
+      "margin_sigma": 17.86,
+      "total_sigma": 20.67,
+      "rest": {
+        "home": 173,
+        "away": 172.95833333333334
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1621,
+          "games": 84,
+          "avg_pf": 114.5,
+          "avg_pa": 105,
+          "recent_margin": 21.1,
+          "recent_total": 219.4,
+          "last_game": "2026-04-30T23:00:00.000Z"
+        },
+        "away": {
+          "elo": 1553,
+          "games": 84,
+          "avg_pf": 113.4,
+          "avg_pa": 115.2,
+          "recent_margin": 0.5,
+          "recent_total": 209.9,
+          "last_game": "2026-05-01T00:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "bccd283de56915e29af1788beb0abfc9",
+      "home_team": "San Antonio Spurs",
+      "away_team": "Oklahoma City Thunder",
+      "start_at": "2026-10-21T01:30:00Z",
+      "hours_to_start": 1288.8044183333334,
+      "projected_margin": 2.83,
+      "projected_total": 226.86,
+      "projected_home_score": 114.8,
+      "projected_away_score": 112,
+      "home_win_prob": 0.5627,
+      "projected_winner": "San Antonio Spurs",
+      "projected_winner_prob": 0.5627,
+      "model_sample": 80,
+      "reliability": 0.8696,
+      "margin_sigma": 17.89,
+      "total_sigma": 20.7,
+      "rest": {
+        "home": 175,
+        "away": 176
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1693,
+          "games": 83,
+          "avg_pf": 120.5,
+          "avg_pa": 109.4,
+          "recent_margin": 12.4,
+          "recent_total": 218.9,
+          "last_game": "2026-04-29T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1698,
+          "games": 80,
+          "avg_pf": 117.4,
+          "avg_pa": 107.5,
+          "recent_margin": 10.7,
+          "recent_total": 233.1,
+          "last_game": "2026-04-28T01:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "85e6e4e2404ef7268659739997758da1",
+      "home_team": "Orlando Magic",
+      "away_team": "Atlanta Hawks",
+      "start_at": "2026-10-21T23:10:00Z",
+      "hours_to_start": 1310.471085,
+      "projected_margin": 5.61,
+      "projected_total": 222.72,
+      "projected_home_score": 114.2,
+      "projected_away_score": 108.6,
+      "home_win_prob": 0.6185,
+      "projected_winner": "Orlando Magic",
+      "projected_winner_prob": 0.6185,
+      "model_sample": 82,
+      "reliability": 0.8723,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.68,
+      "rest": {
+        "home": 175.00694444444446,
+        "away": 174.00694444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1562,
+          "games": 83,
+          "avg_pf": 113.6,
+          "avg_pa": 113.2,
+          "recent_margin": 2.5,
+          "recent_total": 209.1,
+          "last_game": "2026-04-29T23:00:00.000Z"
+        },
+        "away": {
+          "elo": 1553,
+          "games": 82,
+          "avg_pf": 116.4,
+          "avg_pa": 114.2,
+          "recent_margin": -19.6,
+          "recent_total": 223.7,
+          "last_game": "2026-04-30T23:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "164cc0396837d5ff433215ffd3279283",
+      "home_team": "Washington Wizards",
+      "away_team": "Milwaukee Bucks",
+      "start_at": "2026-10-21T23:10:00Z",
+      "hours_to_start": 1310.471085,
+      "projected_margin": -2.63,
+      "projected_total": 234.05,
+      "projected_home_score": 115.7,
+      "projected_away_score": 118.3,
+      "home_win_prob": 0.4423,
+      "projected_winner": "Milwaukee Bucks",
+      "projected_winner_prob": 0.5577,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 192.04861111111111,
+        "away": 192.04861111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1284,
+          "games": 77,
+          "avg_pf": 112.5,
+          "avg_pa": 125.2,
+          "recent_margin": -16.9,
+          "recent_total": 245.7,
+          "last_game": "2026-04-12T22:00:00.000Z"
+        },
+        "away": {
+          "elo": 1403,
+          "games": 77,
+          "avg_pf": 108.9,
+          "avg_pa": 117.5,
+          "recent_margin": -8.3,
+          "recent_total": 230.2,
+          "last_game": "2026-04-12T22:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "47cc511bb5ce50f715e3625ce5ef77ee",
+      "home_team": "Brooklyn Nets",
+      "away_team": "Charlotte Hornets",
+      "start_at": "2026-10-21T23:40:00Z",
+      "hours_to_start": 1310.971085,
+      "projected_margin": -9.27,
+      "projected_total": 223.9,
+      "projected_home_score": 107.3,
+      "projected_away_score": 116.6,
+      "home_win_prob": 0.3105,
+      "projected_winner": "Charlotte Hornets",
+      "projected_winner_prob": 0.6895,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 192.06944444444446,
+        "away": 187.00694444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1324,
+          "games": 77,
+          "avg_pf": 103.6,
+          "avg_pa": 117.3,
+          "recent_margin": -18.7,
+          "recent_total": 224.7,
+          "last_game": "2026-04-12T22:00:00.000Z"
+        },
+        "away": {
+          "elo": 1576,
+          "games": 79,
+          "avg_pf": 115.7,
+          "avg_pa": 106.7,
+          "recent_margin": -4.5,
+          "recent_total": 222.9,
+          "last_game": "2026-04-17T23:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "93cdd8e4ade5697cfccf42ee42c4d207",
+      "home_team": "Miami Heat",
+      "away_team": "Minnesota Timberwolves",
+      "start_at": "2026-10-21T23:40:00Z",
+      "hours_to_start": 1310.971085,
+      "projected_margin": -0.09,
+      "projected_total": 235.23,
+      "projected_home_score": 117.6,
+      "projected_away_score": 117.7,
+      "home_win_prob": 0.4979,
+      "projected_winner": "Minnesota Timberwolves",
+      "projected_winner_prob": 0.5021,
+      "model_sample": 78,
+      "reliability": 0.8667,
+      "margin_sigma": 17.9,
+      "total_sigma": 20.71,
+      "rest": {
+        "home": 190.00694444444446,
+        "away": 173.92361111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1501,
+          "games": 78,
+          "avg_pf": 121.1,
+          "avg_pa": 119.4,
+          "recent_margin": 3.4,
+          "recent_total": 252.9,
+          "last_game": "2026-04-14T23:30:00.000Z"
+        },
+        "away": {
+          "elo": 1584,
+          "games": 83,
+          "avg_pf": 115.7,
+          "avg_pa": 113.6,
+          "recent_margin": 4.6,
+          "recent_total": 224,
+          "last_game": "2026-05-01T01:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "fd33c09c84ab4c2fe6955d59f8dc5dd2",
+      "home_team": "New Orleans Pelicans",
+      "away_team": "Indiana Pacers",
+      "start_at": "2026-10-22T00:10:00Z",
+      "hours_to_start": 1311.471085,
+      "projected_margin": 4.58,
+      "projected_total": 236.35,
+      "projected_home_score": 120.5,
+      "projected_away_score": 115.9,
+      "home_win_prob": 0.5974,
+      "projected_winner": "New Orleans Pelicans",
+      "projected_winner_prob": 0.5974,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 191.98611111111111,
+        "away": 192.09027777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1408,
+          "games": 77,
+          "avg_pf": 115.5,
+          "avg_pa": 118.1,
+          "recent_margin": -8,
+          "recent_total": 249.6,
+          "last_game": "2026-04-13T00:30:00.000Z"
+        },
+        "away": {
+          "elo": 1339,
+          "games": 77,
+          "avg_pf": 114.1,
+          "avg_pa": 121.3,
+          "recent_margin": -3.8,
+          "recent_total": 232.6,
+          "last_game": "2026-04-12T22:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "e6769c813dd625b622df94c14a562ce2",
+      "home_team": "Memphis Grizzlies",
+      "away_team": "Utah Jazz",
+      "start_at": "2026-10-22T00:10:00Z",
+      "hours_to_start": 1311.471085,
+      "projected_margin": 0.5,
+      "projected_total": 241.49,
+      "projected_home_score": 121,
+      "projected_away_score": 120.5,
+      "home_win_prob": 0.5115,
+      "projected_winner": "Memphis Grizzlies",
+      "projected_winner_prob": 0.5115,
+      "model_sample": 76,
+      "reliability": 0.8636,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.73,
+      "rest": {
+        "home": 191.98611111111111,
+        "away": 191.98611111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1323,
+          "games": 76,
+          "avg_pf": 113.7,
+          "avg_pa": 123.4,
+          "recent_margin": -26.1,
+          "recent_total": 244.6,
+          "last_game": "2026-04-13T00:30:00.000Z"
+        },
+        "away": {
+          "elo": 1321,
+          "games": 77,
+          "avg_pf": 116.1,
+          "avg_pa": 125.5,
+          "recent_margin": -10.2,
+          "recent_total": 252.6,
+          "last_game": "2026-04-13T00:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "af2f084075391e55ba2a596e7846bb40",
+      "home_team": "Houston Rockets",
+      "away_team": "Dallas Mavericks",
+      "start_at": "2026-10-22T00:40:00Z",
+      "hours_to_start": 1311.971085,
+      "projected_margin": 10.22,
+      "projected_total": 229.26,
+      "projected_home_score": 119.7,
+      "projected_away_score": 109.5,
+      "home_win_prob": 0.701,
+      "projected_winner": "Houston Rockets",
+      "projected_winner_prob": 0.701,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 174.94444444444446,
+        "away": 192.00694444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1579,
+          "games": 83,
+          "avg_pf": 112.5,
+          "avg_pa": 108.6,
+          "recent_margin": 6.2,
+          "recent_total": 212.1,
+          "last_game": "2026-04-30T02:00:00.000Z"
+        },
+        "away": {
+          "elo": 1375,
+          "games": 77,
+          "avg_pf": 114.4,
+          "avg_pa": 121,
+          "recent_margin": -3.5,
+          "recent_total": 248.9,
+          "last_game": "2026-04-13T00:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "6fff70f4bf196dba25060a5775a03b54",
+      "home_team": "Los Angeles Lakers",
+      "away_team": "Golden State Warriors",
+      "start_at": "2026-10-22T02:10:00Z",
+      "hours_to_start": 1313.471085,
+      "projected_margin": 8.25,
+      "projected_total": 223.04,
+      "projected_home_score": 115.6,
+      "projected_away_score": 107.4,
+      "home_win_prob": 0.6651,
+      "projected_winner": "Los Angeles Lakers",
+      "projected_winner_prob": 0.6651,
+      "model_sample": 78,
+      "reliability": 0.8667,
+      "margin_sigma": 17.9,
+      "total_sigma": 20.71,
+      "rest": {
+        "home": 175.00694444444446,
+        "away": 187.00694444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1603,
+          "games": 81,
+          "avg_pf": 114.7,
+          "avg_pa": 111.5,
+          "recent_margin": -0.9,
+          "recent_total": 208,
+          "last_game": "2026-04-30T02:00:00.000Z"
+        },
+        "away": {
+          "elo": 1435,
+          "games": 78,
+          "avg_pf": 114,
+          "avg_pa": 116.1,
+          "recent_margin": -6.2,
+          "recent_total": 226.9,
+          "last_game": "2026-04-18T02:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "71e24359951927c356bd8c852fb867dd",
+      "home_team": "Portland Trail Blazers",
+      "away_team": "Phoenix Suns",
+      "start_at": "2026-10-22T02:10:00Z",
+      "hours_to_start": 1313.471085,
+      "projected_margin": 3.42,
+      "projected_total": 223.42,
+      "projected_home_score": 113.4,
+      "projected_away_score": 110,
+      "home_win_prob": 0.575,
+      "projected_winner": "Portland Trail Blazers",
+      "projected_winner_prob": 0.575,
+      "model_sample": 82,
+      "reliability": 0.8723,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.68,
+      "rest": {
+        "home": 176.02777777777777,
+        "away": 177.02777777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1522,
+          "games": 82,
+          "avg_pf": 113.1,
+          "avg_pa": 112.7,
+          "recent_margin": -9.1,
+          "recent_total": 215.7,
+          "last_game": "2026-04-29T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1498,
+          "games": 82,
+          "avg_pf": 110,
+          "avg_pa": 111,
+          "recent_margin": -8.7,
+          "recent_total": 227.3,
+          "last_game": "2026-04-28T01:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "home_team": "Philadelphia 76ers",
+      "away_team": "Cleveland Cavaliers",
+      "start_at": "2026-10-22T23:10:00Z",
+      "hours_to_start": 1334.471085,
+      "projected_margin": 0.66,
+      "projected_total": 223.78,
+      "projected_home_score": 112.2,
+      "projected_away_score": 111.6,
+      "home_win_prob": 0.5147,
+      "projected_winner": "Philadelphia 76ers",
+      "projected_winner_prob": 0.5147,
+      "model_sample": 82,
+      "reliability": 0.8723,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.68,
+      "rest": {
+        "home": 174.96527777777777,
+        "away": 173.98611111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1553,
+          "games": 84,
+          "avg_pf": 113.4,
+          "avg_pa": 115.2,
+          "recent_margin": 0.5,
+          "recent_total": 209.9,
+          "last_game": "2026-05-01T00:00:00.000Z"
+        },
+        "away": {
+          "elo": 1591,
+          "games": 82,
+          "avg_pf": 118.2,
+          "avg_pa": 113.1,
+          "recent_margin": -0.2,
+          "recent_total": 225.6,
+          "last_game": "2026-05-01T23:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "223b2883b9b05a67329ef246384b85f1",
+      "home_team": "Oklahoma City Thunder",
+      "away_team": "Denver Nuggets",
+      "start_at": "2026-10-23T01:40:00Z",
+      "hours_to_start": 1336.971085,
+      "projected_margin": 7.82,
+      "projected_total": 229.08,
+      "projected_home_score": 118.5,
+      "projected_away_score": 110.6,
+      "home_win_prob": 0.6648,
+      "projected_winner": "Oklahoma City Thunder",
+      "projected_winner_prob": 0.6648,
+      "model_sample": 80,
+      "reliability": 0.8696,
+      "margin_sigma": 17.89,
+      "total_sigma": 20.7,
+      "rest": {
+        "home": 178.00694444444446,
+        "away": 175.00694444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1698,
+          "games": 80,
+          "avg_pf": 117.4,
+          "avg_pa": 107.5,
+          "recent_margin": 10.7,
+          "recent_total": 233.1,
+          "last_game": "2026-04-28T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1600,
+          "games": 83,
+          "avg_pf": 119.7,
+          "avg_pa": 115.9,
+          "recent_margin": -2.2,
+          "recent_total": 224.3,
+          "last_game": "2026-05-01T01:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "0d34c898f6cbb990077ae9f0a2773513",
+      "home_team": "Boston Celtics",
+      "away_team": "New York Knicks",
+      "start_at": "2026-10-23T23:10:00Z",
+      "hours_to_start": 1358.471085,
+      "projected_margin": 0.27,
+      "projected_total": 219.08,
+      "projected_home_score": 109.7,
+      "projected_away_score": 109.4,
+      "home_win_prob": 0.5067,
+      "projected_winner": "Boston Celtics",
+      "projected_winner_prob": 0.5067,
+      "model_sample": 82,
+      "reliability": 0.8723,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.68,
+      "rest": {
+        "home": 175.96527777777777,
+        "away": 176.00694444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1631,
+          "games": 82,
+          "avg_pf": 112.4,
+          "avg_pa": 104.1,
+          "recent_margin": 2.5,
+          "recent_total": 212.8,
+          "last_game": "2026-05-01T00:00:00.000Z"
+        },
+        "away": {
+          "elo": 1621,
+          "games": 84,
+          "avg_pf": 114.5,
+          "avg_pa": 105,
+          "recent_margin": 21.1,
+          "recent_total": 219.4,
+          "last_game": "2026-04-30T23:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "49fc89a9696a9a20b658732b34ce61c4",
+      "home_team": "San Antonio Spurs",
+      "away_team": "Houston Rockets",
+      "start_at": "2026-10-24T01:40:00Z",
+      "hours_to_start": 1360.971085,
+      "projected_margin": 7.48,
+      "projected_total": 221.25,
+      "projected_home_score": 114.4,
+      "projected_away_score": 106.9,
+      "home_win_prob": 0.6563,
+      "projected_winner": "San Antonio Spurs",
+      "projected_winner_prob": 0.6563,
+      "model_sample": 83,
+      "reliability": 0.8737,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.67,
+      "rest": {
+        "home": 178.00694444444446,
+        "away": 176.98611111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1693,
+          "games": 83,
+          "avg_pf": 120.5,
+          "avg_pa": 109.4,
+          "recent_margin": 12.4,
+          "recent_total": 218.9,
+          "last_game": "2026-04-29T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1579,
+          "games": 83,
+          "avg_pf": 112.5,
+          "avg_pa": 108.6,
+          "recent_margin": 6.2,
+          "recent_total": 212.1,
+          "last_game": "2026-04-30T02:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "45ebc54751ef3e435192eaeb0470acfb",
+      "home_team": "Washington Wizards",
+      "away_team": "Charlotte Hornets",
+      "start_at": "2026-10-30T23:10:00Z",
+      "hours_to_start": 1526.471085,
+      "projected_margin": -9.72,
+      "projected_total": 231.64,
+      "projected_home_score": 111,
+      "projected_away_score": 120.7,
+      "home_win_prob": 0.3067,
+      "projected_winner": "Charlotte Hornets",
+      "projected_winner_prob": 0.6933,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 201.04861111111111,
+        "away": 195.98611111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1284,
+          "games": 77,
+          "avg_pf": 112.5,
+          "avg_pa": 125.2,
+          "recent_margin": -16.9,
+          "recent_total": 245.7,
+          "last_game": "2026-04-12T22:00:00.000Z"
+        },
+        "away": {
+          "elo": 1576,
+          "games": 79,
+          "avg_pf": 115.7,
+          "avg_pa": 106.7,
+          "recent_margin": -4.5,
+          "recent_total": 222.9,
+          "last_game": "2026-04-17T23:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "036a93ca33d6261c21d4bfa6e0d02568",
+      "home_team": "Boston Celtics",
+      "away_team": "Chicago Bulls",
+      "start_at": "2026-10-30T23:40:00Z",
+      "hours_to_start": 1526.971085,
+      "projected_margin": 12.06,
+      "projected_total": 227.92,
+      "projected_home_score": 120,
+      "projected_away_score": 107.9,
+      "home_win_prob": 0.7305,
+      "projected_winner": "Boston Celtics",
+      "projected_winner_prob": 0.7305,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 182.98611111111111,
+        "away": 200.96527777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1631,
+          "games": 82,
+          "avg_pf": 112.4,
+          "avg_pa": 104.1,
+          "recent_margin": 2.5,
+          "recent_total": 212.8,
+          "last_game": "2026-05-01T00:00:00.000Z"
+        },
+        "away": {
+          "elo": 1374,
+          "games": 77,
+          "avg_pf": 114.5,
+          "avg_pa": 121.1,
+          "recent_margin": -10.1,
+          "recent_total": 245.5,
+          "last_game": "2026-04-13T00:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "64df299b882ea19ad5f8cb0ed5516a6f",
+      "home_team": "Brooklyn Nets",
+      "away_team": "Detroit Pistons",
+      "start_at": "2026-10-30T23:40:00Z",
+      "hours_to_start": 1526.971085,
+      "projected_margin": -11.3,
+      "projected_total": 221.76,
+      "projected_home_score": 105.2,
+      "projected_away_score": 116.5,
+      "home_win_prob": 0.2762,
+      "projected_winner": "Detroit Pistons",
+      "projected_winner_prob": 0.7238,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 201.06944444444446,
+        "away": 184.02777777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1324,
+          "games": 77,
+          "avg_pf": 103.6,
+          "avg_pa": 117.3,
+          "recent_margin": -18.7,
+          "recent_total": 224.7,
+          "last_game": "2026-04-12T22:00:00.000Z"
+        },
+        "away": {
+          "elo": 1628,
+          "games": 82,
+          "avg_pf": 116.2,
+          "avg_pa": 107.6,
+          "recent_margin": 3.2,
+          "recent_total": 212.8,
+          "last_game": "2026-04-29T23:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "96a166bbd49782dbd9a61c2fb9069787",
+      "home_team": "Philadelphia 76ers",
+      "away_team": "New York Knicks",
+      "start_at": "2026-10-30T23:40:00Z",
+      "hours_to_start": 1526.971085,
+      "projected_margin": -3.7,
+      "projected_total": 220.36,
+      "projected_home_score": 108.3,
+      "projected_away_score": 112,
+      "home_win_prob": 0.4194,
+      "projected_winner": "New York Knicks",
+      "projected_winner_prob": 0.5806,
+      "model_sample": 84,
+      "reliability": 0.875,
+      "margin_sigma": 17.86,
+      "total_sigma": 20.67,
+      "rest": {
+        "home": 182.98611111111111,
+        "away": 183.02777777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1553,
+          "games": 84,
+          "avg_pf": 113.4,
+          "avg_pa": 115.2,
+          "recent_margin": 0.5,
+          "recent_total": 209.9,
+          "last_game": "2026-05-01T00:00:00.000Z"
+        },
+        "away": {
+          "elo": 1621,
+          "games": 84,
+          "avg_pf": 114.5,
+          "avg_pa": 105,
+          "recent_margin": 21.1,
+          "recent_total": 219.4,
+          "last_game": "2026-04-30T23:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "b9778d0e3a26167eb49901dcae7eeb98",
+      "home_team": "Dallas Mavericks",
+      "away_team": "Houston Rockets",
+      "start_at": "2026-10-31T00:10:00Z",
+      "hours_to_start": 1527.471085,
+      "projected_margin": -5.93,
+      "projected_total": 229.26,
+      "projected_home_score": 111.7,
+      "projected_away_score": 117.6,
+      "home_win_prob": 0.3755,
+      "projected_winner": "Houston Rockets",
+      "projected_winner_prob": 0.6245,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 200.98611111111111,
+        "away": 183.92361111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1375,
+          "games": 77,
+          "avg_pf": 114.4,
+          "avg_pa": 121,
+          "recent_margin": -3.5,
+          "recent_total": 248.9,
+          "last_game": "2026-04-13T00:30:00.000Z"
+        },
+        "away": {
+          "elo": 1579,
+          "games": 83,
+          "avg_pf": 112.5,
+          "avg_pa": 108.6,
+          "recent_margin": 6.2,
+          "recent_total": 212.1,
+          "last_game": "2026-04-30T02:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "c3a424e24d426af94a693e06a33e3037",
+      "home_team": "Miami Heat",
+      "away_team": "Indiana Pacers",
+      "start_at": "2026-10-31T00:10:00Z",
+      "hours_to_start": 1527.471085,
+      "projected_margin": 8.85,
+      "projected_total": 238.26,
+      "projected_home_score": 123.6,
+      "projected_away_score": 114.7,
+      "home_win_prob": 0.6787,
+      "projected_winner": "Miami Heat",
+      "projected_winner_prob": 0.6787,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 199.02777777777777,
+        "away": 201.09027777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1501,
+          "games": 78,
+          "avg_pf": 121.1,
+          "avg_pa": 119.4,
+          "recent_margin": 3.4,
+          "recent_total": 252.9,
+          "last_game": "2026-04-14T23:30:00.000Z"
+        },
+        "away": {
+          "elo": 1339,
+          "games": 77,
+          "avg_pf": 114.1,
+          "avg_pa": 121.3,
+          "recent_margin": -3.8,
+          "recent_total": 232.6,
+          "last_game": "2026-04-12T22:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "9ae108f7a23e86e8102237053dd9e58d",
+      "home_team": "Phoenix Suns",
+      "away_team": "Denver Nuggets",
+      "start_at": "2026-10-31T02:10:00Z",
+      "hours_to_start": 1529.471085,
+      "projected_margin": -1.95,
+      "projected_total": 227.07,
+      "projected_home_score": 112.6,
+      "projected_away_score": 114.5,
+      "home_win_prob": 0.4569,
+      "projected_winner": "Denver Nuggets",
+      "projected_winner_prob": 0.5431,
+      "model_sample": 82,
+      "reliability": 0.8723,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.68,
+      "rest": {
+        "home": 186.02777777777777,
+        "away": 183.02777777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1498,
+          "games": 82,
+          "avg_pf": 110,
+          "avg_pa": 111,
+          "recent_margin": -8.7,
+          "recent_total": 227.3,
+          "last_game": "2026-04-28T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1600,
+          "games": 83,
+          "avg_pf": 119.7,
+          "avg_pa": 115.9,
+          "recent_margin": -2.2,
+          "recent_total": 224.3,
+          "last_game": "2026-05-01T01:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "761c15cdefb5a94e34f234e11d6e57ad",
+      "home_team": "Golden State Warriors",
+      "away_team": "Los Angeles Lakers",
+      "start_at": "2026-10-31T02:10:00Z",
+      "hours_to_start": 1529.471085,
+      "projected_margin": -3.71,
+      "projected_total": 223.04,
+      "projected_home_score": 109.7,
+      "projected_away_score": 113.4,
+      "home_win_prob": 0.4209,
+      "projected_winner": "Los Angeles Lakers",
+      "projected_winner_prob": 0.5791,
+      "model_sample": 78,
+      "reliability": 0.8667,
+      "margin_sigma": 17.9,
+      "total_sigma": 20.71,
+      "rest": {
+        "home": 196.00694444444446,
+        "away": 184.00694444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1435,
+          "games": 78,
+          "avg_pf": 114,
+          "avg_pa": 116.1,
+          "recent_margin": -6.2,
+          "recent_total": 226.9,
+          "last_game": "2026-04-18T02:00:00.000Z"
+        },
+        "away": {
+          "elo": 1603,
+          "games": 81,
+          "avg_pf": 114.7,
+          "avg_pa": 111.5,
+          "recent_margin": -0.9,
+          "recent_total": 208,
+          "last_game": "2026-04-30T02:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "85869b2fdc16ef10d3e2582bf05ead95",
+      "home_team": "Cleveland Cavaliers",
+      "away_team": "Philadelphia 76ers",
+      "start_at": "2026-11-07T00:40:00Z",
+      "hours_to_start": 1695.971085,
+      "projected_margin": 4.51,
+      "projected_total": 223.78,
+      "projected_home_score": 114.1,
+      "projected_away_score": 109.6,
+      "home_win_prob": 0.5982,
+      "projected_winner": "Cleveland Cavaliers",
+      "projected_winner_prob": 0.5982,
+      "model_sample": 82,
+      "reliability": 0.8723,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.68,
+      "rest": {
+        "home": 189.04861111111111,
+        "away": 190.02777777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1591,
+          "games": 82,
+          "avg_pf": 118.2,
+          "avg_pa": 113.1,
+          "recent_margin": -0.2,
+          "recent_total": 225.6,
+          "last_game": "2026-05-01T23:30:00.000Z"
+        },
+        "away": {
+          "elo": 1553,
+          "games": 84,
+          "avg_pf": 113.4,
+          "avg_pa": 115.2,
+          "recent_margin": 0.5,
+          "recent_total": 209.9,
+          "last_game": "2026-05-01T00:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "83d77fe350d56a036fd7a3404e78249a",
+      "home_team": "Los Angeles Lakers",
+      "away_team": "Portland Trail Blazers",
+      "start_at": "2026-11-07T03:10:00Z",
+      "hours_to_start": 1698.471085,
+      "projected_margin": 6.34,
+      "projected_total": 219.69,
+      "projected_home_score": 113,
+      "projected_away_score": 106.7,
+      "home_win_prob": 0.635,
+      "projected_winner": "Los Angeles Lakers",
+      "projected_winner_prob": 0.635,
+      "model_sample": 81,
+      "reliability": 0.871,
+      "margin_sigma": 17.88,
+      "total_sigma": 20.69,
+      "rest": {
+        "home": 191.04861111111111,
+        "away": 192.06944444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1603,
+          "games": 81,
+          "avg_pf": 114.7,
+          "avg_pa": 111.5,
+          "recent_margin": -0.9,
+          "recent_total": 208,
+          "last_game": "2026-04-30T02:00:00.000Z"
+        },
+        "away": {
+          "elo": 1522,
+          "games": 82,
+          "avg_pf": 113.1,
+          "avg_pa": 112.7,
+          "recent_margin": -9.1,
+          "recent_total": 215.7,
+          "last_game": "2026-04-29T01:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "6669b911691463c669a5c10574742e8e",
+      "home_team": "Indiana Pacers",
+      "away_team": "New York Knicks",
+      "start_at": "2026-11-14T00:10:00Z",
+      "hours_to_start": 1863.471085,
+      "projected_margin": -10.51,
+      "projected_total": 226.88,
+      "projected_home_score": 108.2,
+      "projected_away_score": 118.7,
+      "home_win_prob": 0.2894,
+      "projected_winner": "New York Knicks",
+      "projected_winner_prob": 0.7106,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 215.09027777777777,
+        "away": 197.04861111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1339,
+          "games": 77,
+          "avg_pf": 114.1,
+          "avg_pa": 121.3,
+          "recent_margin": -3.8,
+          "recent_total": 232.6,
+          "last_game": "2026-04-12T22:00:00.000Z"
+        },
+        "away": {
+          "elo": 1621,
+          "games": 84,
+          "avg_pf": 114.5,
+          "avg_pa": 105,
+          "recent_margin": 21.1,
+          "recent_total": 219.4,
+          "last_game": "2026-04-30T23:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "1fae7f34ec6035dffa74feb148ee26c7",
+      "home_team": "San Antonio Spurs",
+      "away_team": "Golden State Warriors",
+      "start_at": "2026-11-14T02:40:00Z",
+      "hours_to_start": 1865.971085,
+      "projected_margin": 12.64,
+      "projected_total": 226.24,
+      "projected_home_score": 119.4,
+      "projected_away_score": 106.8,
+      "home_win_prob": 0.7416,
+      "projected_winner": "San Antonio Spurs",
+      "projected_winner_prob": 0.7416,
+      "model_sample": 78,
+      "reliability": 0.8667,
+      "margin_sigma": 17.9,
+      "total_sigma": 20.71,
+      "rest": {
+        "home": 199.04861111111111,
+        "away": 210.02777777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1693,
+          "games": 83,
+          "avg_pf": 120.5,
+          "avg_pa": 109.4,
+          "recent_margin": 12.4,
+          "recent_total": 218.9,
+          "last_game": "2026-04-29T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1435,
+          "games": 78,
+          "avg_pf": 114,
+          "avg_pa": 116.1,
+          "recent_margin": -6.2,
+          "recent_total": 226.9,
+          "last_game": "2026-04-18T02:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "086d2fe80483ffcc280994fe2e12d4f4",
+      "home_team": "Denver Nuggets",
+      "away_team": "Houston Rockets",
+      "start_at": "2026-11-21T03:10:00Z",
+      "hours_to_start": 2034.471085,
+      "projected_margin": 2.06,
+      "projected_total": 223.47,
+      "projected_home_score": 112.8,
+      "projected_away_score": 110.7,
+      "home_win_prob": 0.5449,
+      "projected_winner": "Denver Nuggets",
+      "projected_winner_prob": 0.5449,
+      "model_sample": 83,
+      "reliability": 0.8737,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.67,
+      "rest": {
+        "home": 204.06944444444446,
+        "away": 205.04861111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1600,
+          "games": 83,
+          "avg_pf": 119.7,
+          "avg_pa": 115.9,
+          "recent_margin": -2.2,
+          "recent_total": 224.3,
+          "last_game": "2026-05-01T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1579,
+          "games": 83,
+          "avg_pf": 112.5,
+          "avg_pa": 108.6,
+          "recent_margin": 6.2,
+          "recent_total": 212.1,
+          "last_game": "2026-04-30T02:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "3167a4072c65c9314c71d0fe49be8e28",
+      "home_team": "Washington Wizards",
+      "away_team": "Boston Celtics",
+      "start_at": "2026-11-25T01:10:00Z",
+      "hours_to_start": 2128.471085,
+      "projected_margin": -11.54,
+      "projected_total": 228.3,
+      "projected_home_score": 108.4,
+      "projected_away_score": 119.9,
+      "home_win_prob": 0.2773,
+      "projected_winner": "Boston Celtics",
+      "projected_winner_prob": 0.7227,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 226.13194444444446,
+        "away": 208.04861111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1284,
+          "games": 77,
+          "avg_pf": 112.5,
+          "avg_pa": 125.2,
+          "recent_margin": -16.9,
+          "recent_total": 245.7,
+          "last_game": "2026-04-12T22:00:00.000Z"
+        },
+        "away": {
+          "elo": 1631,
+          "games": 82,
+          "avg_pf": 112.4,
+          "avg_pa": 104.1,
+          "recent_margin": 2.5,
+          "recent_total": 212.8,
+          "last_game": "2026-05-01T00:00:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "6bfadbd22ed8a054cf82ec1b12b78243",
+      "home_team": "Denver Nuggets",
+      "away_team": "Dallas Mavericks",
+      "start_at": "2026-11-25T03:10:00Z",
+      "hours_to_start": 2130.471085,
+      "projected_margin": 9.44,
+      "projected_total": 234.55,
+      "projected_home_score": 122,
+      "projected_away_score": 112.6,
+      "home_win_prob": 0.6808,
+      "projected_winner": "Denver Nuggets",
+      "projected_winner_prob": 0.6808,
+      "model_sample": 77,
+      "reliability": 0.8652,
+      "margin_sigma": 17.91,
+      "total_sigma": 20.72,
+      "rest": {
+        "home": 208.06944444444446,
+        "away": 226.11111111111111
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1600,
+          "games": 83,
+          "avg_pf": 119.7,
+          "avg_pa": 115.9,
+          "recent_margin": -2.2,
+          "recent_total": 224.3,
+          "last_game": "2026-05-01T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1375,
+          "games": 77,
+          "avg_pf": 114.4,
+          "avg_pa": 121,
+          "recent_margin": -3.5,
+          "recent_total": 248.9,
+          "last_game": "2026-04-13T00:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "4f6d199bb67cf3a517a3880fd2f00b26",
+      "home_team": "Philadelphia 76ers",
+      "away_team": "Miami Heat",
+      "start_at": "2026-11-25T22:10:00Z",
+      "hours_to_start": 2149.471085,
+      "projected_margin": 3.22,
+      "projected_total": 231.75,
+      "projected_home_score": 117.5,
+      "projected_away_score": 114.3,
+      "home_win_prob": 0.5688,
+      "projected_winner": "Philadelphia 76ers",
+      "projected_winner_prob": 0.5688,
+      "model_sample": 78,
+      "reliability": 0.8667,
+      "margin_sigma": 17.9,
+      "total_sigma": 20.71,
+      "rest": {
+        "home": 208.92361111111111,
+        "away": 224.94444444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1553,
+          "games": 84,
+          "avg_pf": 113.4,
+          "avg_pa": 115.2,
+          "recent_margin": 0.5,
+          "recent_total": 209.9,
+          "last_game": "2026-05-01T00:00:00.000Z"
+        },
+        "away": {
+          "elo": 1501,
+          "games": 78,
+          "avg_pf": 121.1,
+          "avg_pa": 119.4,
+          "recent_margin": 3.4,
+          "recent_total": 252.9,
+          "last_game": "2026-04-14T23:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "07421d1675d6bc51bb5fa91f84a09eb3",
+      "home_team": "Oklahoma City Thunder",
+      "away_team": "Minnesota Timberwolves",
+      "start_at": "2026-11-26T00:40:00Z",
+      "hours_to_start": 2151.971085,
+      "projected_margin": 7.53,
+      "projected_total": 227.98,
+      "projected_home_score": 117.8,
+      "projected_away_score": 110.2,
+      "home_win_prob": 0.6573,
+      "projected_winner": "Oklahoma City Thunder",
+      "projected_winner_prob": 0.6573,
+      "model_sample": 80,
+      "reliability": 0.8696,
+      "margin_sigma": 17.89,
+      "total_sigma": 20.7,
+      "rest": {
+        "home": 211.96527777777777,
+        "away": 208.96527777777777
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1698,
+          "games": 80,
+          "avg_pf": 117.4,
+          "avg_pa": 107.5,
+          "recent_margin": 10.7,
+          "recent_total": 233.1,
+          "last_game": "2026-04-28T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1584,
+          "games": 83,
+          "avg_pf": 115.7,
+          "avg_pa": 113.6,
+          "recent_margin": 4.6,
+          "recent_total": 224,
+          "last_game": "2026-05-01T01:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    },
+    {
+      "event_id": "9aa9f220709533d70d11f85fae886771",
+      "home_team": "Portland Trail Blazers",
+      "away_team": "San Antonio Spurs",
+      "start_at": "2026-11-26T03:10:00Z",
+      "hours_to_start": 2154.471085,
+      "projected_margin": -6.72,
+      "projected_total": 222.89,
+      "projected_home_score": 108.1,
+      "projected_away_score": 114.8,
+      "home_win_prob": 0.3562,
+      "projected_winner": "San Antonio Spurs",
+      "projected_winner_prob": 0.6438,
+      "model_sample": 82,
+      "reliability": 0.8723,
+      "margin_sigma": 17.87,
+      "total_sigma": 20.68,
+      "rest": {
+        "home": 211.06944444444446,
+        "away": 211.06944444444446
+      },
+      "team_stats": {
+        "home": {
+          "elo": 1522,
+          "games": 82,
+          "avg_pf": 113.1,
+          "avg_pa": 112.7,
+          "recent_margin": -9.1,
+          "recent_total": 215.7,
+          "last_game": "2026-04-29T01:30:00.000Z"
+        },
+        "away": {
+          "elo": 1693,
+          "games": 83,
+          "avg_pf": 120.5,
+          "avg_pa": 109.4,
+          "recent_margin": 12.4,
+          "recent_total": 218.9,
+          "last_game": "2026-04-29T01:30:00.000Z"
+        }
+      },
+      "injuries": {
+        "home": null,
+        "away": null
+      },
+      "status": "EARLY RADAR"
+    }
+  ],
+  "live": [],
+  "history": [],
   "stats": {
     "closed": 0,
     "by_market": {
       "h2h": {
-        "roi": null
+        "sample": 0,
+        "roi": null,
+        "profit_units": 0,
+        "hit_rate": null,
+        "max_drawdown_units": 0
       },
       "spreads": {
-        "roi": null
+        "sample": 0,
+        "roi": null,
+        "profit_units": 0,
+        "hit_rate": null,
+        "max_drawdown_units": 0
       },
       "totals": {
-        "roi": null
+        "sample": 0,
+        "roi": null,
+        "profit_units": 0,
+        "hit_rate": null,
+        "max_drawdown_units": 0
       }
     }
   },
-  "risk": {
-    "mode": "PAPER_ONLY",
-    "exposure_units": 0,
-    "max_exposure_units": 2.5
-  },
-  "radar": [],
-  "markets": [],
-  "best_bets": [],
-  "live": [],
-  "history": [],
-  "market_history": [],
+  "market_history": {},
   "integrity": {
     "strict_no_fabrication": true,
-    "generated_at": null,
-    "prediction_lock": true,
-    "multi_market": true,
-    "test_markets_fail_closed": true,
-    "source": "placeholder"
+    "featured_markets": [
+      "h2h",
+      "spreads",
+      "totals"
+    ],
+    "price_to_bet": true,
+    "line_movement": true,
+    "synthetic_hold": true,
+    "injury_feed": false,
+    "commercial_license_gate": true,
+    "historical_games": 1200,
+    "market_events": 41,
+    "market_rows": 0,
+    "best_bets": 0
+  },
+  "model_stats": {
+    "historical_games": 1200,
+    "teams": 30,
+    "league_avg_total": 228,
+    "league_margin_sd": 17.3,
+    "league_total_sd": 20,
+    "forecast_games": 34
   }
 }
