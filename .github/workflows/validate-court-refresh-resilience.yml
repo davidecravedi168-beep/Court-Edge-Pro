@@ -1,0 +1,35 @@
+name: Validate Court Refresh Resilience
+
+on:
+  push:
+    branches: [dev-court-refresh-resilience]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev-court-refresh-resilience
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Existing test suite pass 1
+        run: npm test
+      - name: Existing test suite pass 2
+        run: npm test
+      - name: Refresh watchdog contract
+        run: |
+          grep -q "data/refresh-kick.txt" .github/workflows/court-refresh-watchdog.yml
+          grep -q "branches: \[main\]" .github/workflows/court-refresh-watchdog.yml
+          grep -q "max(ages) > 330" .github/workflows/court-refresh-watchdog.yml
+          grep -q "recovery=true" .github/workflows/court-refresh-watchdog.yml
+          grep -q "cache:'no-store'" index.html
+          grep -q "setInterval(()=>{if(!document.hidden)load()},60000)" index.html
+          node --check betting-ux.js
+          node --check sw.js
+          git diff --check
