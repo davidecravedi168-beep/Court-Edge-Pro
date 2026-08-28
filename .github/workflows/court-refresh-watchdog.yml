@@ -3,10 +3,12 @@ name: Court Edge Data Watchdog
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - '.github/workflows/court-refresh-watchdog.yml'
+      - 'data/refresh-kick.txt'
   schedule:
-    # Cheap health check; API refresh only happens if the normal 6h cadence was missed.
+    # Native cheap health check; an external heartbeat can also trigger this exact guard.
     - cron: '29 * * * *'
 
 permissions:
@@ -49,12 +51,13 @@ jobs:
                   continue
               ts = datetime.fromisoformat(raw.replace('Z', '+00:00'))
               ages.append((now - ts).total_seconds() / 60)
-          print('1' if max(ages) > 390 else '0')
+          # Recovery is still low-cost h2h only. Trigger before the nominal six-hour budget is exceeded.
+          print('1' if max(ages) > 330 else '0')
           PY
           )"
 
           if [ "$stale" = "0" ]; then
-            echo "Court boards are inside the 6h budget window; no paid-quota refresh needed."
+            echo "Court boards are inside the freshness budget; no API recovery needed."
             exit 0
           fi
 
