@@ -67,9 +67,9 @@ test('Edge Core receipt is generated from V4 boards',()=>{
   assert.match(y,/scripts\/write-automation-health\.mjs/);
 });
 
-test('release-candidate and pull requests verify but only main can deploy Pages',()=>{
+test('pull requests verify but only main can deploy Pages',()=>{
   assert.match(y,/pull_request:/);
-  assert.match(y,/branches: \[main, court-edge-4-release-candidate\]/);
+  assert.match(y,/push:\s*\n\s*branches: \[main\]/);
   assert.match(y,/deploy-pages:/);
   const mainOnly=/if: github\.ref == 'refs\/heads\/main' && github\.event_name != 'pull_request'/g;
   assert.ok((y.match(mainOnly)||[]).length>=4,'all Pages build/deploy steps must be main-only and PR-safe');
