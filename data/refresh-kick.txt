@@ -1,0 +1,2 @@
+Court Edge refresh recovery hook.
+External recovery touches this file only when the native schedule is not keeping the public boards inside their freshness budget.
