@@ -51,8 +51,11 @@ jobs:
                   continue
               ts = datetime.fromisoformat(raw.replace('Z', '+00:00'))
               ages.append((now - ts).total_seconds() / 60)
-          # Recovery is still low-cost h2h only. Trigger before the nominal six-hour budget is exceeded.
-          print('1' if max(ages) > 330 else '0')
+          # Recovery is still low-cost h2h only.  A 330-minute threshold made
+          # the public terminal look abandoned for most of a working day.
+          # The external hourly heartbeat turns this 210-minute guard into an
+          # effective ~4-hour cadence without spending quota every hour.
+          print('1' if max(ages) > 210 else '0')
           PY
           )"
 
