@@ -1,0 +1,41 @@
+name: Court Edge Match Details Gate
+
+on:
+  push:
+    branches: [court-edge-match-details]
+    paths:
+      - 'scripts/add-match-details.mjs'
+      - '.github/workflows/match-details-gate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-test:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply interactive match dossiers
+        run: node scripts/add-match-details.mjs
+      - name: Full tests
+        run: npm test
+      - name: Static dossier contract
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=fs.readFileSync('index.html','utf8');
+          for(const t of ['id="matchModal"','openMatchDetails','MATCH INTELLIGENCE','PUNTI FATTI AVG','PUNTI SUBITI AVG','TOTAL PROIETTATO','AFFIDABILITÀ MODELLO','Mercati & prezzo']) if(!s.includes(t)) throw new Error('Missing '+t);
+          if(!s.includes('onclick="openMatchDetails')) throw new Error('Cards are not clickable');
+          console.log('match detail UI contract PASS');
+          NODE
+      - name: Commit validated UI
+        run: |
+          git config user.name 'court-edge-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html
+          if git diff --cached --quiet; then echo 'No changes'; else git commit -m 'feat: make match cards open full betting statistics dossier'; git push; fi
