@@ -1,2 +1,2 @@
-Court Edge refresh recovery hook.
-External recovery touches this file only when the native schedule is not keeping the public boards inside their freshness budget.
+2026-08-28T20:58:30Z
+manual-recovery-after-210m-threshold-fix
