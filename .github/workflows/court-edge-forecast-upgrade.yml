@@ -1,0 +1,67 @@
+name: Court Edge V4 Forecast Upgrade Gate
+
+on:
+  push:
+    branches: [court-edge-4-clean-rc]
+    paths:
+      - 'scripts/upgrade-forecast-ui.mjs'
+      - '.github/workflows/court-edge-forecast-upgrade.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply forecast and stats UX
+        run: node scripts/upgrade-forecast-ui.mjs
+      - name: Build real boards
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_REGIONS: eu
+          ODDS_MARKETS: h2h,spreads,totals
+          BDL_MIN_INTERVAL_MS: '13000'
+          COMMERCIAL_MODE: 'false'
+        run: node scripts/run-v4-budgeted.mjs
+      - name: Full tests
+        run: npm test
+      - name: Stress gate
+        run: node tests/court-edge-v4-stress.mjs
+      - name: Forecast contract
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          for(const f of ['data/nba-v4-board.json','data/euroleague-v4-board.json']){
+            const b=JSON.parse(fs.readFileSync(f,'utf8'));
+            if(b.integrity?.strict_no_fabrication!==true) throw new Error(`${f}: fail-closed missing`);
+            if(!Array.isArray(b.radar)) throw new Error(`${f}: radar missing`);
+            if(!b.model_stats) throw new Error(`${f}: model_stats missing`);
+            for(const x of b.radar){
+              if(!Number.isFinite(x.projected_margin)||!Number.isFinite(x.projected_total)) throw new Error(`${f}: projection missing`);
+              if(!(x.projected_winner_prob>=.5&&x.projected_winner_prob<=1)) throw new Error(`${f}: winner probability invalid`);
+              if(!x.team_stats?.home||!x.team_stats?.away) throw new Error(`${f}: team stats missing`);
+            }
+            console.log(JSON.stringify({file:f,radar:b.radar.length,markets:b.markets.length,best:b.best_bets.length,model_stats:b.model_stats}));
+          }
+          const html=fs.readFileSync('index.html','utf8');
+          for(const token of ['Pronostici & Statistiche','forecastGrid','renderForecast','MODEL LEAN']) if(!html.includes(token)) throw new Error(`UI token missing: ${token}`);
+          NODE
+      - name: Commit validated upgrade and fresh boards
+        run: |
+          git config user.name 'court-edge-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html court-edge-v4.mjs data/nba-v4-board.json data/euroleague-v4-board.json
+          if git diff --cached --quiet; then
+            echo 'No upgrade changes to commit'
+          else
+            git commit -m 'feat: expose forecasts statistics and fresh radar data'
+            git push
+          fi
