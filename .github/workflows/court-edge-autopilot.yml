@@ -56,6 +56,9 @@ jobs:
       - name: Test suite pass 2
         run: npm test
 
+      - name: V4 randomized stress gate
+        run: node tests/court-edge-v4-stress.mjs
+
       - name: Syntax verification
         run: |
           node --check edge-core.mjs
