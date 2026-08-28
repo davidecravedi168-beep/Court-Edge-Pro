@@ -32,7 +32,7 @@ jobs:
             if(j.integrity?.strict_no_fabrication!==true) return Infinity;
             return (Date.now()-Date.parse(j.meta?.updated_at||''))/3600000;
           });
-          if(ages.some(x=>!Number.isFinite(x)||x>8.5))process.exit(1);
+          if(ages.some(x=>!Number.isFinite(x)||x>4.25))process.exit(1);
           console.log('Court Edge V4 boards fresh:',ages.map(x=>x.toFixed(2)+'h').join(', '));
           NODE
           then
