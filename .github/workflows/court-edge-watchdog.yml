@@ -1,4 +1,4 @@
-name: Court Edge Autopilot Watchdog
+name: Court Edge V4 Autopilot Watchdog
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: court-edge-watchdog
+  group: court-edge-v4-watchdog
   cancel-in-progress: true
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify board freshness and recover
+      - name: Verify V4 board freshness and recover
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -26,10 +26,14 @@ jobs:
           set -euo pipefail
           if node - <<'NODE'
           const fs=require('fs');
-          const files=['data/nba-quant-board.json','data/euroleague-quant-board.json'];
-          const ages=files.map(f=>(Date.now()-Date.parse(JSON.parse(fs.readFileSync(f,'utf8')).meta?.updated_at||''))/3600000);
+          const files=['data/nba-v4-board.json','data/euroleague-v4-board.json'];
+          const ages=files.map(f=>{
+            const j=JSON.parse(fs.readFileSync(f,'utf8'));
+            if(j.integrity?.strict_no_fabrication!==true) return Infinity;
+            return (Date.now()-Date.parse(j.meta?.updated_at||''))/3600000;
+          });
           if(ages.some(x=>!Number.isFinite(x)||x>8.5))process.exit(1);
-          console.log('Court Edge boards fresh:',ages.map(x=>x.toFixed(2)+'h').join(', '));
+          console.log('Court Edge V4 boards fresh:',ages.map(x=>x.toFixed(2)+'h').join(', '));
           NODE
           then
             exit 0
