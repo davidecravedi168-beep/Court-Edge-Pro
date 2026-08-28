@@ -1,0 +1,81 @@
+name: Court Edge Data Watchdog
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/court-refresh-watchdog.yml'
+  schedule:
+    # Cheap health check; API refresh only happens if the normal 6h cadence was missed.
+    - cron: '29 * * * *'
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: court-data-watchdog
+  cancel-in-progress: true
+
+jobs:
+  recover-if-stale:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Verify board freshness and recover
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          stale="$(python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          now = datetime.now(timezone.utc)
+          ages = []
+          for path in ('data/nba-v4-board.json', 'data/euroleague-v4-board.json'):
+              d = json.loads(Path(path).read_text(encoding='utf-8'))
+              raw = (d.get('meta') or {}).get('updated_at')
+              if not raw:
+                  ages.append(10**9)
+                  continue
+              ts = datetime.fromisoformat(raw.replace('Z', '+00:00'))
+              ages.append((now - ts).total_seconds() / 60)
+          print('1' if max(ages) > 390 else '0')
+          PY
+          )"
+
+          if [ "$stale" = "0" ]; then
+            echo "Court boards are inside the 6h budget window; no paid-quota refresh needed."
+            exit 0
+          fi
+
+          before="$(gh run list --workflow court-edge-autopilot.yml --limit 1 --json databaseId --jq '.[0].databaseId // 0')"
+          echo "Court board stale; starting low-cost recovery (previous run: $before)."
+          gh workflow run court-edge-autopilot.yml --ref main -f recovery=true
+
+          run_id=""
+          for _ in $(seq 1 24); do
+            sleep 5
+            candidate="$(gh run list --workflow court-edge-autopilot.yml --limit 1 --json databaseId --jq '.[0].databaseId // 0')"
+            if [ "$candidate" != "0" ] && [ "$candidate" != "$before" ]; then
+              run_id="$candidate"
+              break
+            fi
+          done
+
+          if [ -z "$run_id" ]; then
+            echo "Court recovery dispatch did not create a visible run within 120 seconds."
+            exit 1
+          fi
+
+          echo "Watching Court recovery run $run_id."
+          gh run watch "$run_id" --exit-status
