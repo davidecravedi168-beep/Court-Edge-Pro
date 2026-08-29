@@ -1,4 +1,4 @@
-name: Court Edge Pro V4 Betting Terminal Autopilot
+name: Court Edge Pro V6 Autopilot
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: court-edge-v4-${{ github.ref }}
+  group: court-edge-v6-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -38,10 +38,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Apply Court prediction-first migration
-        run: node scripts/upgrade-court-prediction-first.mjs
-
-      - name: Build V4 boards
+      - name: Build validated boards
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         env:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
@@ -58,7 +55,7 @@ jobs:
       - name: Test suite pass 2
         run: npm test
 
-      - name: V4 randomized stress gate
+      - name: Randomized stress gate
         run: node tests/court-edge-v4-stress.mjs
 
       - name: Syntax verification
@@ -72,57 +69,41 @@ jobs:
           node --check betting-ux.js
           node --check scripts/run-v4-budgeted.mjs
           node --check scripts/write-automation-health.mjs
-          node --check scripts/upgrade-court-prediction-first.mjs
           node --check sw.js
 
-      - name: V4 deterministic contract
+      - name: Deterministic contract
         run: node tests/static-v4-check.mjs
 
-      - name: Write Edge Core automation receipt
+      - name: Write automation receipt
         env:
-          COURT_BOARD_PROFILE: V4-PREDICTION-FIRST
+          COURT_BOARD_PROFILE: V6-GOVERNED
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           ODDS_MARKETS: ${{ github.event.schedule == '43 20 * * *' && 'h2h,spreads,totals' || 'h2h' }}
         run: node scripts/write-automation-health.mjs
 
-      - name: Validate public V4 boards
+      - name: Validate public boards
         run: |
           node - <<'NODE'
           const fs=require('fs');
           for(const f of ['data/nba-v4-board.json','data/euroleague-v4-board.json']){
             const j=JSON.parse(fs.readFileSync(f,'utf8'));
-            if(!j.meta||!j.integrity||!Array.isArray(j.markets)||!Array.isArray(j.best_bets)||!Array.isArray(j.radar)||!Array.isArray(j.history)) throw new Error(`Invalid V4 board contract: ${f}`);
+            if(!j.meta||!j.integrity||!Array.isArray(j.markets)||!Array.isArray(j.best_bets)||!Array.isArray(j.radar)||!Array.isArray(j.history)) throw new Error(`Invalid board contract: ${f}`);
             if(j.integrity.strict_no_fabrication!==true) throw new Error(`Fail-closed flag missing: ${f}`);
-            if(j.meta.prediction_version && (!Array.isArray(j.forecast_history)||!Array.isArray(j.forecast_locks)||!j.forecast_stats||!j.model_health)) throw new Error(`Prediction-first contract incomplete: ${f}`);
+            if(j.meta.prediction_version && (!Array.isArray(j.forecast_history)||!Array.isArray(j.forecast_locks)||!j.forecast_stats||!j.model_health)) throw new Error(`Prediction contract incomplete: ${f}`);
           }
-          console.log('V4 public board contract PASS');
+          console.log('Public board contract PASS');
           NODE
 
-      - name: Persist validated prediction-first migration
-        if: github.event_name == 'push' && github.actor != 'github-actions[bot]'
-        run: |
-          git config user.name "court-edge-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add quant-engine.mjs court-edge-v4.mjs index.html data/automation-health.json
-          if git diff --cached --quiet; then
-            echo "Prediction-first source already current"
-          else
-            git commit -m "feat: court prediction-first engine output"
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
-
-      - name: Save refreshed V4 boards
+      - name: Save refreshed boards only
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json
-          git add quant-engine.mjs court-edge-v4.mjs index.html
           if git diff --cached --quiet; then
-            echo "No V4 board changes to persist"
+            echo "No board changes to persist"
           else
-            git commit -m "chore: refresh v4 prediction-first boards"
+            git commit -m "chore: refresh governed Court boards"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
