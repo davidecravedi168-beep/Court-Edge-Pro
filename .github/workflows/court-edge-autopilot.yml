@@ -46,8 +46,14 @@ jobs:
           ODDS_REGIONS: eu
           ODDS_MARKETS: ${{ github.event.schedule == '43 20 * * *' && 'h2h,spreads,totals' || (inputs.recovery && 'h2h' || 'h2h,spreads,totals') }}
           BDL_MIN_INTERVAL_MS: '13000'
+          BDL_FREE_ONLY: 'true'
           COMMERCIAL_MODE: 'false'
         run: node scripts/run-v4-budgeted.mjs
+
+      - name: Enrich matchup intelligence and official NBA live
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+        run: node scripts/enrich-court-intel.mjs
 
       - name: Test suite pass 1
         run: npm test
@@ -67,12 +73,18 @@ jobs:
           node --check court-edge-v4.mjs
           node --check court-prediction-core.mjs
           node --check betting-ux.js
+          node --check court-intel.js
           node --check scripts/run-v4-budgeted.mjs
+          node --check scripts/enrich-court-intel.mjs
           node --check scripts/write-automation-health.mjs
+          node --check tests/court-intel-static.mjs
           node --check sw.js
 
       - name: Deterministic contract
         run: node tests/static-v4-check.mjs
+
+      - name: Court Intel contract
+        run: node tests/court-intel-static.mjs
 
       - name: Write automation receipt
         env:
@@ -90,6 +102,11 @@ jobs:
             if(!j.meta||!j.integrity||!Array.isArray(j.markets)||!Array.isArray(j.best_bets)||!Array.isArray(j.radar)||!Array.isArray(j.history)) throw new Error(`Invalid board contract: ${f}`);
             if(j.integrity.strict_no_fabrication!==true) throw new Error(`Fail-closed flag missing: ${f}`);
             if(j.meta.prediction_version && (!Array.isArray(j.forecast_history)||!Array.isArray(j.forecast_locks)||!j.forecast_stats||!j.model_health)) throw new Error(`Prediction contract incomplete: ${f}`);
+            if(f.includes('nba-v4')&&j.meta.intelligence_version){
+              if(j.meta.intelligence_version!=='COURT-INTEL-1.0') throw new Error('Unexpected Court Intel version');
+              if(j.integrity.player_stats_no_fabrication!==true) throw new Error('Player-stat no-fabrication flag missing');
+              for(const r of j.radar){if(!r.intelligence?.home||!r.intelligence?.away||!r.intelligence?.h2h||!r.intelligence?.matchup_radar)throw new Error(`Incomplete Court Intel matchup ${r.event_id}`)}
+            }
           }
           console.log('Public board contract PASS');
           NODE
@@ -99,11 +116,11 @@ jobs:
         run: |
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json
+          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/nba-intel-cache.json data/nba-player-form.json
           if git diff --cached --quiet; then
             echo "No board changes to persist"
           else
-            git commit -m "chore: refresh governed Court boards"
+            git commit -m "chore: refresh governed Court boards and intelligence"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
@@ -113,9 +130,22 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/assets _site/data
-          cp index.html betting-ux.js legal.html manifest.webmanifest sw.js robots.txt _site/
+          cp index.html betting-ux.js court-intel.js legal.html manifest.webmanifest sw.js robots.txt _site/
           cp assets/icon-192.png assets/icon-512.png _site/assets/
           cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json _site/data/
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('_site/index.html')
+          s=p.read_text(encoding='utf-8')
+          tag='<script src="court-intel.js"></script>'
+          if tag not in s:
+              if '</body>' not in s:
+                  raise SystemExit('index closing body missing')
+              s=s.replace('</body>',tag+'\n</body>')
+              p.write_text(s,encoding='utf-8')
+          if tag not in p.read_text(encoding='utf-8'):
+              raise SystemExit('Court Intel UI injection failed')
+          PY
 
       - uses: actions/configure-pages@v5
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
