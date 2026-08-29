@@ -25,14 +25,15 @@ test('free-tier budget guard uses one region and explicit market profiles',()=>{
   assert.match(y,/scripts\/run-v4-budgeted\.mjs/);
 });
 
-test('push and pull-request verification do not consume live provider quota',()=>{
-  assert.match(y,/Build V4 boards/);
-  assert.match(y,/github\.event_name == 'schedule' \|\| github\.event_name == 'workflow_dispatch'/);
+test('normal pushes and PRs do not consume provider quota; data-refresh push is explicit',()=>{
   const buildStart=y.indexOf('- name: Build V4 boards');
   const testsStart=y.indexOf('- name: Test suite pass 1');
   assert.ok(buildStart>=0&&testsStart>buildStart);
   const block=y.slice(buildStart,testsStart);
-  assert.doesNotMatch(block,/github\.event_name == 'push'/);
+  assert.match(block,/github\.event_name == 'schedule'/);
+  assert.match(block,/github\.event_name == 'workflow_dispatch'/);
+  assert.match(block,/contains\(github\.event\.head_commit\.message, '\[data-refresh\]'\)/);
+  assert.doesNotMatch(block,/github\.event_name == 'push'\s*\|\|/);
   assert.doesNotMatch(block,/github\.event_name == 'pull_request'/);
 });
 

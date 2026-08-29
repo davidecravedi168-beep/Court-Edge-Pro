@@ -42,12 +42,12 @@ jobs:
         run: node scripts/upgrade-court-prediction-first.mjs
 
       - name: Build V4 boards
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[data-refresh]'))
         env:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDS_REGIONS: eu
-          ODDS_MARKETS: ${{ github.event.schedule == '43 20 * * *' && 'h2h,spreads,totals' || (inputs.recovery && 'h2h' || 'h2h,spreads,totals') }}
+          ODDS_MARKETS: ${{ (github.event.schedule == '43 20 * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[data-refresh]'))) && 'h2h,spreads,totals' || (inputs.recovery && 'h2h' || 'h2h') }}
           BDL_MIN_INTERVAL_MS: '13000'
           COMMERCIAL_MODE: 'false'
         run: node scripts/run-v4-budgeted.mjs
@@ -113,7 +113,7 @@ jobs:
           fi
 
       - name: Save refreshed V4 boards
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[data-refresh]'))
         run: |
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
