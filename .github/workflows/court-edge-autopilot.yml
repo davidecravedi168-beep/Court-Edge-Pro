@@ -78,6 +78,10 @@ jobs:
           node --check court-edge-v4.mjs
           node --check court-prediction-core.mjs
           node --check betting-ux.js
+          node --check match-details-v43.js
+          node --check quant-math-v5.js
+          node --check quant-desk-v5.js
+          node --check court-quality-governance-v6.js
           node --check court-intel.js
           node --check court-simple-ui.js
           node --check scripts/run-v4-budgeted.mjs
@@ -138,11 +142,12 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/assets _site/data
-          cp index.html betting-ux.js court-intel.js court-simple-ui.js legal.html manifest.webmanifest sw.js robots.txt _site/
+          cp index.html betting-ux.js match-details-v43.js quant-math-v5.js quant-desk-v5.js court-quality-governance-v6.js court-intel.js court-simple-ui.js legal.html manifest.webmanifest sw.js robots.txt _site/
           cp assets/icon-192.png assets/icon-512.png _site/assets/
           cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json _site/data/
           python - <<'PY'
           from pathlib import Path
+          import re
           p=Path('_site/index.html')
           s=p.read_text(encoding='utf-8')
           intel='<script src="court-intel.js"></script>'
@@ -159,6 +164,13 @@ jobs:
               raise SystemExit('Court UI injection failed')
           if built.index(simple) < built.index(intel):
               raise SystemExit('Simple UI must load after Court Intel')
+          for src in re.findall(r'<script[^>]+src=["\']([^"\']+)["\']', built):
+              if '://' in src:
+                  continue
+              target=Path('_site')/src.split('?')[0].lstrip('./')
+              if not target.exists():
+                  raise SystemExit(f'Missing runtime dependency in Pages artifact: {src}')
+          print('Production runtime dependency contract PASS')
           PY
 
       - uses: actions/configure-pages@v5
