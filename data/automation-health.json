@@ -2,7 +2,7 @@
   "ok": true,
   "app": "COURT_EDGE_PRO",
   "edge_core_version": "1.1.0",
-  "checked_at": "2026-08-29T22:12:40.779Z",
+  "checked_at": "2026-08-29T22:22:36.738Z",
   "event": "push",
   "schedule": null,
   "quota_mode": "h2h",
@@ -37,6 +37,6 @@
     "data/euroleague-v4-board.json"
   ],
   "public_board_contract": "V4",
-  "run_id": "33277882043",
+  "run_id": "33278417615",
   "run_attempt": 1
 }

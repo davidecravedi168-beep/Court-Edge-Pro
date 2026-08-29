@@ -12,7 +12,7 @@
     "injury_health": "LIMITED",
     "prediction_version": "COURT-PF-1.0",
     "intelligence_version": "COURT-INTEL-1.0",
-    "intelligence_updated_at": "2026-08-29T22:12:37.022Z",
+    "intelligence_updated_at": "2026-08-29T22:22:33.954Z",
     "team_history_health": "VERIFIED_PUBLIC",
     "player_form_health": "LIMITED_PUBLIC_FEED"
   },
@@ -231,7 +231,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-29T22:12:37.022Z",
+        "generated_at": "2026-08-29T22:22:33.954Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -771,7 +771,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-29T22:12:37.022Z",
+        "generated_at": "2026-08-29T22:22:33.954Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -986,7 +986,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-29T22:12:37.022Z",
+        "generated_at": "2026-08-29T22:22:33.954Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1202,7 +1202,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-29T22:12:37.022Z",
+        "generated_at": "2026-08-29T22:22:33.954Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1569,7 +1569,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-29T22:12:37.022Z",
+        "generated_at": "2026-08-29T22:22:33.954Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1782,7 +1782,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-29T22:12:37.022Z",
+        "generated_at": "2026-08-29T22:22:33.954Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1997,7 +1997,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-29T22:12:37.022Z",
+        "generated_at": "2026-08-29T22:22:33.954Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -2210,7 +2210,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-29T22:12:37.022Z",
+        "generated_at": "2026-08-29T22:22:33.954Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -2425,7 +2425,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-29T22:12:37.022Z",
+        "generated_at": "2026-08-29T22:22:33.954Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
