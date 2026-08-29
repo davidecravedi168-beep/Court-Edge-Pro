@@ -42,12 +42,13 @@ test('BDL free-tier pacing is configured',()=>assert.match(y,/BDL_MIN_INTERVAL_M
 
 test('production artifact is staged instead of publishing the full repo',()=>{
   assert.match(y,/mkdir -p _site\/assets _site\/data/);
-  assert.match(y,/cp index\.html betting-ux\.js court-intel\.js legal\.html/);
+  assert.match(y,/cp index\.html betting-ux\.js court-intel\.js court-simple-ui\.js legal\.html/);
   assert.match(y,/nba-v4-board\.json/);
   assert.match(y,/euroleague-v4-board\.json/);
   assert.match(y,/automation-health\.json/);
   assert.match(y,/path: '_site'/);
   assert.match(y,/court-intel\.js/);
+  assert.match(y,/court-simple-ui\.js/);
 });
 
 test('board persistence cannot fail silently',()=>{
@@ -65,6 +66,7 @@ test('syntax and board contracts are release gates',()=>{
   assert.match(y,/node --check court-edge-v4\.mjs/);
   assert.match(y,/node --check betting-ux\.js/);
   assert.match(y,/node --check court-intel\.js/);
+  assert.match(y,/node --check court-simple-ui\.js/);
   assert.match(y,/node --check scripts\/run-v4-budgeted\.mjs/);
   assert.match(y,/node --check scripts\/enrich-court-intel\.mjs/);
   assert.match(y,/node --check scripts\/enrich-euro-intel\.mjs/);
