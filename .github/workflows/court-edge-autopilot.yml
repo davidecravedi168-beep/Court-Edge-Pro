@@ -42,7 +42,7 @@ jobs:
         run: node scripts/upgrade-court-prediction-first.mjs
 
       - name: Build V4 boards
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.actor != 'github-actions[bot]' && contains(github.event.head_commit.message, 'court prediction-first'))
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         env:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
@@ -98,16 +98,31 @@ jobs:
           console.log('V4 public board contract PASS');
           NODE
 
-      - name: Save refreshed V4 boards and validated prediction-first migration
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.actor != 'github-actions[bot]' && contains(github.event.head_commit.message, 'court prediction-first'))
+      - name: Persist validated prediction-first migration
+        if: github.event_name == 'push' && github.actor != 'github-actions[bot]'
         run: |
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add quant-engine.mjs court-edge-v4.mjs index.html data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json
+          git add quant-engine.mjs court-edge-v4.mjs index.html
           if git diff --cached --quiet; then
-            echo "No V4 changes to persist"
+            echo "Prediction-first source already current"
           else
             git commit -m "feat: court prediction-first engine output"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Save refreshed V4 boards
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "court-edge-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json
+          git add quant-engine.mjs court-edge-v4.mjs index.html
+          if git diff --cached --quiet; then
+            echo "No V4 board changes to persist"
+          else
+            git commit -m "chore: refresh v4 prediction-first boards"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
