@@ -79,6 +79,7 @@ jobs:
           node --check court-prediction-core.mjs
           node --check betting-ux.js
           node --check court-intel.js
+          node --check court-simple-ui.js
           node --check scripts/run-v4-budgeted.mjs
           node --check scripts/enrich-court-intel.mjs
           node --check scripts/enrich-euro-intel.mjs
@@ -137,21 +138,27 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/assets _site/data
-          cp index.html betting-ux.js court-intel.js legal.html manifest.webmanifest sw.js robots.txt _site/
+          cp index.html betting-ux.js court-intel.js court-simple-ui.js legal.html manifest.webmanifest sw.js robots.txt _site/
           cp assets/icon-192.png assets/icon-512.png _site/assets/
           cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json _site/data/
           python - <<'PY'
           from pathlib import Path
           p=Path('_site/index.html')
           s=p.read_text(encoding='utf-8')
-          tag='<script src="court-intel.js"></script>'
-          if tag not in s:
+          intel='<script src="court-intel.js"></script>'
+          simple='<script src="court-simple-ui.js"></script>'
+          if intel not in s:
               if '</body>' not in s:
                   raise SystemExit('index closing body missing')
-              s=s.replace('</body>',tag+'\n</body>')
-              p.write_text(s,encoding='utf-8')
-          if tag not in p.read_text(encoding='utf-8'):
-              raise SystemExit('Court Intel UI injection failed')
+              s=s.replace('</body>',intel+'\n</body>')
+          if simple not in s:
+              s=s.replace('</body>',simple+'\n</body>')
+          p.write_text(s,encoding='utf-8')
+          built=p.read_text(encoding='utf-8')
+          if intel not in built or simple not in built:
+              raise SystemExit('Court UI injection failed')
+          if built.index(simple) < built.index(intel):
+              raise SystemExit('Simple UI must load after Court Intel')
           PY
 
       - uses: actions/configure-pages@v5
