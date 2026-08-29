@@ -50,10 +50,13 @@ jobs:
           COMMERCIAL_MODE: 'false'
         run: node scripts/run-v4-budgeted.mjs
 
-      - name: Enrich matchup intelligence and official NBA live
+      - name: Enrich NBA matchup intelligence and official live
         env:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
         run: node scripts/enrich-court-intel.mjs
+
+      - name: Enrich EuroLeague matchup intelligence
+        run: node scripts/enrich-euro-intel.mjs
 
       - name: Test suite pass 1
         run: npm test
@@ -76,6 +79,7 @@ jobs:
           node --check court-intel.js
           node --check scripts/run-v4-budgeted.mjs
           node --check scripts/enrich-court-intel.mjs
+          node --check scripts/enrich-euro-intel.mjs
           node --check scripts/write-automation-health.mjs
           node --check tests/court-intel-static.mjs
           node --check sw.js
@@ -102,7 +106,7 @@ jobs:
             if(!j.meta||!j.integrity||!Array.isArray(j.markets)||!Array.isArray(j.best_bets)||!Array.isArray(j.radar)||!Array.isArray(j.history)) throw new Error(`Invalid board contract: ${f}`);
             if(j.integrity.strict_no_fabrication!==true) throw new Error(`Fail-closed flag missing: ${f}`);
             if(j.meta.prediction_version && (!Array.isArray(j.forecast_history)||!Array.isArray(j.forecast_locks)||!j.forecast_stats||!j.model_health)) throw new Error(`Prediction contract incomplete: ${f}`);
-            if(f.includes('nba-v4')&&j.meta.intelligence_version){
+            if(j.meta.intelligence_version){
               if(j.meta.intelligence_version!=='COURT-INTEL-1.0') throw new Error('Unexpected Court Intel version');
               if(j.integrity.player_stats_no_fabrication!==true) throw new Error('Player-stat no-fabrication flag missing');
               for(const r of j.radar){if(!r.intelligence?.home||!r.intelligence?.away||!r.intelligence?.h2h||!r.intelligence?.matchup_radar)throw new Error(`Incomplete Court Intel matchup ${r.event_id}`)}
@@ -116,7 +120,7 @@ jobs:
         run: |
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/nba-intel-cache.json data/nba-player-form.json
+          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/nba-intel-cache.json data/nba-player-form.json data/euroleague-intel-cache.json
           if git diff --cached --quiet; then
             echo "No board changes to persist"
           else
