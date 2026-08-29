@@ -1,7 +1,8 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {analyzeMarket, clamp, devigTwoWay, DEFAULT_GATES} from './quant-engine.mjs';
+import {analyzeMarket, blendProbabilities, clamp, devigTwoWay, DEFAULT_GATES} from './quant-engine.mjs';
+import {PREDICTION_VERSION, buildChallengerProjection, challengerMarketProb, buildPredictionSummary, updateForecastTracking, selectPredictionHero} from './court-prediction-core.mjs';
 
 export const VERSION='COURT-EDGE-4.0-BETTING-TERMINAL';
 const ROOT=process.cwd();
@@ -158,7 +159,7 @@ function validationState(key,history=[]){
   return {sample:settled.length,state:key==='h2h'?'PAPER':settled.length>=MIN_TEST_SAMPLE?'PAPER':'TEST'};
 }
 function injuryPenalty(r){return clamp((r.home+r.away)*.008,0,.045)}
-function buildCandidate({league,ev,projected,group,history,prevMarkets,injuryStatus}){
+function buildCandidate({league,ev,projected,challenger,group,history,prevMarkets,injuryStatus}){
   const {key,line,rows}=group;if(!rows.length)return [];
   const use=rows.filter(r=>r.ageMin<=90);const z=use.length?use:rows;
   const bestA=Math.max(...z.map(r=>r.oddsA)),bestB=Math.max(...z.map(r=>r.oddsB));
@@ -169,11 +170,12 @@ function buildCandidate({league,ev,projected,group,history,prevMarkets,injurySta
   for(const side of ['A','B']){
     const probParts=modelProbPartsFor(projected,key,line,side),odds=side==='A'?bestA:bestB,other=side==='A'?bestB:bestA,marketProb=side==='A'?marketProbA:marketProbB;
     const rawMean=avg(probParts),dis=(Math.max(...probParts)-Math.min(...probParts)),unc=clamp((key==='h2h'?projected.marginSigma/150:key==='spreads'?projected.marginSigma/135:projected.totalSigma/165)+(1-projected.reliability)*.035,.025,.16);
-    const a=analyzeMarket({engineProbs:probParts,engineWeights:[1.25,1,1],oddsPick:odds,oddsOther:other,marketProb,overround,uncertainty:unc,disagreement:dis,challengerGap:null,dataQuality:dq,marketBooks:z.length,oddsAgeMin:ageMin,availabilityStatus:injuryStatus,requireAvailability:false,availabilityPenalty:injuryPenalty(projected.injuryRisk),marketStability:stability,sampleSize:projected.sample});
+    const mainProb=blendProbabilities(probParts,[1.25,1,1]),challengerProb=challengerMarketProb({challenger,projected,marketKey:key,line,side}),challengerGap=Number.isFinite(challengerProb)?Math.abs(mainProb-challengerProb):null;
+    const a=analyzeMarket({engineProbs:probParts,engineWeights:[1.25,1,1],oddsPick:odds,oddsOther:other,marketProb,overround,uncertainty:unc,disagreement:dis,challengerGap,dataQuality:dq,marketBooks:z.length,oddsAgeMin:ageMin,availabilityStatus:injuryStatus,requireAvailability:league==='NBA',availabilityPenalty:injuryPenalty(projected.injuryRisk),marketStability:stability,sampleSize:projected.sample});
     const sideName=side==='A'?(rowA?.sideA||ev.home_team):(rowB?.sideB||ev.away_team),book=side==='A'?rowA?.book:rowB?.book,selectionLine=key==='spreads'?(side==='A'?line:-line):line;
     const keyId=`${ev.id||norm(ev.home_team+'-'+ev.away_team)}|${key}|${line??'ML'}|${side}`;
     const prev=prevMarkets?.get(keyId),decision=a.decision==='PAPER BET'?(validation.state==='TEST'?'TEST VALUE':'PAPER BET'):'WAIT';
-    out.push({market_id:keyId,event_id:String(ev.id||keyId.split('|')[0]),league,market_key:key,market_label:marketLabel(key),line,selection_line:selectionLine,side,selection:sideName,best_odds:odds,best_book:book||'—',other_best_odds:other,market_prob:marketProb,model_prob:a.modelProb,robust_prob:a.conservativeProb,edge:a.edge,raw_ev:a.rawEV,robust_ev:a.robustEV,confidence:a.confidence,data_quality:dq,market_books:z.length,odds_age_min:ageMin,market_stability:stability,synthetic_hold:syntheticHold(bestA,bestB),price_to_bet:priceToBet(a.conservativeProb),decision,gate_reasons:a.gateReasons,opportunity:a.opportunity,validation_state:validation.state,validation_sample:validation.sample,model_projection:key==='h2h'?projected.projectedMargin:key==='spreads'?projected.projectedMargin:projected.projectedTotal,projection_sigma:key==='totals'?projected.totalSigma:projected.marginSigma,previous_odds:prev?.best_odds??null,odds_move:prev&&prev.best_odds>0?odds/prev.best_odds-1:null,previous_line:prev?.line??null,line_move:prev&&Number.isFinite(line)&&Number.isFinite(prev.line)?line-prev.line:null,case_for:caseFor(key,side,projected,selectionLine,a),case_against:caseAgainst(projected,a,injuryStatus),stake_units:decision==='PAPER BET'?a.stakeUnits:0,updated_at:ISO});
+    out.push({market_id:keyId,event_id:String(ev.id||keyId.split('|')[0]),league,market_key:key,market_label:marketLabel(key),line,selection_line:selectionLine,side,selection:sideName,best_odds:odds,best_book:book||'—',other_best_odds:other,market_prob:marketProb,model_prob:a.modelProb,robust_prob:a.conservativeProb,edge:a.edge,raw_ev:a.rawEV,robust_ev:a.robustEV,confidence:a.confidence,data_quality:dq,challenger_prob:challengerProb,challenger_gap:challengerGap,market_books:z.length,odds_age_min:ageMin,market_stability:stability,synthetic_hold:syntheticHold(bestA,bestB),price_to_bet:priceToBet(a.conservativeProb),decision,gate_reasons:a.gateReasons,opportunity:a.opportunity,validation_state:validation.state,validation_sample:validation.sample,model_projection:key==='h2h'?projected.projectedMargin:key==='spreads'?projected.projectedMargin:projected.projectedTotal,projection_sigma:key==='totals'?projected.totalSigma:projected.marginSigma,previous_odds:prev?.best_odds??null,odds_move:prev&&prev.best_odds>0?odds/prev.best_odds-1:null,previous_line:prev?.line??null,line_move:prev&&Number.isFinite(line)&&Number.isFinite(prev.line)?line-prev.line:null,case_for:caseFor(key,side,projected,selectionLine,a),case_against:caseAgainst(projected,a,injuryStatus),stake_units:decision==='PAPER BET'?a.stakeUnits:0,updated_at:ISO});
   }
   return out;
 }
@@ -199,8 +201,10 @@ function matchTeamId(model,name){return model.teams.get(norm(name))?.id??null}
 export function buildMarketsForEvent({league,ev,model,history=[],prevMarkets=new Map(),injuries=new Map(),injuryStatus='LIMITED'}){
   const hid=matchTeamId(model,ev.home_team),aid=matchTeamId(model,ev.away_team),hr=hid!=null?(injuries.get(hid)?.risk||0):0,ar=aid!=null?(injuries.get(aid)?.risk||0):0;
   const projected=projectGame(model,ev.home_team,ev.away_team,ev.commence_time,{home:hr,away:ar});
-  const groups=parseMarketGroups(ev),markets=groups.flatMap(group=>buildCandidate({league,ev,projected,group,history,prevMarkets,injuryStatus}));
-  return {projected,markets,injuries:{home:hid!=null?injuries.get(hid)||null:null,away:aid!=null?injuries.get(aid)||null:null}};
+  const challenger=buildChallengerProjection(projected,league);
+  const groups=parseMarketGroups(ev),markets=groups.flatMap(group=>buildCandidate({league,ev,projected,challenger,group,history,prevMarkets,injuryStatus}));
+  const prediction=buildPredictionSummary({league,ev,projected,markets,injuryStatus,challenger,leagueAvgTotal:model.leagueAvgTotal});
+  return {projected,challenger,prediction,markets,injuries:{home:hid!=null?injuries.get(hid)||null:null,away:aid!=null?injuries.get(aid)||null:null}};
 }
 
 function chooseBest(markets){
@@ -272,7 +276,7 @@ function parseELGame(g){const home=pick(g,'local.club.name','local.club.clubName
 export function euroSeasonCodes(now=NOW){const y=now.getUTCFullYear(),m=now.getUTCMonth(),currentStart=m>=7?y:y-1;return [`E${currentStart-1}`,`E${currentStart}`]}
 async function euroGames(){if(COMMERCIAL_MODE&&!EUROLEAGUE_COMMERCIAL_LICENSED)return [];let out=[];for(const s of euroSeasonCodes()){try{const j=await fetchJson(`https://api-live.euroleague.net/v2/competitions/E/seasons/${s}/games`,{retries:1});out.push(...(j.data||j.games||[]).map(parseELGame).filter(x=>x.home&&x.away&&Number.isFinite(x.hs)&&Number.isFinite(x.as)))}catch(e){console.warn('EuroLeague',s,e.message)}}return out}
 
-function emptyBoard(league,source){return {meta:{league,version:VERSION,updated_at:ISO,status:'PAPER BETA',source,risk_mode:'PAPER_ONLY',strict_no_fabrication:true},hero:null,best_bets:[],markets:[],radar:[],live:[],history:[],stats:{closed:0,by_market:{}},market_history:{},integrity:{strict_no_fabrication:true,featured_markets:MARKET_KEYS,price_to_bet:true,line_movement:true,synthetic_hold:true,injury_feed:false,commercial_license_gate:true}}}
+function emptyBoard(league,source){return {meta:{league,version:VERSION,updated_at:ISO,status:'PAPER BETA',source,risk_mode:'PAPER_ONLY',strict_no_fabrication:true},hero:null,hero_prediction:null,best_bets:[],markets:[],radar:[],live:[],history:[],forecast_locks:[],forecast_history:[],forecast_stats:{closed:0,status:'LEARNING'},model_health:{status:'LEARNING'},stats:{closed:0,by_market:{}},market_history:{},integrity:{strict_no_fabrication:true,featured_markets:MARKET_KEYS,price_to_bet:true,line_movement:true,synthetic_hold:true,injury_feed:false,commercial_license_gate:true,forecast_tracking:true,prediction_version:PREDICTION_VERSION}}}
 async function previous(file){try{return JSON.parse(await fs.readFile(path.join(DATA,file),'utf8'))}catch{return null}}
 
 async function buildBoard(league,file,source,events,games,{injuriesStatus='LIMITED',injuryRows=[],liveBoxes=[]}={}){
@@ -283,14 +287,22 @@ async function buildBoard(league,file,source,events,games,{injuriesStatus='LIMIT
       const hs=model.teams.get(norm(ev.home_team))||teamState(ev.home_team),as=model.teams.get(norm(ev.away_team))||teamState(ev.away_team);
       const hp=z.projected.mlProb,homeScore=(z.projected.projectedTotal+z.projected.projectedMargin)/2,awayScore=(z.projected.projectedTotal-z.projected.projectedMargin)/2;
       const snapshot=t=>({elo:round(t.elo,0),games:t.games,avg_pf:round(safeMean(t.pf,model.leagueAvgTotal/2),1),avg_pa:round(safeMean(t.pa,model.leagueAvgTotal/2),1),recent_margin:round(weightedRecent(t.recentMargins),1),recent_total:round(weightedRecent(t.recentTotals)||model.leagueAvgTotal,1),last_game:t.last});
-      radar.push({event_id:eventId,home_team:ev.home_team,away_team:ev.away_team,start_at:ev.commence_time,hours_to_start:hrs,projected_margin:round(z.projected.projectedMargin,2),projected_total:round(z.projected.projectedTotal,2),projected_home_score:round(homeScore,1),projected_away_score:round(awayScore,1),home_win_prob:round(hp,4),projected_winner:hp>=.5?ev.home_team:ev.away_team,projected_winner_prob:round(hp>=.5?hp:1-hp,4),model_sample:z.projected.sample,reliability:round(z.projected.reliability,4),margin_sigma:round(z.projected.marginSigma,2),total_sigma:round(z.projected.totalSigma,2),rest:z.projected.rest,team_stats:{home:snapshot(hs),away:snapshot(as)},injuries:z.injuries,status:hrs<=LOCK_MAX_HOURS?'LOCK WINDOW':'EARLY RADAR'});
+      radar.push({event_id:eventId,league,home_team:ev.home_team,away_team:ev.away_team,start_at:ev.commence_time,hours_to_start:hrs,projected_margin:round(z.projected.projectedMargin,2),projected_total:round(z.projected.projectedTotal,2),projected_home_score:round(homeScore,1),projected_away_score:round(awayScore,1),home_win_prob:round(hp,4),projected_winner:hp>=.5?ev.home_team:ev.away_team,projected_winner_prob:round(hp>=.5?hp:1-hp,4),sports_confidence:z.prediction.sports_confidence,data_quality:z.prediction.data_quality,challenger_home_win_prob:z.prediction.challenger_home_win_prob,challenger_gap:z.prediction.challenger_gap,availability_status:z.prediction.availability_status,prediction_version:PREDICTION_VERSION,prediction_summary:z.prediction,best_prediction:z.prediction.best_market,alternatives:z.prediction.alternatives,model_sample:z.projected.sample,reliability:round(z.projected.reliability,4),margin_sigma:round(z.projected.marginSigma,2),total_sigma:round(z.projected.totalSigma,2),rest:z.projected.rest,team_stats:{home:snapshot(hs),away:snapshot(as)},injuries:z.injuries,status:hrs<=LOCK_MAX_HOURS?'LOCK WINDOW':'EARLY RADAR'});
     }
     if(hrs>=LOCK_MIN_HOURS&&hrs<=LOCK_MAX_HOURS){for(const m of z.markets)markets.push({...m,home_team:ev.home_team,away_team:ev.away_team,start_at:ev.commence_time,event_id:eventId})}
   }
   const byEvent=new Map();for(const m of markets){if(!byEvent.has(m.event_id))byEvent.set(m.event_id,[]);byEvent.get(m.event_id).push(m)}
   const best=[];for(const [eventId,z] of byEvent){const b=chooseBest(z);if(b)best.push(paperLock(b,{home_team:b.home_team,away_team:b.away_team,commence_time:b.start_at}))}
   const mergedActive=new Map((settled.active||[]).map(x=>[x.bet_id||`${x.market_id}|${x.start_at}`,x]));for(const b of best){const same=[...mergedActive.values()].find(x=>x.event_id===b.event_id&&x.status!=='SETTLED');if(!same)mergedActive.set(b.bet_id,b)}
-  board.markets=markets.sort((a,b)=>(b.opportunity||0)-(a.opportunity||0));board.radar=radar.sort((a,b)=>a.hours_to_start-b.hours_to_start);board.best_bets=[...mergedActive.values()].sort((a,b)=>(b.opportunity||0)-(a.opportunity||0));board.history=history;board.stats=trackStats(history);board.market_history=updateMarketHistory(prev,markets);board.integrity.injury_feed=injuriesStatus==='VERIFIED';board.integrity.historical_games=games.length;board.integrity.market_events=events.length;board.integrity.market_rows=markets.length;board.integrity.best_bets=board.best_bets.length;board.meta.data_health=games.length>250?'GOOD':games.length>80?'LIMITED':'THIN';board.meta.market_health=events.length?'LIVE':'NO FEED';board.meta.injury_health=injuriesStatus;board.model_stats={historical_games:games.length,teams:model.teams.size,league_avg_total:round(model.leagueAvgTotal,1),league_margin_sd:round(model.leagueMarginSd,1),league_total_sd:round(model.leagueTotalSd,1),forecast_games:board.radar.length};board.hero=board.best_bets[0]||null;
+  board.markets=markets.sort((a,b)=>(b.opportunity||0)-(a.opportunity||0));
+  board.radar=radar.sort((a,b)=>a.hours_to_start-b.hours_to_start);
+  board.best_bets=[...mergedActive.values()].sort((a,b)=>(b.opportunity||0)-(a.opportunity||0));
+  board.history=history;board.stats=trackStats(history);board.market_history=updateMarketHistory(prev,markets);
+  const forecastTracking=updateForecastTracking({previousLocks:prev?.forecast_locks||[],previousHistory:prev?.forecast_history||[],radar:board.radar,games,nowIso:ISO});
+  board.forecast_locks=forecastTracking.locks;board.forecast_history=forecastTracking.history;board.forecast_stats=forecastTracking.stats;board.model_health=forecastTracking.health;board.hero_prediction=selectPredictionHero(board.radar);
+  board.integrity.injury_feed=injuriesStatus==='VERIFIED';board.integrity.historical_games=games.length;board.integrity.market_events=events.length;board.integrity.market_rows=markets.length;board.integrity.best_bets=board.best_bets.length;board.integrity.forecast_tracking=true;board.integrity.prediction_version=PREDICTION_VERSION;
+  board.meta.data_health=games.length>250?'GOOD':games.length>80?'LIMITED':'THIN';board.meta.market_health=events.length?'LIVE':'NO FEED';board.meta.injury_health=injuriesStatus;board.meta.prediction_version=PREDICTION_VERSION;
+  board.model_stats={historical_games:games.length,teams:model.teams.size,league_avg_total:round(model.leagueAvgTotal,1),league_margin_sd:round(model.leagueMarginSd,1),league_total_sd:round(model.leagueTotalSd,1),forecast_games:board.radar.length,forecast_closed:board.forecast_stats.closed,brier:board.forecast_stats.brier,log_loss:board.forecast_stats.log_loss,challenger_brier:board.forecast_stats.challenger_brier,prediction_version:PREDICTION_VERSION};board.hero=board.best_bets[0]||null;
   if(league==='NBA')board.live=buildLive({events,boxScores:liveBoxes,pregameByTeams});
   await fs.writeFile(path.join(DATA,file),JSON.stringify(board,null,2));return board;
 }

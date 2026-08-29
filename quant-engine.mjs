@@ -42,7 +42,7 @@ export function gateDecision(x,g=DEFAULT_GATES){
   if(Number.isFinite(x.modelMarketGap)&&x.modelMarketGap>g.maxModelMarketGap)reasons.push('MODEL_MARKET_GAP');
   if(x.robustEV>g.maxRobustEV||x.rawEV>g.maxRawEV)reasons.push('EV_ANOMALY');
   if(x.marketIntegrity===false)reasons.push('MARKET_INTEGRITY');
-  if(x.availabilityStatus==='UNKNOWN'&&x.requireAvailability)reasons.push('AVAILABILITY_UNKNOWN');
+  if(x.requireAvailability&&x.availabilityStatus!=='VERIFIED')reasons.push(x.availabilityStatus==='UNKNOWN'?'AVAILABILITY_UNKNOWN':'AVAILABILITY_UNVERIFIED');
   return {pass:reasons.length===0,reasons}
 }
 export function brierScore(rows){if(!rows.length)return null;return rows.reduce((s,r)=>s+(r.prob-(r.outcome?1:0))**2,0)/rows.length}
