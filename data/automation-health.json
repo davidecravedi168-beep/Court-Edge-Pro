@@ -2,15 +2,15 @@
   "ok": true,
   "app": "COURT_EDGE_PRO",
   "edge_core_version": "1.1.0",
-  "checked_at": "2026-08-28T22:00:34.160Z",
+  "checked_at": "2026-08-29T00:28:25.269Z",
   "event": "schedule",
   "schedule": "17 */6 * * *",
   "quota_mode": "h2h",
-  "artifact_digest": "d8a36c37870ed966",
+  "artifact_digest": "a59e960c748edb69",
   "boards": [
     {
       "league": "NBA",
-      "updated_at": "2026-08-28T21:57:42.103Z",
+      "updated_at": "2026-08-29T00:25:33.214Z",
       "radar": 34,
       "locked": 0,
       "history": 0,
@@ -18,7 +18,7 @@
     },
     {
       "league": "EUROLEAGUE",
-      "updated_at": "2026-08-28T21:57:42.103Z",
+      "updated_at": "2026-08-29T00:25:33.214Z",
       "radar": 9,
       "locked": 0,
       "history": 0,
@@ -32,6 +32,6 @@
   },
   "workflow_version": "CEP-4.0-BETTING-TERMINAL-EDGE-CORE",
   "board_profile": "V4",
-  "run_id": "33214793930",
+  "run_id": "33223483160",
   "run_attempt": 1
 }
