@@ -9,9 +9,7 @@ on:
         default: false
         type: boolean
   schedule:
-    # Four low-cost Moneyline snapshots per day.
     - cron: '17 */6 * * *'
-    # One daily multi-market research snapshot.
     - cron: '43 20 * * *'
   push:
     branches: [main]
@@ -31,16 +29,20 @@ jobs:
   verify-build:
     runs-on: ubuntu-latest
     timeout-minutes: 28
-
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
 
+      - name: Apply Court prediction-first migration
+        run: node scripts/upgrade-court-prediction-first.mjs
+
       - name: Build V4 boards
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.actor != 'github-actions[bot]' && contains(github.event.head_commit.message, 'court prediction-first'))
         env:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
@@ -66,9 +68,11 @@ jobs:
           node --check lock-engine.mjs
           node --check live-board.mjs
           node --check court-edge-v4.mjs
+          node --check court-prediction-core.mjs
           node --check betting-ux.js
           node --check scripts/run-v4-budgeted.mjs
           node --check scripts/write-automation-health.mjs
+          node --check scripts/upgrade-court-prediction-first.mjs
           node --check sw.js
 
       - name: V4 deterministic contract
@@ -76,7 +80,7 @@ jobs:
 
       - name: Write Edge Core automation receipt
         env:
-          COURT_BOARD_PROFILE: V4
+          COURT_BOARD_PROFILE: V4-PREDICTION-FIRST
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           ODDS_MARKETS: ${{ github.event.schedule == '43 20 * * *' && 'h2h,spreads,totals' || 'h2h' }}
         run: node scripts/write-automation-health.mjs
@@ -89,21 +93,23 @@ jobs:
             const j=JSON.parse(fs.readFileSync(f,'utf8'));
             if(!j.meta||!j.integrity||!Array.isArray(j.markets)||!Array.isArray(j.best_bets)||!Array.isArray(j.radar)||!Array.isArray(j.history)) throw new Error(`Invalid V4 board contract: ${f}`);
             if(j.integrity.strict_no_fabrication!==true) throw new Error(`Fail-closed flag missing: ${f}`);
+            if(j.meta.prediction_version && (!Array.isArray(j.forecast_history)||!Array.isArray(j.forecast_locks)||!j.forecast_stats||!j.model_health)) throw new Error(`Prediction-first contract incomplete: ${f}`);
           }
           console.log('V4 public board contract PASS');
           NODE
 
-      - name: Save refreshed V4 boards
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      - name: Save refreshed V4 boards and validated prediction-first migration
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.actor != 'github-actions[bot]' && contains(github.event.head_commit.message, 'court prediction-first'))
         run: |
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json
+          git add quant-engine.mjs court-edge-v4.mjs index.html data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json
           if git diff --cached --quiet; then
-            echo "No V4 board changes to persist"
+            echo "No V4 changes to persist"
           else
-            git commit -m "chore: refresh v4 betting boards"
-            git push
+            git commit -m "feat: court prediction-first engine output"
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
 
       - name: Build production site
