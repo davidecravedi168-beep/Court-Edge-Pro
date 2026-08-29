@@ -2,7 +2,7 @@
   "ok": true,
   "app": "COURT_EDGE_PRO",
   "edge_core_version": "1.1.0",
-  "checked_at": "2026-08-29T18:50:16.404Z",
+  "checked_at": "2026-08-29T18:50:55.452Z",
   "event": "push",
   "schedule": null,
   "quota_mode": "h2h",
@@ -32,6 +32,6 @@
   },
   "workflow_version": "CEP-4.0-BETTING-TERMINAL-EDGE-CORE",
   "board_profile": "V4-PREDICTION-FIRST",
-  "run_id": "33269313762",
+  "run_id": "33269338935",
   "run_attempt": 1
 }
