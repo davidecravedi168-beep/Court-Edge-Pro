@@ -1,5 +1,12 @@
 const assert=require('assert');
-const m=require('../quant-math-v5.js');
+const fs=require('fs');
+const vm=require('vm');
+const source=fs.readFileSync('quant-math-v5.js','utf8');
+const context={globalThis:{},console};
+vm.createContext(context);
+vm.runInContext(source,context,{filename:'quant-math-v5.js'});
+const m=context.globalThis.CourtQuantMath;
+assert(m,'CourtQuantMath browser export missing');
 const near=(a,b,e=1e-9)=>assert(Math.abs(a-b)<=e,`${a} != ${b}`);
 near(m.impliedProbability(2),0.5);
 near(m.fairOdds(0.625),1.6);
