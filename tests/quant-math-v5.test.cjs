@@ -1,0 +1,15 @@
+const assert=require('assert');
+const m=require('../quant-math-v5.js');
+const near=(a,b,e=1e-9)=>assert(Math.abs(a-b)<=e,`${a} != ${b}`);
+near(m.impliedProbability(2),0.5);
+near(m.fairOdds(0.625),1.6);
+near(m.expectedValue(0.55,2),0.10);
+near(m.probabilityEdge(0.57,0.52),0.05);
+near(m.fullKelly(0.55,2),0.10);
+near(m.fractionalKelly(0.55,2,0.25,0.02),0.02);
+const dv=m.deVigTwo(1.91,1.91);near(dv.probA,0.5);near(dv.probB,0.5);assert(dv.hold>0);
+near(m.brier(0.8,1),0.04);
+near(m.priceCushion(2.10,2.00),0.05);
+assert.equal(m.expectedValue(null,2),null);
+assert.equal(m.fullKelly(0.5,1),null);
+console.log('Court Quant Math V5 tests: OK');
