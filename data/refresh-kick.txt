@@ -1,2 +1,2 @@
-2026-08-28T20:58:30Z
-manual-recovery-after-210m-threshold-fix
+2026-08-29T09:56:31Z
+recovery-heartbeat: public Court boards exceeded the 210-minute freshness threshold; watchdog decides whether a low-cost h2h refresh is required.
