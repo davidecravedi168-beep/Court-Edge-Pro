@@ -40,15 +40,16 @@ test('push and pull-request verification do not run the paid odds-board provider
 
 test('BDL free-tier pacing is configured',()=>assert.match(y,/BDL_MIN_INTERVAL_MS: '13000'/));
 
-test('production artifact is staged instead of publishing the full repo',()=>{
+test('production artifact contains every browser runtime dependency',()=>{
   assert.match(y,/mkdir -p _site\/assets _site\/data/);
-  assert.match(y,/cp index\.html betting-ux\.js court-intel\.js court-simple-ui\.js legal\.html/);
+  for(const file of ['index.html','betting-ux.js','match-details-v43.js','quant-math-v5.js','quant-desk-v5.js','court-quality-governance-v6.js','court-intel.js','court-simple-ui.js','sw.js']){
+    assert.ok(y.includes(file),`missing staged runtime ${file}`);
+  }
+  assert.match(y,/Missing runtime dependency in Pages artifact/);
   assert.match(y,/nba-v4-board\.json/);
   assert.match(y,/euroleague-v4-board\.json/);
   assert.match(y,/automation-health\.json/);
   assert.match(y,/path: '_site'/);
-  assert.match(y,/court-intel\.js/);
-  assert.match(y,/court-simple-ui\.js/);
 });
 
 test('board persistence cannot fail silently',()=>{
@@ -62,11 +63,9 @@ test('board persistence cannot fail silently',()=>{
 
 test('syntax and board contracts are release gates',()=>{
   assert.match(y,/Syntax verification/);
-  assert.match(y,/node --check edge-core\.mjs/);
-  assert.match(y,/node --check court-edge-v4\.mjs/);
-  assert.match(y,/node --check betting-ux\.js/);
-  assert.match(y,/node --check court-intel\.js/);
-  assert.match(y,/node --check court-simple-ui\.js/);
+  for(const file of ['edge-core.mjs','court-edge-v4.mjs','betting-ux.js','match-details-v43.js','quant-math-v5.js','quant-desk-v5.js','court-quality-governance-v6.js','court-intel.js','court-simple-ui.js','sw.js']){
+    assert.match(y,new RegExp(`node --check ${file.replaceAll('.','\\.')}`));
+  }
   assert.match(y,/node --check scripts\/run-v4-budgeted\.mjs/);
   assert.match(y,/node --check scripts\/enrich-court-intel\.mjs/);
   assert.match(y,/node --check scripts\/enrich-euro-intel\.mjs/);
