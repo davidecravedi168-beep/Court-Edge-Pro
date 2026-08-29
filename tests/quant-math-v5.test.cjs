@@ -9,6 +9,7 @@ near(m.fullKelly(0.55,2),0.10);
 near(m.fractionalKelly(0.55,2,0.25,0.02),0.02);
 const dv=m.deVigTwo(1.91,1.91);near(dv.probA,0.5);near(dv.probB,0.5);assert(dv.hold>0);
 near(m.brier(0.8,1),0.04);
+assert(m.logLoss(0.8,1)>0);
 near(m.priceCushion(2.10,2.00),0.05);
 assert.equal(m.expectedValue(null,2),null);
 assert.equal(m.fullKelly(0.5,1),null);
