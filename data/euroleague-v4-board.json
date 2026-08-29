@@ -10,7 +10,11 @@
     "data_health": "GOOD",
     "market_health": "LIVE",
     "injury_health": "LIMITED",
-    "prediction_version": "COURT-PF-1.0"
+    "prediction_version": "COURT-PF-1.0",
+    "intelligence_version": "COURT-INTEL-1.0",
+    "intelligence_updated_at": "2026-08-29T22:12:37.022Z",
+    "team_history_health": "VERIFIED_PUBLIC",
+    "player_form_health": "LIMITED_PUBLIC_FEED"
   },
   "hero": null,
   "hero_prediction": {
@@ -224,7 +228,443 @@
         "home": null,
         "away": null
       },
-      "status": "EARLY RADAR"
+      "status": "EARLY RADAR",
+      "intelligence": {
+        "version": "COURT-INTEL-1.0",
+        "generated_at": "2026-08-29T22:12:37.022Z",
+        "data_state": "VERIFIED_PUBLIC",
+        "sources": [
+          "EUROLEAGUE PUBLIC GAMES"
+        ],
+        "home": {
+          "state": "VERIFIED",
+          "sample": 38,
+          "streak": "L2",
+          "last_game": "2026-04-17",
+          "last5": {
+            "sample": 5,
+            "record": "2-3",
+            "avg_pf": 86.4,
+            "avg_pa": 88,
+            "avg_margin": -1.6,
+            "avg_total": 174.4
+          },
+          "last10": {
+            "sample": 10,
+            "record": "5-5",
+            "avg_pf": 89.3,
+            "avg_pa": 88.8,
+            "avg_margin": 0.5,
+            "avg_total": 178.1
+          },
+          "home_split": {
+            "sample": 10,
+            "record": "6-4",
+            "avg_pf": 92,
+            "avg_pa": 90.1,
+            "avg_margin": 1.9,
+            "avg_total": 182.1
+          },
+          "away_split": {
+            "sample": 10,
+            "record": "4-6",
+            "avg_pf": 86.7,
+            "avg_pa": 86.6,
+            "avg_margin": 0.1,
+            "avg_total": 173.3
+          },
+          "volatility": {
+            "margin_sd": 10.7,
+            "total_sd": 21.6
+          },
+          "trend": {
+            "margin": [
+              11,
+              6,
+              -14,
+              13,
+              -3,
+              -4,
+              10,
+              12,
+              -16,
+              -10
+            ],
+            "pf": [
+              96,
+              100,
+              74,
+              87,
+              104,
+              100,
+              101,
+              77,
+              69,
+              85
+            ],
+            "pa": [
+              85,
+              94,
+              88,
+              74,
+              107,
+              104,
+              91,
+              65,
+              85,
+              95
+            ],
+            "total": [
+              181,
+              194,
+              162,
+              161,
+              211,
+              204,
+              192,
+              142,
+              154,
+              180
+            ]
+          },
+          "games": [
+            {
+              "date": "2026-04-17",
+              "opponent": "Valencia Basket",
+              "venue": "HOME",
+              "pf": 85,
+              "pa": 95,
+              "margin": -10,
+              "total": 180,
+              "result": "L"
+            },
+            {
+              "date": "2026-04-10",
+              "opponent": "Anadolu Efes Istanbul",
+              "venue": "HOME",
+              "pf": 69,
+              "pa": 85,
+              "margin": -16,
+              "total": 154,
+              "result": "L"
+            },
+            {
+              "date": "2026-04-07",
+              "opponent": "Zalgiris Kaunas",
+              "venue": "AWAY",
+              "pf": 77,
+              "pa": 65,
+              "margin": 12,
+              "total": 142,
+              "result": "W"
+            },
+            {
+              "date": "2026-04-02",
+              "opponent": "AS Monaco",
+              "venue": "HOME",
+              "pf": 101,
+              "pa": 91,
+              "margin": 10,
+              "total": 192,
+              "result": "W"
+            },
+            {
+              "date": "2026-03-26",
+              "opponent": "Maccabi Rapyd Tel Aviv",
+              "venue": "AWAY",
+              "pf": 100,
+              "pa": 104,
+              "margin": -4,
+              "total": 204,
+              "result": "L"
+            },
+            {
+              "date": "2026-03-24",
+              "opponent": "Panathinaikos AKTOR Athens",
+              "venue": "HOME",
+              "pf": 104,
+              "pa": 107,
+              "margin": -3,
+              "total": 211,
+              "result": "L"
+            },
+            {
+              "date": "2026-03-19",
+              "opponent": "FC Bayern Munich",
+              "venue": "AWAY",
+              "pf": 87,
+              "pa": 74,
+              "margin": 13,
+              "total": 161,
+              "result": "W"
+            },
+            {
+              "date": "2026-03-17",
+              "opponent": "Partizan Mozzart Bet Belgrade",
+              "venue": "AWAY",
+              "pf": 74,
+              "pa": 88,
+              "margin": -14,
+              "total": 162,
+              "result": "L"
+            },
+            {
+              "date": "2026-03-12",
+              "opponent": "Kosner Baskonia Vitoria-Gasteiz",
+              "venue": "HOME",
+              "pf": 100,
+              "pa": 94,
+              "margin": 6,
+              "total": 194,
+              "result": "W"
+            },
+            {
+              "date": "2026-02-26",
+              "opponent": "LDLC ASVEL Villeurbanne",
+              "venue": "HOME",
+              "pf": 96,
+              "pa": 85,
+              "margin": 11,
+              "total": 181,
+              "result": "W"
+            }
+          ]
+        },
+        "away": {
+          "state": "VERIFIED",
+          "sample": 44,
+          "streak": "L1",
+          "last_game": "2026-05-24",
+          "last5": {
+            "sample": 5,
+            "record": "3-2",
+            "avg_pf": 89.6,
+            "avg_pa": 82.8,
+            "avg_margin": 6.8,
+            "avg_total": 172.4
+          },
+          "last10": {
+            "sample": 10,
+            "record": "6-4",
+            "avg_pf": 89.5,
+            "avg_pa": 84.7,
+            "avg_margin": 4.8,
+            "avg_total": 174.2
+          },
+          "home_split": {
+            "sample": 10,
+            "record": "10-0",
+            "avg_pf": 94.2,
+            "avg_pa": 78.1,
+            "avg_margin": 16.1,
+            "avg_total": 172.3
+          },
+          "away_split": {
+            "sample": 10,
+            "record": "4-6",
+            "avg_pf": 85.1,
+            "avg_pa": 86.1,
+            "avg_margin": -1,
+            "avg_total": 171.2
+          },
+          "volatility": {
+            "margin_sd": 12.4,
+            "total_sd": 17.6
+          },
+          "trend": {
+            "margin": [
+              -2,
+              -14,
+              5,
+              21,
+              4,
+              27,
+              -7,
+              6,
+              15,
+              -7
+            ],
+            "pf": [
+              96,
+              88,
+              74,
+              103,
+              86,
+              102,
+              69,
+              87,
+              105,
+              85
+            ],
+            "pa": [
+              98,
+              102,
+              69,
+              82,
+              82,
+              75,
+              76,
+              81,
+              90,
+              92
+            ],
+            "total": [
+              194,
+              190,
+              143,
+              185,
+              168,
+              177,
+              145,
+              168,
+              195,
+              177
+            ]
+          },
+          "games": [
+            {
+              "date": "2026-05-24",
+              "opponent": "Olympiacos Piraeus",
+              "venue": "AWAY",
+              "pf": 85,
+              "pa": 92,
+              "margin": -7,
+              "total": 177,
+              "result": "L"
+            },
+            {
+              "date": "2026-05-22",
+              "opponent": "Valencia Basket",
+              "venue": "AWAY",
+              "pf": 105,
+              "pa": 90,
+              "margin": 15,
+              "total": 195,
+              "result": "W"
+            },
+            {
+              "date": "2026-05-07",
+              "opponent": "Hapoel IBI Tel Aviv",
+              "venue": "AWAY",
+              "pf": 87,
+              "pa": 81,
+              "margin": 6,
+              "total": 168,
+              "result": "W"
+            },
+            {
+              "date": "2026-05-05",
+              "opponent": "Hapoel IBI Tel Aviv",
+              "venue": "AWAY",
+              "pf": 69,
+              "pa": 76,
+              "margin": -7,
+              "total": 145,
+              "result": "L"
+            },
+            {
+              "date": "2026-05-01",
+              "opponent": "Hapoel IBI Tel Aviv",
+              "venue": "HOME",
+              "pf": 102,
+              "pa": 75,
+              "margin": 27,
+              "total": 177,
+              "result": "W"
+            },
+            {
+              "date": "2026-04-29",
+              "opponent": "Hapoel IBI Tel Aviv",
+              "venue": "HOME",
+              "pf": 86,
+              "pa": 82,
+              "margin": 4,
+              "total": 168,
+              "result": "W"
+            },
+            {
+              "date": "2026-04-16",
+              "opponent": "Crvena Zvezda Meridianbet Belgrade",
+              "venue": "HOME",
+              "pf": 103,
+              "pa": 82,
+              "margin": 21,
+              "total": 185,
+              "result": "W"
+            },
+            {
+              "date": "2026-04-09",
+              "opponent": "Fenerbahce Beko Istanbul",
+              "venue": "AWAY",
+              "pf": 74,
+              "pa": 69,
+              "margin": 5,
+              "total": 143,
+              "result": "W"
+            },
+            {
+              "date": "2026-04-07",
+              "opponent": "Olympiacos Piraeus",
+              "venue": "AWAY",
+              "pf": 88,
+              "pa": 102,
+              "margin": -14,
+              "total": 190,
+              "result": "L"
+            },
+            {
+              "date": "2026-04-03",
+              "opponent": "Kosner Baskonia Vitoria-Gasteiz",
+              "venue": "AWAY",
+              "pf": 96,
+              "pa": 98,
+              "margin": -2,
+              "total": 194,
+              "result": "L"
+            }
+          ]
+        },
+        "h2h": {
+          "sample": 2,
+          "home_perspective_record": "1-1",
+          "avg_margin": -3,
+          "avg_total": 189,
+          "games": [
+            {
+              "date": "2026-02-05",
+              "opponent": "Real Madrid",
+              "venue": "HOME",
+              "pf": 93,
+              "pa": 85,
+              "margin": 8,
+              "total": 178,
+              "result": "W"
+            },
+            {
+              "date": "2026-01-02",
+              "opponent": "Real Madrid",
+              "venue": "AWAY",
+              "pf": 93,
+              "pa": 107,
+              "margin": -14,
+              "total": 200,
+              "result": "L"
+            }
+          ]
+        },
+        "matchup_radar": {
+          "form_margin_edge": -8.4,
+          "scoring_edge": -0.2,
+          "defense_edge": -4.1,
+          "stability_edge": 1.7,
+          "rest_edge_days": 0
+        },
+        "top_players": {
+          "home": [],
+          "away": []
+        },
+        "player_form_state": "UNAVAILABLE_PUBLIC_VERIFIED_FEED"
+      }
     },
     {
       "event_id": "7b90c9b503886387c57381c4cf6c9860",
@@ -328,7 +768,116 @@
         "home": null,
         "away": null
       },
-      "status": "EARLY RADAR"
+      "status": "EARLY RADAR",
+      "intelligence": {
+        "version": "COURT-INTEL-1.0",
+        "generated_at": "2026-08-29T22:12:37.022Z",
+        "data_state": "VERIFIED_PUBLIC",
+        "sources": [
+          "EUROLEAGUE PUBLIC GAMES"
+        ],
+        "home": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "away": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "h2h": {
+          "sample": 0,
+          "home_perspective_record": "0-0",
+          "avg_margin": null,
+          "avg_total": null,
+          "games": []
+        },
+        "matchup_radar": {
+          "form_margin_edge": 0,
+          "scoring_edge": 0,
+          "defense_edge": 0,
+          "stability_edge": null,
+          "rest_edge_days": 0
+        },
+        "top_players": {
+          "home": [],
+          "away": []
+        },
+        "player_form_state": "UNAVAILABLE_PUBLIC_VERIFIED_FEED"
+      }
     },
     {
       "event_id": "9589ba32c87b929e1447aa201f0b6d45",
@@ -434,7 +983,116 @@
         "home": null,
         "away": null
       },
-      "status": "EARLY RADAR"
+      "status": "EARLY RADAR",
+      "intelligence": {
+        "version": "COURT-INTEL-1.0",
+        "generated_at": "2026-08-29T22:12:37.022Z",
+        "data_state": "VERIFIED_PUBLIC",
+        "sources": [
+          "EUROLEAGUE PUBLIC GAMES"
+        ],
+        "home": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "away": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "h2h": {
+          "sample": 0,
+          "home_perspective_record": "0-0",
+          "avg_margin": null,
+          "avg_total": null,
+          "games": []
+        },
+        "matchup_radar": {
+          "form_margin_edge": 0,
+          "scoring_edge": 0,
+          "defense_edge": 0,
+          "stability_edge": null,
+          "rest_edge_days": 0
+        },
+        "top_players": {
+          "home": [],
+          "away": []
+        },
+        "player_form_state": "UNAVAILABLE_PUBLIC_VERIFIED_FEED"
+      }
     },
     {
       "event_id": "8703f7a657f3360ec99010955336c102",
@@ -541,7 +1199,269 @@
         "home": null,
         "away": null
       },
-      "status": "EARLY RADAR"
+      "status": "EARLY RADAR",
+      "intelligence": {
+        "version": "COURT-INTEL-1.0",
+        "generated_at": "2026-08-29T22:12:37.022Z",
+        "data_state": "VERIFIED_PUBLIC",
+        "sources": [
+          "EUROLEAGUE PUBLIC GAMES"
+        ],
+        "home": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "away": {
+          "state": "VERIFIED",
+          "sample": 38,
+          "streak": "L1",
+          "last_game": "2026-04-17",
+          "last5": {
+            "sample": 5,
+            "record": "3-2",
+            "avg_pf": 95.8,
+            "avg_pa": 86.8,
+            "avg_margin": 9,
+            "avg_total": 182.6
+          },
+          "last10": {
+            "sample": 10,
+            "record": "5-5",
+            "avg_pf": 91.6,
+            "avg_pa": 88.3,
+            "avg_margin": 3.3,
+            "avg_total": 179.9
+          },
+          "home_split": {
+            "sample": 10,
+            "record": "5-5",
+            "avg_pf": 93,
+            "avg_pa": 91.8,
+            "avg_margin": 1.2,
+            "avg_total": 184.8
+          },
+          "away_split": {
+            "sample": 10,
+            "record": "5-5",
+            "avg_pf": 87.4,
+            "avg_pa": 86.6,
+            "avg_margin": 0.8,
+            "avg_total": 174
+          },
+          "volatility": {
+            "margin_sd": 16,
+            "total_sd": 10.2
+          },
+          "trend": {
+            "margin": [
+              16,
+              -17,
+              9,
+              -11,
+              -9,
+              21,
+              10,
+              -13,
+              33,
+              -6
+            ],
+            "pf": [
+              97,
+              87,
+              90,
+              82,
+              81,
+              103,
+              103,
+              81,
+              113,
+              79
+            ],
+            "pa": [
+              81,
+              104,
+              81,
+              93,
+              90,
+              82,
+              93,
+              94,
+              80,
+              85
+            ],
+            "total": [
+              178,
+              191,
+              171,
+              175,
+              171,
+              185,
+              196,
+              175,
+              193,
+              164
+            ]
+          },
+          "games": [
+            {
+              "date": "2026-04-17",
+              "opponent": "Zalgiris Kaunas",
+              "venue": "AWAY",
+              "pf": 79,
+              "pa": 85,
+              "margin": -6,
+              "total": 164,
+              "result": "L"
+            },
+            {
+              "date": "2026-04-09",
+              "opponent": "Maccabi Rapyd Tel Aviv",
+              "venue": "HOME",
+              "pf": 113,
+              "pa": 80,
+              "margin": 33,
+              "total": 193,
+              "result": "W"
+            },
+            {
+              "date": "2026-04-07",
+              "opponent": "Crvena Zvezda Meridianbet Belgrade",
+              "venue": "AWAY",
+              "pf": 81,
+              "pa": 94,
+              "margin": -13,
+              "total": 175,
+              "result": "L"
+            },
+            {
+              "date": "2026-04-02",
+              "opponent": "EA7 Emporio Armani Milan",
+              "venue": "HOME",
+              "pf": 103,
+              "pa": 93,
+              "margin": 10,
+              "total": 196,
+              "result": "W"
+            },
+            {
+              "date": "2026-03-31",
+              "opponent": "Virtus Bologna",
+              "venue": "AWAY",
+              "pf": 103,
+              "pa": 82,
+              "margin": 21,
+              "total": 185,
+              "result": "W"
+            },
+            {
+              "date": "2026-03-19",
+              "opponent": "Partizan Mozzart Bet Belgrade",
+              "venue": "HOME",
+              "pf": 81,
+              "pa": 90,
+              "margin": -9,
+              "total": 171,
+              "result": "L"
+            },
+            {
+              "date": "2026-03-17",
+              "opponent": "Hapoel IBI Tel Aviv",
+              "venue": "AWAY",
+              "pf": 82,
+              "pa": 93,
+              "margin": -11,
+              "total": 175,
+              "result": "L"
+            },
+            {
+              "date": "2026-03-12",
+              "opponent": "LDLC ASVEL Villeurbanne",
+              "venue": "HOME",
+              "pf": 90,
+              "pa": 81,
+              "margin": 9,
+              "total": 171,
+              "result": "W"
+            },
+            {
+              "date": "2026-03-10",
+              "opponent": "Olympiacos Piraeus",
+              "venue": "HOME",
+              "pf": 87,
+              "pa": 104,
+              "margin": -17,
+              "total": 191,
+              "result": "L"
+            },
+            {
+              "date": "2026-03-06",
+              "opponent": "Kosner Baskonia Vitoria-Gasteiz",
+              "venue": "AWAY",
+              "pf": 97,
+              "pa": 81,
+              "margin": 16,
+              "total": 178,
+              "result": "W"
+            }
+          ]
+        },
+        "h2h": {
+          "sample": 0,
+          "home_perspective_record": "0-0",
+          "avg_margin": null,
+          "avg_total": null,
+          "games": []
+        },
+        "matchup_radar": {
+          "form_margin_edge": -9,
+          "scoring_edge": -10.6,
+          "defense_edge": 7.3,
+          "stability_edge": null,
+          "rest_edge_days": 4
+        },
+        "top_players": {
+          "home": [],
+          "away": []
+        },
+        "player_form_state": "UNAVAILABLE_PUBLIC_VERIFIED_FEED"
+      }
     },
     {
       "event_id": "e8d3cdc6502bcc2a38a248f08bbe4270",
@@ -646,7 +1566,116 @@
         "home": null,
         "away": null
       },
-      "status": "EARLY RADAR"
+      "status": "EARLY RADAR",
+      "intelligence": {
+        "version": "COURT-INTEL-1.0",
+        "generated_at": "2026-08-29T22:12:37.022Z",
+        "data_state": "VERIFIED_PUBLIC",
+        "sources": [
+          "EUROLEAGUE PUBLIC GAMES"
+        ],
+        "home": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "away": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "h2h": {
+          "sample": 0,
+          "home_perspective_record": "0-0",
+          "avg_margin": null,
+          "avg_total": null,
+          "games": []
+        },
+        "matchup_radar": {
+          "form_margin_edge": 0,
+          "scoring_edge": 0,
+          "defense_edge": 0,
+          "stability_edge": null,
+          "rest_edge_days": 0
+        },
+        "top_players": {
+          "home": [],
+          "away": []
+        },
+        "player_form_state": "UNAVAILABLE_PUBLIC_VERIFIED_FEED"
+      }
     },
     {
       "event_id": "0cea0577735cca24d37e62e37517e6d7",
@@ -750,7 +1779,116 @@
         "home": null,
         "away": null
       },
-      "status": "EARLY RADAR"
+      "status": "EARLY RADAR",
+      "intelligence": {
+        "version": "COURT-INTEL-1.0",
+        "generated_at": "2026-08-29T22:12:37.022Z",
+        "data_state": "VERIFIED_PUBLIC",
+        "sources": [
+          "EUROLEAGUE PUBLIC GAMES"
+        ],
+        "home": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "away": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "h2h": {
+          "sample": 0,
+          "home_perspective_record": "0-0",
+          "avg_margin": null,
+          "avg_total": null,
+          "games": []
+        },
+        "matchup_radar": {
+          "form_margin_edge": 0,
+          "scoring_edge": 0,
+          "defense_edge": 0,
+          "stability_edge": null,
+          "rest_edge_days": 0
+        },
+        "top_players": {
+          "home": [],
+          "away": []
+        },
+        "player_form_state": "UNAVAILABLE_PUBLIC_VERIFIED_FEED"
+      }
     },
     {
       "event_id": "99de5bf0e14b822c885749de574d369a",
@@ -856,7 +1994,116 @@
         "home": null,
         "away": null
       },
-      "status": "EARLY RADAR"
+      "status": "EARLY RADAR",
+      "intelligence": {
+        "version": "COURT-INTEL-1.0",
+        "generated_at": "2026-08-29T22:12:37.022Z",
+        "data_state": "VERIFIED_PUBLIC",
+        "sources": [
+          "EUROLEAGUE PUBLIC GAMES"
+        ],
+        "home": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "away": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "h2h": {
+          "sample": 0,
+          "home_perspective_record": "0-0",
+          "avg_margin": null,
+          "avg_total": null,
+          "games": []
+        },
+        "matchup_radar": {
+          "form_margin_edge": 0,
+          "scoring_edge": 0,
+          "defense_edge": 0,
+          "stability_edge": null,
+          "rest_edge_days": 0
+        },
+        "top_players": {
+          "home": [],
+          "away": []
+        },
+        "player_form_state": "UNAVAILABLE_PUBLIC_VERIFIED_FEED"
+      }
     },
     {
       "event_id": "dc99e0e074b58487bfcc3dbc7dbab372",
@@ -960,7 +2207,116 @@
         "home": null,
         "away": null
       },
-      "status": "EARLY RADAR"
+      "status": "EARLY RADAR",
+      "intelligence": {
+        "version": "COURT-INTEL-1.0",
+        "generated_at": "2026-08-29T22:12:37.022Z",
+        "data_state": "VERIFIED_PUBLIC",
+        "sources": [
+          "EUROLEAGUE PUBLIC GAMES"
+        ],
+        "home": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "away": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "h2h": {
+          "sample": 0,
+          "home_perspective_record": "0-0",
+          "avg_margin": null,
+          "avg_total": null,
+          "games": []
+        },
+        "matchup_radar": {
+          "form_margin_edge": 0,
+          "scoring_edge": 0,
+          "defense_edge": 0,
+          "stability_edge": null,
+          "rest_edge_days": 0
+        },
+        "top_players": {
+          "home": [],
+          "away": []
+        },
+        "player_form_state": "UNAVAILABLE_PUBLIC_VERIFIED_FEED"
+      }
     },
     {
       "event_id": "ae931f9c9c05e29991820c51e65e968a",
@@ -1066,7 +2422,116 @@
         "home": null,
         "away": null
       },
-      "status": "EARLY RADAR"
+      "status": "EARLY RADAR",
+      "intelligence": {
+        "version": "COURT-INTEL-1.0",
+        "generated_at": "2026-08-29T22:12:37.022Z",
+        "data_state": "VERIFIED_PUBLIC",
+        "sources": [
+          "EUROLEAGUE PUBLIC GAMES"
+        ],
+        "home": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "away": {
+          "state": "MODEL_SUMMARY_ONLY",
+          "sample": 0,
+          "streak": "—",
+          "last_game": null,
+          "last5": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "last10": {
+            "sample": 0,
+            "record": "—",
+            "avg_pf": 81,
+            "avg_pa": 81,
+            "avg_margin": 0,
+            "avg_total": 162
+          },
+          "home_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "away_split": {
+            "sample": 0,
+            "record": "—"
+          },
+          "volatility": {
+            "margin_sd": null,
+            "total_sd": null
+          },
+          "trend": {
+            "margin": [],
+            "pf": [],
+            "pa": [],
+            "total": []
+          },
+          "games": []
+        },
+        "h2h": {
+          "sample": 0,
+          "home_perspective_record": "0-0",
+          "avg_margin": null,
+          "avg_total": null,
+          "games": []
+        },
+        "matchup_radar": {
+          "form_margin_edge": 0,
+          "scoring_edge": 0,
+          "defense_edge": 0,
+          "stability_edge": null,
+          "rest_edge_days": 0
+        },
+        "top_players": {
+          "home": [],
+          "away": []
+        },
+        "player_form_state": "UNAVAILABLE_PUBLIC_VERIFIED_FEED"
+      }
     }
   ],
   "live": [],
@@ -1144,7 +2609,9 @@
     "historical_games": 782,
     "market_events": 9,
     "market_rows": 0,
-    "best_bets": 0
+    "best_bets": 0,
+    "team_history_public_source": true,
+    "player_stats_no_fabrication": true
   },
   "model_stats": {
     "historical_games": 782,

@@ -2,27 +2,27 @@
   "ok": true,
   "app": "COURT_EDGE_PRO",
   "edge_core_version": "1.1.0",
-  "checked_at": "2026-08-29T20:47:12.448Z",
-  "event": "schedule",
-  "schedule": "43 20 * * *",
-  "quota_mode": "h2h,spreads,totals",
-  "artifact_digest": "7bff4d5d7afef40b",
+  "checked_at": "2026-08-29T22:12:40.779Z",
+  "event": "push",
+  "schedule": null,
+  "quota_mode": "h2h",
+  "artifact_digest": "fbe4a771719e5be5",
   "boards": [
     {
       "league": "NBA",
-      "updated_at": "2026-08-28T01:10:47.063Z",
-      "radar": 33,
+      "updated_at": "2026-08-29T20:44:19.282Z",
+      "radar": 34,
       "locked": 0,
       "history": 0,
-      "markets": null
+      "markets": 0
     },
     {
       "league": "EUROLEAGUE",
-      "updated_at": "2026-08-28T01:10:47.063Z",
+      "updated_at": "2026-08-29T20:44:19.282Z",
       "radar": 9,
       "locked": 0,
       "history": 0,
-      "markets": null
+      "markets": 0
     }
   ],
   "security": {
@@ -32,6 +32,11 @@
   },
   "workflow_version": "CEP-4.0-BETTING-TERMINAL-EDGE-CORE",
   "board_profile": "V6-GOVERNED",
-  "run_id": "33274250879",
+  "certified_files": [
+    "data/nba-v4-board.json",
+    "data/euroleague-v4-board.json"
+  ],
+  "public_board_contract": "V4",
+  "run_id": "33277882043",
   "run_attempt": 1
 }
