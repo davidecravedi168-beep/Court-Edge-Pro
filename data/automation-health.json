@@ -2,9 +2,9 @@
   "ok": true,
   "app": "COURT_EDGE_PRO",
   "edge_core_version": "1.1.0",
-  "checked_at": "2026-08-29T18:28:40.103Z",
-  "event": "schedule",
-  "schedule": "17 */6 * * *",
+  "checked_at": "2026-08-29T18:50:16.404Z",
+  "event": "push",
+  "schedule": null,
   "quota_mode": "h2h",
   "artifact_digest": "7bff4d5d7afef40b",
   "boards": [
@@ -32,6 +32,6 @@
   },
   "workflow_version": "CEP-4.0-BETTING-TERMINAL-EDGE-CORE",
   "board_profile": "V4-PREDICTION-FIRST",
-  "run_id": "33268229055",
+  "run_id": "33269313762",
   "run_attempt": 1
 }
