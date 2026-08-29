@@ -9,7 +9,7 @@ test('autopilot deploys Pages and protects secrets',()=>{
   assert.match(y,/secrets\.ODDS_API_KEY/);
   assert.match(y,/Test suite pass 1/);
   assert.match(y,/Test suite pass 2/);
-  assert.match(y,/V4 deterministic contract/);
+  assert.match(y,/Deterministic contract/);
 });
 
 test('scheduled and manual refresh use the Work budget cadence',()=>{
@@ -26,9 +26,9 @@ test('free-tier budget guard uses one region and explicit market profiles',()=>{
 });
 
 test('push and pull-request verification do not consume live provider quota',()=>{
-  assert.match(y,/Build V4 boards/);
+  assert.match(y,/Build validated boards/);
   assert.match(y,/github\.event_name == 'schedule' \|\| github\.event_name == 'workflow_dispatch'/);
-  const buildStart=y.indexOf('- name: Build V4 boards');
+  const buildStart=y.indexOf('- name: Build validated boards');
   const testsStart=y.indexOf('- name: Test suite pass 1');
   assert.ok(buildStart>=0&&testsStart>buildStart);
   const block=y.slice(buildStart,testsStart);
@@ -53,7 +53,7 @@ test('board persistence cannot fail silently',()=>{
   assert.doesNotMatch(y,/git push \|\| true/);
 });
 
-test('syntax and V4 contracts are release gates',()=>{
+test('syntax and board contracts are release gates',()=>{
   assert.match(y,/Syntax verification/);
   assert.match(y,/node --check edge-core\.mjs/);
   assert.match(y,/node --check court-edge-v4\.mjs/);
@@ -62,8 +62,8 @@ test('syntax and V4 contracts are release gates',()=>{
   assert.match(y,/node tests\/static-v4-check\.mjs/);
 });
 
-test('Edge Core receipt is generated from V4 boards',()=>{
-  assert.match(y,/COURT_BOARD_PROFILE: V4/);
+test('Edge Core receipt is generated from governed boards',()=>{
+  assert.match(y,/COURT_BOARD_PROFILE: V6-GOVERNED/);
   assert.match(y,/scripts\/write-automation-health\.mjs/);
 });
 
