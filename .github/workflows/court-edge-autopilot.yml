@@ -53,14 +53,17 @@ jobs:
         run: node scripts/run-v4-budgeted.mjs
 
       - name: Enrich NBA matchup intelligence and official live
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         env:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
         run: node scripts/enrich-court-intel.mjs
 
       - name: Enrich verified NBA player form
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: node scripts/enrich-nba-player-form.mjs
 
       - name: Enrich EuroLeague matchup intelligence
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: node scripts/enrich-euro-intel.mjs
 
       - name: Test suite pass 1
@@ -131,7 +134,7 @@ jobs:
           NODE
 
       - name: Persist refreshed boards and intelligence
-        if: github.event_name != 'pull_request'
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.event_name != 'pull_request'
         run: |
           set -euo pipefail
           git config user.name "court-edge-bot"
