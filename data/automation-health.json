@@ -2,8 +2,8 @@
   "ok": true,
   "app": "COURT_EDGE_PRO",
   "edge_core_version": "1.1.0",
-  "checked_at": "2026-08-30T04:09:12.904Z",
-  "event": "workflow_dispatch",
+  "checked_at": "2026-08-30T06:24:47.812Z",
+  "event": "push",
   "schedule": null,
   "quota_mode": "h2h",
   "artifact_digest": "c141955c6572b17c",
@@ -37,6 +37,6 @@
     "data/euroleague-v4-board.json"
   ],
   "public_board_contract": "V4",
-  "run_id": "33291730679",
+  "run_id": "33296806625",
   "run_attempt": 1
 }
