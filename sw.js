@@ -1,4 +1,4 @@
-const CACHE='court-edge-pro-v4-3-3-surebet';
+const CACHE='court-edge-pro-v4-3-4-surebet-fixed';
 const CORE=[
   './','./index.html','./surebet.html','./betting-ux.js','./match-details-v43.js','./quant-math-v5.js','./quant-desk-v5.js',
   './court-quality-governance-v6.js','./court-intel.js','./court-simple-ui.js','./legal.html','./manifest.webmanifest',
