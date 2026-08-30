@@ -80,6 +80,7 @@ jobs:
           node --check live-board.mjs
           node --check court-edge-v4.mjs
           node --check court-prediction-core.mjs
+          node --check court-surebet.mjs
           node --check betting-ux.js
           node --check match-details-v43.js
           node --check quant-math-v5.js
@@ -94,6 +95,7 @@ jobs:
           node --check scripts/write-automation-health.mjs
           node --check tests/court-intel-static.mjs
           node --check sw.js
+          node court-surebet.mjs --self-test
 
       - name: Deterministic contract
         run: node tests/static-v4-check.mjs
@@ -148,7 +150,7 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/assets _site/data
-          cp index.html betting-ux.js match-details-v43.js quant-math-v5.js quant-desk-v5.js court-quality-governance-v6.js court-intel.js court-simple-ui.js legal.html manifest.webmanifest sw.js robots.txt _site/
+          cp index.html surebet.html betting-ux.js match-details-v43.js quant-math-v5.js quant-desk-v5.js court-quality-governance-v6.js court-intel.js court-simple-ui.js legal.html manifest.webmanifest sw.js robots.txt _site/
           cp assets/icon-192.png assets/icon-512.png _site/assets/
           cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json _site/data/
           python - <<'PY'
@@ -176,7 +178,13 @@ jobs:
               target=Path('_site')/src.split('?')[0].lstrip('./')
               if not target.exists():
                   raise SystemExit(f'Missing runtime dependency in Pages artifact: {src}')
-          print('Production runtime dependency contract PASS')
+          sure=Path('_site/surebet.html')
+          if not sure.exists() or sure.stat().st_size < 1000:
+              raise SystemExit('SureBet page missing from Pages artifact')
+          nav=Path('_site/court-quality-governance-v6.js').read_text(encoding='utf-8')
+          if './surebet.html' not in nav or 'courtSureBetTop' not in nav:
+              raise SystemExit('SureBet navigation missing from deployed runtime')
+          print('Production runtime + SureBet dependency contract PASS')
           PY
 
       - uses: actions/configure-pages@v5
