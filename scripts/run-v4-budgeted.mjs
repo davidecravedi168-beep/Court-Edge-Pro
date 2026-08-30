@@ -23,6 +23,35 @@ export function isPaidBdlEndpoint(raw){
   try{const u=new URL(raw);return u.hostname==='api.balldontlie.io'&&PAID_BDL_PATHS.some(p=>u.pathname.startsWith(p))}catch{return false}
 }
 
+function pick(o,...keys){for(const k of keys){const v=k.split('.').reduce((a,x)=>a?.[x],o);if(v!==undefined&&v!==null&&v!=='')return v}return null}
+function euroHistoricalGameOk(g,nowMs=Date.now()){
+  const date=Date.parse(pick(g,'date','startDate','startTime','gameDate')||'');
+  const hs=Number(pick(g,'local.score','local.points','homeScore','score.local'));
+  const as=Number(pick(g,'road.score','road.points','awayScore','score.road'));
+  if(!Number.isFinite(date)||date>nowMs+6*3600000)return false;
+  if(!Number.isFinite(hs)||!Number.isFinite(as))return false;
+  // A scheduled EuroLeague fixture can expose 0/placeholder scores. Historical
+  // modelling accepts only plausible completed-game totals, fail-closed.
+  if(hs<35||as<35||hs>180||as>180)return false;
+  const total=hs+as;
+  return total>=90&&total<=320;
+}
+export function sanitizeEuroleagueGamesPayload(payload,nowMs=Date.now()){
+  if(!payload||typeof payload!=='object')return payload;
+  const key=Array.isArray(payload.data)?'data':Array.isArray(payload.games)?'games':null;
+  if(!key)return payload;
+  const rows=payload[key],clean=rows.filter(g=>euroHistoricalGameOk(g,nowMs));
+  return {...payload,[key]:clean,_court_integrity:{...(payload._court_integrity||{}),input_games:rows.length,accepted_historical_games:clean.length,rejected_placeholder_or_future:rows.length-clean.length}};
+}
+function isEuroleagueGamesUrl(raw){try{const u=new URL(raw);return u.hostname==='api-live.euroleague.net'&&/\/competitions\/E\/seasons\/[^/]+\/games\/?$/i.test(u.pathname)}catch{return false}}
+async function sanitizeEuroResponse(response,nowMs=Date.now()){
+  if(!response?.ok)return response;
+  const json=await response.json();
+  const clean=sanitizeEuroleagueGamesPayload(json,nowMs);
+  const headers=new Headers(response.headers);headers.set('content-type','application/json; charset=utf-8');headers.delete('content-length');
+  return new Response(JSON.stringify(clean),{status:response.status,statusText:response.statusText,headers});
+}
+
 export async function main(){
   const markets=marketProfile(process.env.ODDS_MARKETS||'h2h');
   const nativeFetch=globalThis.fetch;
@@ -32,6 +61,8 @@ export async function main(){
       if(BDL_FREE_ONLY&&isPaidBdlEndpoint(raw))throw new Error('BDL_FREE_ONLY: paid endpoint skipped');
       const next=rewriteOddsUrl(raw,markets);
       if(next!==raw)input=typeof input==='string'?next:new Request(next,input);
+      const response=await nativeFetch(input,init);
+      return isEuroleagueGamesUrl(next)?sanitizeEuroResponse(response):response;
     }
     return nativeFetch(input,init);
   };
