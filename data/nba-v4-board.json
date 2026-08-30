@@ -12,13 +12,13 @@
     "injury_health": "LIMITED",
     "prediction_version": "COURT-PF-1.0",
     "intelligence_version": "COURT-INTEL-1.0",
-    "intelligence_updated_at": "2026-08-30T21:53:32.090Z",
+    "intelligence_updated_at": "2026-08-30T21:54:30.537Z",
     "team_history_health": "VERIFIED_FREE",
     "official_live_health": "READY",
     "official_live_source": "NBA CDN",
     "player_form_health": "LEARNING",
     "player_form_players": 0,
-    "player_form_updated_at": "2026-08-30T21:53:32.090Z"
+    "player_form_updated_at": "2026-08-30T21:54:30.537Z"
   },
   "hero": null,
   "hero_prediction": {
@@ -235,7 +235,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -787,7 +787,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -1349,7 +1349,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -1920,7 +1920,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -2451,7 +2451,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -3003,7 +3003,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -3534,7 +3534,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -4075,7 +4075,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -4618,7 +4618,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -5170,7 +5170,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -5721,7 +5721,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -6261,7 +6261,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -6813,7 +6813,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -7375,7 +7375,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -7927,7 +7927,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -8469,7 +8469,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -9032,7 +9032,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -9586,7 +9586,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -10139,7 +10139,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -10701,7 +10701,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -11264,7 +11264,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -11817,7 +11817,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -12359,7 +12359,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -12891,7 +12891,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -13411,7 +13411,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -13951,7 +13951,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -14493,7 +14493,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -15047,7 +15047,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -15600,7 +15600,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -16163,7 +16163,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -16707,7 +16707,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -17259,7 +17259,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -17800,7 +17800,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -18352,7 +18352,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -18895,7 +18895,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -19447,7 +19447,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T21:53:32.090Z",
+        "generated_at": "2026-08-30T21:54:30.537Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
