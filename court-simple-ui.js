@@ -1,6 +1,6 @@
 (()=>{
 'use strict';
-const VERSION='COURT-SIMPLE-UI-1.2';
+const VERSION='COURT-SIMPLE-UI-1.3';
 const q=(s,r=document)=>r.querySelector(s);
 const qa=(s,r=document)=>[...r.querySelectorAll(s)];
 const n=(v,d=null)=>Number.isFinite(Number(v))?Number(v):d;
@@ -17,6 +17,7 @@ function injectCss(){
 .bottom .ceNavLabel{font-size:7.2px!important;letter-spacing:0!important}
 #courtSureBetFixed{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:calc(82px + env(safe-area-inset-bottom));z-index:9999;display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 15px;border-radius:999px;border:1px solid rgba(66,216,155,.65);background:linear-gradient(135deg,#123c32,#0a211c);color:#d9ffec;text-decoration:none;font-size:10px;font-weight:1000;letter-spacing:.04em;box-shadow:0 12px 34px rgba(0,0,0,.42)}
 #courtSureBetFixed:active{transform:scale(.97)}
+#courtIntegrityBanner{margin:10px 0;border:1px solid rgba(255,115,123,.46);background:rgba(255,115,123,.08);color:#ffd7d9;border-radius:15px;padding:11px 12px;font-size:8px;line-height:1.5;font-weight:800}#courtIntegrityBanner b{display:block;font-size:10px;margin-bottom:3px;color:#fff}
 @media(max-width:560px){.ceSimpleWinner{font-size:19px}.ceSimpleStat b{font-size:13px}.ceSimpleSummary{padding:13px}#courtSureBetFixed{right:10px;bottom:calc(80px + env(safe-area-inset-bottom));min-height:44px;padding:0 13px}}
 `;
  document.head.appendChild(s);
@@ -32,6 +33,41 @@ function simplifyStaticCopy(){
  setIfChanged(q('#intel .head .sub'),'Forma recente, precedenti, giocatori chiave e confronto tra le squadre. Le statistiche complete restano disponibili con un tocco.');
  const metricLabels=['PROB. VITTORIA','VANTAGGIO PREVISTO','PUNTI TOTALI PREVISTI'];qa('.hero .metric span').forEach((x,i)=>metricLabels[i]&&setIfChanged(x,metricLabels[i]));
  staticDone=true;
+}
+
+function semanticIssue(){
+ try{
+  if(typeof D==='undefined'||!D)return null;
+  if(D.__semanticQuarantine)return D.__semanticQuarantine;
+  const league=String(typeof L!=='undefined'?L:D?.meta?.league||'').toUpperCase();
+  const rows=Array.isArray(D.radar)?D.radar:[];
+  for(const r of rows){
+    const total=n(r?.projected_total);
+    if(league==='EUROLEAGUE'&&total!=null&&(total<130||total>220))return `Totale previsto anomalo (${total})`;
+    if(league==='NBA'&&total!=null&&(total<150||total>320))return `Totale previsto anomalo (${total})`;
+    for(const side of ['home','away']){
+      const t=r?.team_stats?.[side];if(!t)continue;
+      const pf=n(t.avg_pf),pa=n(t.avg_pa),games=n(t.games,0);
+      if(games>=5&&((pf!=null&&(pf<35||pf>160))||(pa!=null&&(pa<35||pa>160))))return `Media punti ${side} incompatibile con uno storico finale`;
+      const last=Date.parse(t.last_game||'');if(Number.isFinite(last)&&last>Date.now()+24*3600000)return `Ultima partita ${side} risulta nel futuro`;
+    }
+  }
+  return null;
+ }catch{return 'Controllo semantico non completabile'}
+}
+function applyDataIntegrityGuard(){
+ if(typeof D==='undefined'||!D)return;
+ const issue=semanticIssue();let banner=q('#courtIntegrityBanner');
+ if(!issue){banner?.remove();return}
+ if(!D.__semanticQuarantine){
+   D.__semanticQuarantine=issue;
+   D.hero=null;D.hero_prediction=null;D.best_bets=[];D.markets=[];D.radar=[];D.live=[];
+   D.meta=D.meta||{};D.meta.data_health='QUARANTINED';D.meta.market_health='QUARANTINED';
+   try{if(typeof render==='function')render()}catch{}
+ }
+ if(!banner){banner=document.createElement('div');banner.id='courtIntegrityBanner';const hero=q('.hero');hero?.insertAdjacentElement('afterend',banner)}
+ if(banner)banner.innerHTML=`<b>DATI IN QUARANTENA</b>${esc(issue)}. Pronostici e mercati vengono nascosti finché un nuovo refresh supera i controlli di integrità.`;
+ const sync=q('#sync'),dot=q('#dot');if(sync)sync.textContent='DATI IN QUARANTENA';dot?.classList.add('off');
 }
 
 function activeRow(){
@@ -97,7 +133,7 @@ function ensureSureBet(){
    document.body.appendChild(a);
  }
 }
-function run(){try{injectCss();simplifyStaticCopy();simplifyHero();enhanceIntel();ensureSureBet()}catch(err){console.error('Court simple UI:',err)}}
+function run(){try{injectCss();applyDataIntegrityGuard();simplifyStaticCopy();simplifyHero();enhanceIntel();ensureSureBet()}catch(err){console.error('Court simple UI:',err)}}
 function init(){run();setInterval(run,1500);document.documentElement.dataset.courtSimpleUi=VERSION}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
