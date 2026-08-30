@@ -66,6 +66,32 @@ jobs:
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: node scripts/enrich-euro-intel.mjs
 
+      - name: Scheduled data freshness gate
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const files=['data/nba-v4-board.json','data/euroleague-v4-board.json'];
+          const now=Date.now();
+          const stamps=[];
+          for(const f of files){
+            const j=JSON.parse(fs.readFileSync(f,'utf8'));
+            const raw=j?.meta?.data_refreshed_at||j?.meta?.updated_at;
+            const ts=Date.parse(raw||'');
+            if(!Number.isFinite(ts)) throw new Error(`Missing/invalid refresh timestamp: ${f}`);
+            const age=(now-ts)/60000;
+            if(age < -5 || age > 20) throw new Error(`Scheduled board is stale: ${f} age=${age.toFixed(1)}m`);
+            const health=String(j?.meta?.data_health||'').toUpperCase();
+            if(['STALE','ERROR','FAILED'].includes(health)) throw new Error(`Bad data health: ${f} ${health}`);
+            if(!Array.isArray(j.radar)||!Array.isArray(j.markets)) throw new Error(`Missing board arrays: ${f}`);
+            stamps.push(ts);
+            console.log(`${f}: fresh ${age.toFixed(1)}m · health=${health||'N/D'} · radar=${j.radar.length} · markets=${j.markets.length}`);
+          }
+          const skew=Math.abs(stamps[0]-stamps[1])/60000;
+          if(skew>5) throw new Error(`NBA/EuroLeague refresh skew too high: ${skew.toFixed(1)}m`);
+          console.log('Scheduled freshness contract PASS');
+          NODE
+
       - name: Test suite pass 1
         run: npm test
 
