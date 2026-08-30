@@ -2,7 +2,7 @@
   "ok": true,
   "app": "COURT_EDGE_PRO",
   "edge_core_version": "1.1.0",
-  "checked_at": "2026-08-30T06:24:47.812Z",
+  "checked_at": "2026-08-30T09:57:45.980Z",
   "event": "push",
   "schedule": null,
   "quota_mode": "h2h",
@@ -31,12 +31,12 @@
     "strict_no_fabrication": true
   },
   "workflow_version": "CEP-4.0-BETTING-TERMINAL-EDGE-CORE",
-  "board_profile": "V6-GOVERNED",
+  "board_profile": "V7-TRUST-GOVERNED",
   "certified_files": [
     "data/nba-v4-board.json",
     "data/euroleague-v4-board.json"
   ],
   "public_board_contract": "V4",
-  "run_id": "33296806625",
+  "run_id": "33305286932",
   "run_attempt": 1
 }
