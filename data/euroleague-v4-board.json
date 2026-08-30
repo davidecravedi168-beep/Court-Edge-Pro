@@ -2,7 +2,7 @@
   "meta": {
     "league": "EUROLEAGUE",
     "version": "COURT-EDGE-4.0-BETTING-TERMINAL",
-    "updated_at": "2026-08-30T15:59:52.951Z",
+    "updated_at": "2026-08-30T18:25:23.017Z",
     "status": "PAPER BETA",
     "source": "EuroLeague upstream research feed + The Odds API",
     "risk_mode": "PAPER_ONLY",
@@ -12,7 +12,7 @@
     "injury_health": "LIMITED",
     "prediction_version": "COURT-PF-1.0",
     "intelligence_version": "COURT-INTEL-1.0",
-    "intelligence_updated_at": "2026-08-30T16:02:58.795Z",
+    "intelligence_updated_at": "2026-08-30T18:28:28.337Z",
     "team_history_health": "VERIFIED_PUBLIC",
     "player_form_health": "LIMITED_PUBLIC_FEED"
   },
@@ -23,7 +23,7 @@
     "home_team": "Dubai Basketball",
     "away_team": "Real Madrid",
     "start_at": "2026-09-24T16:00:00Z",
-    "hours_to_start": 600.0019580555555,
+    "hours_to_start": 597.5769397222223,
     "projected_margin": 1.06,
     "projected_total": 120.89,
     "projected_home_score": 61,
@@ -61,24 +61,25 @@
       },
       "best_market": null,
       "watch_market": {
-        "market_id": "01ea6f67bf560b8721e5ec0bcf82de3f|totals|169.5|B",
+        "market_id": "01ea6f67bf560b8721e5ec0bcf82de3f|totals|171.5|B",
         "market_key": "totals",
         "market_label": "Total",
-        "selection": "Under 169.5",
+        "selection": "Under 171.5",
         "model_prob": 0.98,
-        "robust_prob": 0.8008,
-        "best_odds": 1.93,
-        "best_book": "1xBet",
+        "robust_prob": 0.79975,
+        "best_odds": 1.91,
+        "best_book": "Unibet (NL)",
         "min_acceptable_odds": 1.28,
-        "robust_ev": 0.5455439999999998,
-        "confidence": 46.76261114727632,
-        "data_quality": 87.2,
+        "robust_ev": 0.5275224999999999,
+        "confidence": 48.41314215536609,
+        "data_quality": 85.8,
         "validation_state": "TEST",
         "decision": "WAIT",
-        "prediction_score": 0.83233,
+        "prediction_score": 0.83202,
         "gate_reasons": [
           "MODEL_DISAGREEMENT",
           "UNCERTAINTY",
+          "MARKET_DEPTH",
           "MODEL_MARKET_GAP",
           "EV_ANOMALY"
         ]
@@ -131,7 +132,7 @@
       "home_team": "Dubai Basketball",
       "away_team": "Real Madrid",
       "start_at": "2026-09-24T16:00:00Z",
-      "hours_to_start": 600.0019580555555,
+      "hours_to_start": 597.5769397222223,
       "projected_margin": 1.06,
       "projected_total": 120.89,
       "projected_home_score": 61,
@@ -169,24 +170,25 @@
         },
         "best_market": null,
         "watch_market": {
-          "market_id": "01ea6f67bf560b8721e5ec0bcf82de3f|totals|169.5|B",
+          "market_id": "01ea6f67bf560b8721e5ec0bcf82de3f|totals|171.5|B",
           "market_key": "totals",
           "market_label": "Total",
-          "selection": "Under 169.5",
+          "selection": "Under 171.5",
           "model_prob": 0.98,
-          "robust_prob": 0.8008,
-          "best_odds": 1.93,
-          "best_book": "1xBet",
+          "robust_prob": 0.79975,
+          "best_odds": 1.91,
+          "best_book": "Unibet (NL)",
           "min_acceptable_odds": 1.28,
-          "robust_ev": 0.5455439999999998,
-          "confidence": 46.76261114727632,
-          "data_quality": 87.2,
+          "robust_ev": 0.5275224999999999,
+          "confidence": 48.41314215536609,
+          "data_quality": 85.8,
           "validation_state": "TEST",
           "decision": "WAIT",
-          "prediction_score": 0.83233,
+          "prediction_score": 0.83202,
           "gate_reasons": [
             "MODEL_DISAGREEMENT",
             "UNCERTAINTY",
+            "MARKET_DEPTH",
             "MODEL_MARKET_GAP",
             "EV_ANOMALY"
           ]
@@ -231,7 +233,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -672,7 +674,7 @@
       "home_team": "Hapoel Tel Aviv",
       "away_team": "FC Bayern München",
       "start_at": "2026-09-24T17:00:00Z",
-      "hours_to_start": 601.0019580555555,
+      "hours_to_start": 598.5769397222223,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -715,16 +717,16 @@
           "market_label": "Spread",
           "selection": "FC Bayern München +9.5",
           "model_prob": 0.72200543185682,
-          "robust_prob": 0.5992690269393428,
+          "robust_prob": 0.5971690269393428,
           "best_odds": 1.93,
           "best_book": "1xBet",
           "min_acceptable_odds": 1.71,
-          "robust_ev": 0.15658922199293168,
-          "confidence": 78.41041558898414,
-          "data_quality": 59.4,
+          "robust_ev": 0.1525362219929316,
+          "confidence": 78.16191558898414,
+          "data_quality": 56.6,
           "validation_state": "TEST",
           "decision": "WAIT",
-          "prediction_score": 0.64238,
+          "prediction_score": 0.64175,
           "gate_reasons": [
             "DATA_QUALITY",
             "UNCERTAINTY",
@@ -771,7 +773,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -885,7 +887,7 @@
       "home_team": "KK Crvena zvezda",
       "away_team": "Žalgiris",
       "start_at": "2026-09-24T18:00:00Z",
-      "hours_to_start": 602.0019580555555,
+      "hours_to_start": 599.5769397222223,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -986,7 +988,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1100,7 +1102,7 @@
       "home_team": "Panathinaikos",
       "away_team": "Paris Basketball",
       "start_at": "2026-09-24T18:15:00Z",
-      "hours_to_start": 602.2519580555555,
+      "hours_to_start": 599.8269397222223,
       "projected_margin": 0,
       "projected_total": 141.57,
       "projected_home_score": 70.8,
@@ -1202,7 +1204,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1469,7 +1471,7 @@
       "home_team": "FC Barcelona Bàsquet",
       "away_team": "Anadolu Efes",
       "start_at": "2026-09-24T18:30:00Z",
-      "hours_to_start": 602.5019580555555,
+      "hours_to_start": 600.0769397222223,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -1512,16 +1514,16 @@
           "market_label": "Total",
           "selection": "Under 169.5",
           "model_prob": 0.6055952964569195,
-          "robust_prob": 0.47249529645691946,
+          "robust_prob": 0.47039529645691947,
           "best_odds": 1.91,
           "best_book": "1xBet",
-          "min_acceptable_odds": 2.16,
-          "robust_ev": -0.09753398376728384,
-          "confidence": 78.29441981961372,
-          "data_quality": 58,
+          "min_acceptable_odds": 2.17,
+          "robust_ev": -0.10154498376728383,
+          "confidence": 77.93041981961372,
+          "data_quality": 55.2,
           "validation_state": "TEST",
           "decision": "WAIT",
-          "prediction_score": 0.50789,
+          "prediction_score": 0.50728,
           "gate_reasons": [
             "ROBUST_EV",
             "DATA_QUALITY",
@@ -1569,7 +1571,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1683,7 +1685,7 @@
       "home_team": "Saski Baskonia",
       "away_team": "Olympiacos",
       "start_at": "2026-09-24T18:30:00Z",
-      "hours_to_start": 602.5019580555555,
+      "hours_to_start": 600.0769397222223,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -1782,7 +1784,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1896,7 +1898,7 @@
       "home_team": "ASVEL Lyon Villeurbanne",
       "away_team": "Maccabi Tel Aviv",
       "start_at": "2026-09-24T18:45:00Z",
-      "hours_to_start": 602.7519580555555,
+      "hours_to_start": 600.3269397222223,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -1934,26 +1936,25 @@
         },
         "best_market": null,
         "watch_market": {
-          "market_id": "99de5bf0e14b822c885749de574d369a|spreads|4.5|A",
+          "market_id": "99de5bf0e14b822c885749de574d369a|spreads|2.5|A",
           "market_key": "spreads",
           "market_label": "Spread",
-          "selection": "ASVEL Lyon Villeurbanne +4.5",
-          "model_prob": 0.6894800682234397,
-          "robust_prob": 0.5612616569813677,
-          "best_odds": 1.62,
-          "best_book": "Betsson",
-          "min_acceptable_odds": 1.82,
-          "robust_ev": -0.09075611569018438,
-          "confidence": 77.39216861980313,
-          "data_quality": 52.4,
+          "selection": "ASVEL Lyon Villeurbanne +2.5",
+          "model_prob": 0.632934743785356,
+          "robust_prob": 0.5065268753807538,
+          "best_odds": 1.92,
+          "best_book": "Unibet (NL)",
+          "min_acceptable_odds": 2.02,
+          "robust_ev": -0.027468399268952726,
+          "confidence": 77.71320150783411,
+          "data_quality": 55.2,
           "validation_state": "TEST",
           "decision": "WAIT",
-          "prediction_score": 0.61013,
+          "prediction_score": 0.55747,
           "gate_reasons": [
             "ROBUST_EV",
             "DATA_QUALITY",
             "UNCERTAINTY",
-            "MARKET_DEPTH",
             "MODEL_SAMPLE"
           ]
         },
@@ -1997,7 +1998,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -2111,7 +2112,7 @@
       "home_team": "Beşiktaş J.K.",
       "away_team": "Valencia Basket",
       "start_at": "2026-09-25T17:00:00Z",
-      "hours_to_start": 625.0019580555555,
+      "hours_to_start": 622.5769397222223,
       "projected_margin": 0,
       "projected_total": 141.5,
       "projected_home_score": 70.8,
@@ -2213,7 +2214,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -2480,7 +2481,7 @@
       "home_team": "Fenerbahce SK",
       "away_team": "Virtus Segafredo Bologna",
       "start_at": "2026-09-25T17:45:00Z",
-      "hours_to_start": 625.7519580555555,
+      "hours_to_start": 623.3269397222223,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -2523,16 +2524,16 @@
           "market_label": "Spread",
           "selection": "Virtus Segafredo Bologna +11.5",
           "model_prob": 0.7714255293192303,
-          "robust_prob": 0.648046820703577,
+          "robust_prob": 0.645946820703577,
           "best_odds": 1.91,
           "best_book": "Unibet (NL)",
           "min_acceptable_odds": 1.58,
-          "robust_ev": 0.237769427543832,
-          "confidence": 75.87235919371086,
-          "data_quality": 58,
+          "robust_ev": 0.23375842754383203,
+          "confidence": 75.62385919371086,
+          "data_quality": 55.2,
           "validation_state": "TEST",
           "decision": "WAIT",
-          "prediction_score": 0.68869,
+          "prediction_score": 0.68805,
           "gate_reasons": [
             "DATA_QUALITY",
             "UNCERTAINTY",
@@ -2579,7 +2580,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -2693,7 +2694,7 @@
       "home_team": "KK Partizan NIS",
       "away_team": "Pallacanestro Olimpia Milano",
       "start_at": "2026-09-25T18:45:00Z",
-      "hours_to_start": 626.7519580555555,
+      "hours_to_start": 624.3269397222223,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -2794,7 +2795,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:58.795Z",
+        "generated_at": "2026-08-30T18:28:28.337Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"

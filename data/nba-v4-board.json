@@ -2,7 +2,7 @@
   "meta": {
     "league": "NBA",
     "version": "COURT-EDGE-4.0-BETTING-TERMINAL",
-    "updated_at": "2026-08-30T15:59:52.951Z",
+    "updated_at": "2026-08-30T18:25:23.017Z",
     "status": "PAPER BETA",
     "source": "BALLDONTLIE + The Odds API",
     "risk_mode": "PAPER_ONLY",
@@ -12,13 +12,13 @@
     "injury_health": "LIMITED",
     "prediction_version": "COURT-PF-1.0",
     "intelligence_version": "COURT-INTEL-1.0",
-    "intelligence_updated_at": "2026-08-30T16:02:42.363Z",
+    "intelligence_updated_at": "2026-08-30T18:28:12.434Z",
     "team_history_health": "VERIFIED_FREE",
-    "official_live_health": "READY",
+    "official_live_health": "LIMITED",
     "official_live_source": "NBA CDN",
     "player_form_health": "LEARNING",
     "player_form_players": 0,
-    "player_form_updated_at": "2026-08-30T16:02:42.363Z"
+    "player_form_updated_at": "2026-08-30T18:28:12.434Z"
   },
   "hero": null,
   "hero_prediction": {
@@ -27,7 +27,7 @@
     "home_team": "New York Knicks",
     "away_team": "Philadelphia 76ers",
     "start_at": "2026-10-20T23:00:00Z",
-    "hours_to_start": 1231.0019580555556,
+    "hours_to_start": 1228.5769397222223,
     "projected_margin": 10.34,
     "projected_total": 221.3,
     "projected_home_score": 115.8,
@@ -135,7 +135,7 @@
       "home_team": "Detroit Pistons",
       "away_team": "Boston Celtics",
       "start_at": "2026-10-20T19:00:00Z",
-      "hours_to_start": 1227.0019580555556,
+      "hours_to_start": 1224.5769397222223,
       "projected_margin": 5.14,
       "projected_total": 215.96,
       "projected_home_score": 110.6,
@@ -235,7 +235,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -687,7 +687,7 @@
       "home_team": "New York Knicks",
       "away_team": "Philadelphia 76ers",
       "start_at": "2026-10-20T23:00:00Z",
-      "hours_to_start": 1231.0019580555556,
+      "hours_to_start": 1228.5769397222223,
       "projected_margin": 10.34,
       "projected_total": 221.3,
       "projected_home_score": 115.8,
@@ -787,7 +787,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -1249,7 +1249,7 @@
       "home_team": "San Antonio Spurs",
       "away_team": "Oklahoma City Thunder",
       "start_at": "2026-10-21T01:30:00Z",
-      "hours_to_start": 1233.5019580555556,
+      "hours_to_start": 1231.0769397222223,
       "projected_margin": 2.43,
       "projected_total": 225.15,
       "projected_home_score": 113.8,
@@ -1349,7 +1349,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -1821,7 +1821,7 @@
       "home_team": "Orlando Magic",
       "away_team": "Atlanta Hawks",
       "start_at": "2026-10-21T23:10:00Z",
-      "hours_to_start": 1255.1686247222221,
+      "hours_to_start": 1252.7436063888888,
       "projected_margin": 3.95,
       "projected_total": 220.84,
       "projected_home_score": 112.4,
@@ -1920,7 +1920,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -2352,7 +2352,7 @@
       "home_team": "Washington Wizards",
       "away_team": "Milwaukee Bucks",
       "start_at": "2026-10-21T23:10:00Z",
-      "hours_to_start": 1255.1686247222221,
+      "hours_to_start": 1252.7436063888888,
       "projected_margin": -2.63,
       "projected_total": 234.05,
       "projected_home_score": 115.7,
@@ -2451,7 +2451,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -2903,7 +2903,7 @@
       "home_team": "Brooklyn Nets",
       "away_team": "Charlotte Hornets",
       "start_at": "2026-10-21T23:40:00Z",
-      "hours_to_start": 1255.6686247222221,
+      "hours_to_start": 1253.2436063888888,
       "projected_margin": -9.24,
       "projected_total": 223.9,
       "projected_home_score": 107.3,
@@ -3003,7 +3003,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -3435,7 +3435,7 @@
       "home_team": "Miami Heat",
       "away_team": "Minnesota Timberwolves",
       "start_at": "2026-10-21T23:40:00Z",
-      "hours_to_start": 1255.6686247222221,
+      "hours_to_start": 1253.2436063888888,
       "projected_margin": 1.6,
       "projected_total": 234.55,
       "projected_home_score": 118.1,
@@ -3534,7 +3534,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -3976,7 +3976,7 @@
       "home_team": "New Orleans Pelicans",
       "away_team": "Indiana Pacers",
       "start_at": "2026-10-22T00:10:00Z",
-      "hours_to_start": 1256.1686247222221,
+      "hours_to_start": 1253.7436063888888,
       "projected_margin": 4.65,
       "projected_total": 236.35,
       "projected_home_score": 120.5,
@@ -4075,7 +4075,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -4517,7 +4517,7 @@
       "home_team": "Memphis Grizzlies",
       "away_team": "Utah Jazz",
       "start_at": "2026-10-22T00:10:00Z",
-      "hours_to_start": 1256.1686247222221,
+      "hours_to_start": 1253.7436063888888,
       "projected_margin": 0.51,
       "projected_total": 241.49,
       "projected_home_score": 121,
@@ -4618,7 +4618,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -5070,7 +5070,7 @@
       "home_team": "Houston Rockets",
       "away_team": "Dallas Mavericks",
       "start_at": "2026-10-22T00:40:00Z",
-      "hours_to_start": 1256.6686247222221,
+      "hours_to_start": 1254.2436063888888,
       "projected_margin": 9.11,
       "projected_total": 227.04,
       "projected_home_score": 118.1,
@@ -5170,7 +5170,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -5622,7 +5622,7 @@
       "home_team": "Los Angeles Lakers",
       "away_team": "Golden State Warriors",
       "start_at": "2026-10-22T02:10:00Z",
-      "hours_to_start": 1258.1686247222221,
+      "hours_to_start": 1255.7436063888888,
       "projected_margin": 7.62,
       "projected_total": 222.38,
       "projected_home_score": 115,
@@ -5721,7 +5721,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -6163,7 +6163,7 @@
       "home_team": "Portland Trail Blazers",
       "away_team": "Phoenix Suns",
       "start_at": "2026-10-22T02:10:00Z",
-      "hours_to_start": 1258.1686247222221,
+      "hours_to_start": 1255.7436063888888,
       "projected_margin": 3.46,
       "projected_total": 223.42,
       "projected_home_score": 113.4,
@@ -6261,7 +6261,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -6713,7 +6713,7 @@
       "home_team": "Philadelphia 76ers",
       "away_team": "Cleveland Cavaliers",
       "start_at": "2026-10-22T23:10:00Z",
-      "hours_to_start": 1279.1686247222221,
+      "hours_to_start": 1276.7436063888888,
       "projected_margin": 0.24,
       "projected_total": 222.18,
       "projected_home_score": 111.2,
@@ -6813,7 +6813,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -7275,7 +7275,7 @@
       "home_team": "Oklahoma City Thunder",
       "away_team": "Denver Nuggets",
       "start_at": "2026-10-23T01:40:00Z",
-      "hours_to_start": 1281.6686247222221,
+      "hours_to_start": 1279.2436063888888,
       "projected_margin": 8.58,
       "projected_total": 227.45,
       "projected_home_score": 118,
@@ -7375,7 +7375,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -7827,7 +7827,7 @@
       "home_team": "Boston Celtics",
       "away_team": "New York Knicks",
       "start_at": "2026-10-23T23:10:00Z",
-      "hours_to_start": 1303.1686247222221,
+      "hours_to_start": 1300.7436063888888,
       "projected_margin": -1.02,
       "projected_total": 218.76,
       "projected_home_score": 108.9,
@@ -7927,7 +7927,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -8369,7 +8369,7 @@
       "home_team": "San Antonio Spurs",
       "away_team": "Houston Rockets",
       "start_at": "2026-10-24T01:40:00Z",
-      "hours_to_start": 1305.6686247222221,
+      "hours_to_start": 1303.2436063888888,
       "projected_margin": 9.01,
       "projected_total": 218.94,
       "projected_home_score": 114,
@@ -8469,7 +8469,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -8931,7 +8931,7 @@
       "home_team": "Washington Wizards",
       "away_team": "Charlotte Hornets",
       "start_at": "2026-10-30T23:10:00Z",
-      "hours_to_start": 1471.1686247222221,
+      "hours_to_start": 1468.7436063888888,
       "projected_margin": -9.71,
       "projected_total": 231.64,
       "projected_home_score": 111,
@@ -9032,7 +9032,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -9484,7 +9484,7 @@
       "home_team": "Boston Celtics",
       "away_team": "Chicago Bulls",
       "start_at": "2026-10-30T23:40:00Z",
-      "hours_to_start": 1471.6686247222221,
+      "hours_to_start": 1469.2436063888888,
       "projected_margin": 11.39,
       "projected_total": 227.56,
       "projected_home_score": 119.5,
@@ -9586,7 +9586,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -10038,7 +10038,7 @@
       "home_team": "Brooklyn Nets",
       "away_team": "Detroit Pistons",
       "start_at": "2026-10-30T23:40:00Z",
-      "hours_to_start": 1471.6686247222221,
+      "hours_to_start": 1469.2436063888888,
       "projected_margin": -12.64,
       "projected_total": 219.86,
       "projected_home_score": 103.6,
@@ -10139,7 +10139,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -10601,7 +10601,7 @@
       "home_team": "Philadelphia 76ers",
       "away_team": "New York Knicks",
       "start_at": "2026-10-30T23:40:00Z",
-      "hours_to_start": 1471.6686247222221,
+      "hours_to_start": 1469.2436063888888,
       "projected_margin": -5.26,
       "projected_total": 221.3,
       "projected_home_score": 108,
@@ -10701,7 +10701,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -11163,7 +11163,7 @@
       "home_team": "Dallas Mavericks",
       "away_team": "Houston Rockets",
       "start_at": "2026-10-31T00:10:00Z",
-      "hours_to_start": 1472.1686247222221,
+      "hours_to_start": 1469.7436063888888,
       "projected_margin": -4.73,
       "projected_total": 227.04,
       "projected_home_score": 111.2,
@@ -11264,7 +11264,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -11716,7 +11716,7 @@
       "home_team": "Miami Heat",
       "away_team": "Indiana Pacers",
       "start_at": "2026-10-31T00:10:00Z",
-      "hours_to_start": 1472.1686247222221,
+      "hours_to_start": 1469.7436063888888,
       "projected_margin": 8.9,
       "projected_total": 238.26,
       "projected_home_score": 123.6,
@@ -11817,7 +11817,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -12259,7 +12259,7 @@
       "home_team": "Phoenix Suns",
       "away_team": "Denver Nuggets",
       "start_at": "2026-10-31T02:10:00Z",
-      "hours_to_start": 1474.1686247222221,
+      "hours_to_start": 1471.7436063888888,
       "projected_margin": -1.98,
       "projected_total": 227.07,
       "projected_home_score": 112.5,
@@ -12359,7 +12359,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -12791,7 +12791,7 @@
       "home_team": "Golden State Warriors",
       "away_team": "Los Angeles Lakers",
       "start_at": "2026-10-31T02:10:00Z",
-      "hours_to_start": 1474.1686247222221,
+      "hours_to_start": 1471.7436063888888,
       "projected_margin": -3.06,
       "projected_total": 222.38,
       "projected_home_score": 109.7,
@@ -12835,10 +12835,10 @@
           "selection": "Under 235.5",
           "model_prob": 0.731212981764948,
           "robust_prob": 0.6051370532410019,
-          "best_odds": 1.83,
+          "best_odds": 1.96,
           "best_book": "1xBet",
           "min_acceptable_odds": 1.69,
-          "robust_ev": 0.10740080743103353,
+          "robust_ev": 0.1860686243523637,
           "confidence": 72.6049252140437,
           "data_quality": 84.4,
           "validation_state": "TEST",
@@ -12891,7 +12891,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -13333,7 +13333,7 @@
       "home_team": "Cleveland Cavaliers",
       "away_team": "Philadelphia 76ers",
       "start_at": "2026-11-07T00:40:00Z",
-      "hours_to_start": 1640.6686247222221,
+      "hours_to_start": 1638.2436063888888,
       "projected_margin": 4.97,
       "projected_total": 222.18,
       "projected_home_score": 113.6,
@@ -13411,7 +13411,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -13873,7 +13873,7 @@
       "home_team": "Los Angeles Lakers",
       "away_team": "Portland Trail Blazers",
       "start_at": "2026-11-07T03:10:00Z",
-      "hours_to_start": 1643.1686247222221,
+      "hours_to_start": 1640.7436063888888,
       "projected_margin": 5.72,
       "projected_total": 219.03,
       "projected_home_score": 112.4,
@@ -13951,7 +13951,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -14393,7 +14393,7 @@
       "home_team": "Indiana Pacers",
       "away_team": "New York Knicks",
       "start_at": "2026-11-14T00:10:00Z",
-      "hours_to_start": 1808.1686247222221,
+      "hours_to_start": 1805.7436063888888,
       "projected_margin": -10.89,
       "projected_total": 226.93,
       "projected_home_score": 108,
@@ -14493,7 +14493,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -14945,7 +14945,7 @@
       "home_team": "San Antonio Spurs",
       "away_team": "Golden State Warriors",
       "start_at": "2026-11-14T02:40:00Z",
-      "hours_to_start": 1810.6686247222221,
+      "hours_to_start": 1808.2436063888888,
       "projected_margin": 12.97,
       "projected_total": 226.15,
       "projected_home_score": 119.6,
@@ -15047,7 +15047,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -15499,7 +15499,7 @@
       "home_team": "Denver Nuggets",
       "away_team": "Houston Rockets",
       "start_at": "2026-11-21T03:10:00Z",
-      "hours_to_start": 1979.1686247222221,
+      "hours_to_start": 1976.7436063888888,
       "projected_margin": 3.28,
       "projected_total": 221.24,
       "projected_home_score": 112.3,
@@ -15600,7 +15600,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -16062,7 +16062,7 @@
       "home_team": "Washington Wizards",
       "away_team": "Boston Celtics",
       "start_at": "2026-11-25T01:10:00Z",
-      "hours_to_start": 2073.1686247222224,
+      "hours_to_start": 2070.743606388889,
       "projected_margin": -10.84,
       "projected_total": 227.93,
       "projected_home_score": 108.5,
@@ -16163,7 +16163,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -16605,7 +16605,7 @@
       "home_team": "Denver Nuggets",
       "away_team": "Dallas Mavericks",
       "start_at": "2026-11-25T03:10:00Z",
-      "hours_to_start": 2075.1686247222224,
+      "hours_to_start": 2072.743606388889,
       "projected_margin": 9.43,
       "projected_total": 234.55,
       "projected_home_score": 122,
@@ -16707,7 +16707,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -17159,7 +17159,7 @@
       "home_team": "Philadelphia 76ers",
       "away_team": "Miami Heat",
       "start_at": "2026-11-25T22:10:00Z",
-      "hours_to_start": 2094.1686247222224,
+      "hours_to_start": 2091.743606388889,
       "projected_margin": 2.14,
       "projected_total": 232.63,
       "projected_home_score": 117.4,
@@ -17259,7 +17259,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -17701,7 +17701,7 @@
       "home_team": "Oklahoma City Thunder",
       "away_team": "Minnesota Timberwolves",
       "start_at": "2026-11-26T00:40:00Z",
-      "hours_to_start": 2096.6686247222224,
+      "hours_to_start": 2094.243606388889,
       "projected_margin": 9.93,
       "projected_total": 225.67,
       "projected_home_score": 117.8,
@@ -17800,7 +17800,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -18252,7 +18252,7 @@
       "home_team": "Portland Trail Blazers",
       "away_team": "San Antonio Spurs",
       "start_at": "2026-11-26T03:10:00Z",
-      "hours_to_start": 2099.1686247222224,
+      "hours_to_start": 2096.743606388889,
       "projected_margin": -7.09,
       "projected_total": 222.8,
       "projected_home_score": 107.9,
@@ -18352,7 +18352,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -18794,7 +18794,7 @@
       "home_team": "New York Knicks",
       "away_team": "Miami Heat",
       "start_at": "2026-11-28T00:10:00Z",
-      "hours_to_start": 2144.1686247222224,
+      "hours_to_start": 2141.743606388889,
       "projected_margin": 9.56,
       "projected_total": 232.57,
       "projected_home_score": 121.1,
@@ -18895,7 +18895,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
@@ -19347,7 +19347,7 @@
       "home_team": "San Antonio Spurs",
       "away_team": "Los Angeles Lakers",
       "start_at": "2026-11-28T02:40:00Z",
-      "hours_to_start": 2146.6686247222224,
+      "hours_to_start": 2144.243606388889,
       "projected_margin": 8.95,
       "projected_total": 220.36,
       "projected_home_score": 114.7,
@@ -19447,7 +19447,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-08-30T16:02:42.363Z",
+        "generated_at": "2026-08-30T18:28:12.434Z",
         "data_state": "VERIFIED_FREE",
         "sources": [
           "BALLDONTLIE FREE GAMES",
