@@ -74,7 +74,7 @@ test('syntax and board contracts are release gates',()=>{
 });
 
 test('Edge Core receipt is generated from governed boards',()=>{
-  assert.match(y,/COURT_BOARD_PROFILE: V6-GOVERNED/);
+  assert.match(y,/COURT_BOARD_PROFILE: V7-TRUST-GOVERNED/);
   assert.match(y,/scripts\/write-automation-health\.mjs/);
 });
 
