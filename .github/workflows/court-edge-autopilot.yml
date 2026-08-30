@@ -1,4 +1,4 @@
-name: Court Edge Pro V6 Autopilot
+name: Court Edge Pro V7 Autopilot
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: court-edge-v6-${{ github.ref }}
+  group: court-edge-v7-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -57,6 +57,9 @@ jobs:
           BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
         run: node scripts/enrich-court-intel.mjs
 
+      - name: Enrich verified NBA player form
+        run: node scripts/enrich-nba-player-form.mjs
+
       - name: Enrich EuroLeague matchup intelligence
         run: node scripts/enrich-euro-intel.mjs
 
@@ -86,6 +89,7 @@ jobs:
           node --check court-simple-ui.js
           node --check scripts/run-v4-budgeted.mjs
           node --check scripts/enrich-court-intel.mjs
+          node --check scripts/enrich-nba-player-form.mjs
           node --check scripts/enrich-euro-intel.mjs
           node --check scripts/write-automation-health.mjs
           node --check tests/court-intel-static.mjs
@@ -99,7 +103,7 @@ jobs:
 
       - name: Write automation receipt
         env:
-          COURT_BOARD_PROFILE: V6-GOVERNED
+          COURT_BOARD_PROFILE: V7-TRUST-GOVERNED
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           ODDS_MARKETS: ${{ github.event.schedule == '43 20 * * *' && 'h2h,spreads,totals' || 'h2h' }}
         run: node scripts/write-automation-health.mjs
@@ -119,6 +123,8 @@ jobs:
               for(const r of j.radar){if(!r.intelligence?.home||!r.intelligence?.away||!r.intelligence?.h2h||!r.intelligence?.matchup_radar)throw new Error(`Incomplete Court Intel matchup ${r.event_id}`)}
             }
           }
+          const nba=JSON.parse(fs.readFileSync('data/nba-v4-board.json','utf8'));
+          if(nba.meta.player_form_health==='ROLLING_OFFICIAL_BOXSCORES' && !(nba.meta.player_form_players>0)) throw new Error('Player form claims ready without verified players');
           console.log('Public board contract PASS');
           NODE
 
