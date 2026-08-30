@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'court-quality-governance-v6.js'
+      - 'surebet.html'
       - 'scripts/upgrade_quality_governance_v6.py'
       - '.github/workflows/court-quality-governance-v6.yml'
   workflow_dispatch:
@@ -20,9 +21,14 @@ jobs:
         with: {python-version: '3.12'}
       - run: python scripts/upgrade_quality_governance_v6.py
       - run: node --check court-quality-governance-v6.js
-      - run: |
-          grep -q 'court-quality-governance-v6.js?v=6.0' index.html
-          grep -q 'Quality & Validation Governance' court-quality-governance-v6.js
+      - name: Validate governance and SureBet wiring
+        run: |
+          grep -Fq 'court-quality-governance-v6.js?v=6.0' index.html
+          grep -Fq 'V7 TRUST' court-quality-governance-v6.js
+          grep -Fq 'courtSureBetTop' court-quality-governance-v6.js
+          grep -Fq './surebet.html' court-quality-governance-v6.js
+          test -s surebet.html
+          grep -Fq 'COURT EDGE PRO · SUREBET' surebet.html
           git diff --check
       - run: |
           if git diff --quiet; then exit 0; fi
