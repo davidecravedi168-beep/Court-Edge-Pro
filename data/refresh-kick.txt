@@ -1,2 +1,2 @@
-2026-08-31T03:57:16Z
-recovery-heartbeat: public Court boards exceeded the 210-minute freshness threshold; watchdog decides whether a low-cost h2h refresh is required.
+2026-08-31T06:17:00Z
+recovery-heartbeat: bootstrap Court SureBet from a fresh low-cost h2h recovery; watchdog decides whether API refresh is required.
