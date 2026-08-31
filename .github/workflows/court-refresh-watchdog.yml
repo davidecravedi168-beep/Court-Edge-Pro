@@ -8,7 +8,6 @@ on:
       - '.github/workflows/court-refresh-watchdog.yml'
       - 'data/refresh-kick.txt'
   schedule:
-    # Native cheap health check; an external heartbeat can also trigger this exact guard.
     - cron: '29 * * * *'
 
 permissions:
@@ -36,7 +35,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          stale="$(python - <<'PY'
+          need_recovery="$(python - <<'PY'
           import json
           from datetime import datetime, timezone
           from pathlib import Path
@@ -51,21 +50,29 @@ jobs:
                   continue
               ts = datetime.fromisoformat(raw.replace('Z', '+00:00'))
               ages.append((now - ts).total_seconds() / 60)
-          # Recovery is still low-cost h2h only.  A 330-minute threshold made
-          # the public terminal look abandoned for most of a working day.
-          # The external hourly heartbeat turns this 210-minute guard into an
-          # effective ~4-hour cadence without spending quota every hour.
-          print('1' if max(ages) > 210 else '0')
+
+          sure_path = Path('data/surebet-board.json')
+          sure_bootstrap = True
+          if sure_path.exists():
+              try:
+                  sure = json.loads(sure_path.read_text(encoding='utf-8'))
+                  meta = sure.get('meta') or {}
+                  sure_bootstrap = not meta.get('updated_at') or str(meta.get('status') or '').upper() == 'SETUP'
+              except Exception:
+                  sure_bootstrap = True
+
+          stale = max(ages) > 210
+          print('1' if stale or sure_bootstrap else '0')
           PY
           )"
 
-          if [ "$stale" = "0" ]; then
-            echo "Court boards are inside the freshness budget; no API recovery needed."
+          if [ "$need_recovery" = "0" ]; then
+            echo "Court boards and SureBet bootstrap are inside the health budget; no API recovery needed."
             exit 0
           fi
 
           before="$(gh run list --workflow court-edge-autopilot.yml --limit 1 --json databaseId --jq '.[0].databaseId // 0')"
-          echo "Court board stale; starting low-cost recovery (previous run: $before)."
+          echo "Court recovery required; starting low-cost h2h recovery (previous run: $before)."
           gh workflow run court-edge-autopilot.yml --ref main -f recovery=true
 
           run_id=""
