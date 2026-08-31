@@ -92,6 +92,21 @@ jobs:
           console.log('Scheduled freshness contract PASS');
           NODE
 
+      - name: Build zero-extra-call SureBet board
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          node court-surebet.mjs
+          node - <<'NODE'
+          const fs=require('fs');
+          const j=JSON.parse(fs.readFileSync('data/surebet-board.json','utf8'));
+          if(!j.meta?.updated_at) throw new Error('SureBet updated_at missing');
+          if(j.meta?.api_calls!==0) throw new Error('Court SureBet must use zero extra API calls');
+          if(j.meta?.fail_closed!==true) throw new Error('Court SureBet fail-closed flag missing');
+          if(!Array.isArray(j.opportunities)||!Array.isArray(j.checked)) throw new Error('Court SureBet board arrays missing');
+          if(String(j.meta?.status||'').toUpperCase()==='SETUP') throw new Error('Court SureBet remained in SETUP');
+          console.log(`Court SureBet PASS · status=${j.meta.status} · opportunities=${j.opportunities.length} · checked=${j.checked.length}`);
+          NODE
+
       - name: Test suite pass 1
         run: npm test
 
@@ -165,11 +180,11 @@ jobs:
           set -euo pipefail
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/nba-intel-cache.json data/nba-player-form.json data/euroleague-intel-cache.json
+          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/nba-intel-cache.json data/nba-player-form.json data/euroleague-intel-cache.json data/surebet-board.json
           if git diff --cached --quiet; then
-            echo "No verified data/intelligence changes to persist"
+            echo "No verified data/intelligence/SureBet changes to persist"
           else
-            git commit -m "chore: persist Court intelligence snapshot"
+            git commit -m "chore: persist Court intelligence and SureBet snapshot"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
@@ -181,7 +196,7 @@ jobs:
           mkdir -p _site/assets _site/data
           cp index.html surebet.html betting-ux.js match-details-v43.js quant-math-v5.js quant-desk-v5.js court-quality-governance-v6.js court-intel.js court-simple-ui.js legal.html manifest.webmanifest sw.js robots.txt _site/
           cp assets/icon-192.png assets/icon-512.png _site/assets/
-          cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json _site/data/
+          cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/surebet-board.json _site/data/
           python - <<'PY'
           from pathlib import Path
           import re
@@ -208,8 +223,11 @@ jobs:
               if not target.exists():
                   raise SystemExit(f'Missing runtime dependency in Pages artifact: {src}')
           sure=Path('_site/surebet.html')
+          board=Path('_site/data/surebet-board.json')
           if not sure.exists() or sure.stat().st_size < 1000:
               raise SystemExit('SureBet page missing from Pages artifact')
+          if not board.exists() or board.stat().st_size < 100:
+              raise SystemExit('SureBet board missing from Pages artifact')
           nav=Path('_site/court-quality-governance-v6.js').read_text(encoding='utf-8')
           if './surebet.html' not in nav or 'courtSureBetTop' not in nav:
               raise SystemExit('SureBet navigation missing from deployed runtime')
