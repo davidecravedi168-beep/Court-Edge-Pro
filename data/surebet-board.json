@@ -1,12 +1,23 @@
 {
   "meta": {
-    "updated_at": null,
-    "status": "SETUP",
+    "updated_at": "2026-08-31T06:22:54.350Z",
+    "status": "READY",
     "model_version": "COURT-SUREBET-1.0",
     "source": "Court Edge Pro cached market boards · zero extra API calls",
     "api_calls": 0,
+    "leagues": [
+      "NBA",
+      "EUROLEAGUE"
+    ],
+    "max_board_age_min": 20,
+    "max_market_age_min": 15,
+    "max_hours_to_start": 36,
+    "min_raw_roi": 0.005,
+    "min_rounded_roi": 0.0025,
     "fail_closed": true,
-    "note": "In attesa del primo refresh automatico."
+    "nba_board_age_min": 3.1,
+    "euroleague_board_age_min": 3.1,
+    "note": "Solo Moneyline 2-way. Se i board quote sono vecchi, nessuna vecchia surebet resta attiva."
   },
   "opportunities": [],
   "checked": []
