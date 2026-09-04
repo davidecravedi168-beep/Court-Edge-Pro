@@ -2,7 +2,7 @@
   "meta": {
     "league": "EUROLEAGUE",
     "version": "COURT-EDGE-4.0-BETTING-TERMINAL",
-    "updated_at": "2026-09-04T12:36:50.744Z",
+    "updated_at": "2026-09-04T16:17:24.326Z",
     "status": "PAPER BETA",
     "source": "EuroLeague upstream research feed + The Odds API",
     "risk_mode": "PAPER_ONLY",
@@ -12,7 +12,7 @@
     "injury_health": "LIMITED",
     "prediction_version": "COURT-PF-1.0",
     "intelligence_version": "COURT-INTEL-1.0",
-    "intelligence_updated_at": "2026-09-04T12:39:58.011Z",
+    "intelligence_updated_at": "2026-09-04T16:20:29.585Z",
     "team_history_health": "VERIFIED_PUBLIC",
     "player_form_health": "LIMITED_PUBLIC_FEED"
   },
@@ -23,7 +23,7 @@
     "home_team": "Dubai Basketball",
     "away_team": "Real Madrid",
     "start_at": "2026-09-24T16:00:00Z",
-    "hours_to_start": 483.38590444444446,
+    "hours_to_start": 479.70990944444446,
     "projected_margin": 1.06,
     "projected_total": 120.89,
     "projected_home_score": 61,
@@ -131,7 +131,7 @@
       "home_team": "Dubai Basketball",
       "away_team": "Real Madrid",
       "start_at": "2026-09-24T16:00:00Z",
-      "hours_to_start": 483.38590444444446,
+      "hours_to_start": 479.70990944444446,
       "projected_margin": 1.06,
       "projected_total": 120.89,
       "projected_home_score": 61,
@@ -231,7 +231,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -672,7 +672,7 @@
       "home_team": "Hapoel Tel Aviv",
       "away_team": "FC Bayern München",
       "start_at": "2026-09-24T17:00:00Z",
-      "hours_to_start": 484.38590444444446,
+      "hours_to_start": 480.70990944444446,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -771,7 +771,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -885,7 +885,7 @@
       "home_team": "KK Crvena zvezda",
       "away_team": "Žalgiris",
       "start_at": "2026-09-24T18:00:00Z",
-      "hours_to_start": 485.38590444444446,
+      "hours_to_start": 481.70990944444446,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -985,7 +985,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1099,7 +1099,7 @@
       "home_team": "Panathinaikos",
       "away_team": "Paris Basketball",
       "start_at": "2026-09-24T18:15:00Z",
-      "hours_to_start": 485.63590444444446,
+      "hours_to_start": 481.95990944444446,
       "projected_margin": 0,
       "projected_total": 141.57,
       "projected_home_score": 70.8,
@@ -1201,7 +1201,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1468,7 +1468,7 @@
       "home_team": "FC Barcelona Bàsquet",
       "away_team": "Anadolu Efes",
       "start_at": "2026-09-24T18:30:00Z",
-      "hours_to_start": 485.88590444444446,
+      "hours_to_start": 482.20990944444446,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -1568,7 +1568,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1682,7 +1682,7 @@
       "home_team": "Saski Baskonia",
       "away_team": "Olympiacos",
       "start_at": "2026-09-24T18:30:00Z",
-      "hours_to_start": 485.88590444444446,
+      "hours_to_start": 482.20990944444446,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -1781,7 +1781,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -1895,7 +1895,7 @@
       "home_team": "ASVEL Lyon Villeurbanne",
       "away_team": "Maccabi Tel Aviv",
       "start_at": "2026-09-24T18:45:00Z",
-      "hours_to_start": 486.13590444444446,
+      "hours_to_start": 482.45990944444446,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -1995,7 +1995,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -2109,7 +2109,7 @@
       "home_team": "Beşiktaş J.K.",
       "away_team": "Valencia Basket",
       "start_at": "2026-09-25T17:00:00Z",
-      "hours_to_start": 508.38590444444446,
+      "hours_to_start": 504.70990944444446,
       "projected_margin": 0,
       "projected_total": 141.5,
       "projected_home_score": 70.8,
@@ -2211,7 +2211,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -2478,7 +2478,7 @@
       "home_team": "Fenerbahce SK",
       "away_team": "Virtus Segafredo Bologna",
       "start_at": "2026-09-25T17:45:00Z",
-      "hours_to_start": 509.13590444444446,
+      "hours_to_start": 505.45990944444446,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -2577,7 +2577,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
@@ -2691,7 +2691,7 @@
       "home_team": "KK Partizan NIS",
       "away_team": "Pallacanestro Olimpia Milano",
       "start_at": "2026-09-25T18:45:00Z",
-      "hours_to_start": 510.13590444444446,
+      "hours_to_start": 506.45990944444446,
       "projected_margin": 0,
       "projected_total": 162,
       "projected_home_score": 81,
@@ -2792,7 +2792,7 @@
       "status": "EARLY RADAR",
       "intelligence": {
         "version": "COURT-INTEL-1.0",
-        "generated_at": "2026-09-04T12:39:58.011Z",
+        "generated_at": "2026-09-04T16:20:29.585Z",
         "data_state": "VERIFIED_PUBLIC",
         "sources": [
           "EUROLEAGUE PUBLIC GAMES"
