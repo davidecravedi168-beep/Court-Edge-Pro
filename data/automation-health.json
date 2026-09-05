@@ -2,15 +2,15 @@
   "ok": true,
   "app": "COURT_EDGE_PRO",
   "edge_core_version": "1.1.0",
-  "checked_at": "2026-09-04T20:47:37.321Z",
-  "event": "schedule",
-  "schedule": "43 20 * * *",
-  "quota_mode": "h2h,spreads,totals",
-  "artifact_digest": "9ecf03f2552668da",
+  "checked_at": "2026-09-05T00:25:22.148Z",
+  "event": "workflow_dispatch",
+  "schedule": null,
+  "quota_mode": "h2h",
+  "artifact_digest": "a3e5fb4c408549e0",
   "boards": [
     {
       "league": "NBA",
-      "updated_at": "2026-09-04T20:44:28.614Z",
+      "updated_at": "2026-09-05T00:22:12.594Z",
       "radar": 36,
       "locked": 0,
       "history": 0,
@@ -18,7 +18,7 @@
     },
     {
       "league": "EUROLEAGUE",
-      "updated_at": "2026-09-04T20:44:28.614Z",
+      "updated_at": "2026-09-05T00:22:12.594Z",
       "radar": 10,
       "locked": 0,
       "history": 0,
@@ -37,6 +37,6 @@
     "data/euroleague-v4-board.json"
   ],
   "public_board_contract": "V4",
-  "run_id": "33917714171",
+  "run_id": "33932734655",
   "run_attempt": 1
 }
