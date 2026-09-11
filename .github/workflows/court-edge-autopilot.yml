@@ -139,10 +139,12 @@ jobs:
           node --check scripts/write-automation-health.mjs
           node --check scripts/court-calibration-v8.mjs
           node --check scripts/court-learning-v8.mjs
+          node --check scripts/court-statistical-learning-v9.mjs
           node --check tests/court-intel-static.mjs
           node --check sw.js
           node court-surebet.mjs --self-test
           node scripts/court-learning-v8.mjs --self-test
+          node scripts/court-statistical-learning-v9.mjs --self-test
 
       - name: Deterministic contract
         run: node tests/static-v4-check.mjs
@@ -152,7 +154,10 @@ jobs:
 
       - name: Build adaptive learning and drift diagnostics
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: node scripts/court-learning-v8.mjs
+        run: |
+          node scripts/court-learning-v8.mjs
+          node scripts/court-statistical-learning-v9.mjs
+          node scripts/court-statistical-learning-v9.mjs --validate
 
       - name: Write automation receipt
         env:
@@ -187,7 +192,7 @@ jobs:
           set -euo pipefail
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/nba-intel-cache.json data/nba-player-form.json data/euroleague-intel-cache.json data/surebet-board.json data/court-learning-v8.json
+          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/nba-intel-cache.json data/nba-player-form.json data/euroleague-intel-cache.json data/surebet-board.json data/court-learning-v8.json data/court-statistical-learning-v9.json
           if [ -f data/court-calibration-model-v8.json ]; then git add data/court-calibration-model-v8.json; fi
           if git diff --cached --quiet; then
             echo "No verified data/intelligence/SureBet changes to persist"
@@ -206,6 +211,7 @@ jobs:
           cp assets/icon-192.png assets/icon-512.png _site/assets/
           cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/surebet-board.json _site/data/
           [ ! -f data/court-learning-v8.json ] || cp data/court-learning-v8.json _site/data/
+          [ ! -f data/court-statistical-learning-v9.json ] || cp data/court-statistical-learning-v9.json _site/data/
           [ ! -f data/court-calibration-model-v8.json ] || cp data/court-calibration-model-v8.json _site/data/
           python - <<'PY'
           from pathlib import Path

@@ -1,10 +1,8 @@
 import fs from 'node:fs/promises';
-import fssync from 'node:fs';
 import {activeCourtCalibration} from './court-calibration-v8.mjs';
 
 const BOARDS=['data/nba-v4-board.json','data/euroleague-v4-board.json'];
 const OUT='data/court-learning-v8.json';
-const MODEL='data/court-calibration-model-v8.json';
 const clamp=(x,a=.01,b=.99)=>Math.max(a,Math.min(b,x));
 const mean=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null;
 const sigmoid=x=>1/(1+Math.exp(-x));
@@ -80,11 +78,8 @@ if(rows.length>=80){
     ece_not_worse_0_01:cand.ece<=inc.ece+.01
   };
   candidate={params,train_n:train.length,holdout_n:holdout.length,incumbent:inc,metrics:cand,new_labels_since_active:newLabels,gates};
-  if(Object.values(gates).every(Boolean)){
-    active={schema:'COURT-CALIBRATION-MODEL-V8',status:'ACTIVE',version:`COURT-CAL-V8-${rows.length}`,trained_on_n:rows.length,promoted_at:new Date().toISOString(),params,validation:cand};
-    await fs.writeFile(MODEL,JSON.stringify(active,null,2)+'\n');
-    promotion='PROMOTED';
-  }else promotion='REJECTED';
+  if(Object.values(gates).every(Boolean)) promotion='REVIEW_ELIGIBLE';
+  else promotion='HOLD';
 }
 const calibrated=metric(rows,r=>active?apply(r.p,r.league,active.params):r.p);
 let drift={state:'INSUFFICIENT',reasons:[]};
@@ -101,7 +96,7 @@ const out={
  calibrated,
  calibration:{active:!!active,version:active?.version||'IDENTITY_FALLBACK',promotion,candidate},
  drift,
- governance:{paper_only:true,auto_promote_calibration:true,real_money_auto_promotion:false,min_labels_for_training:80,holdout_n:40,min_new_labels:10,fail_closed:true}
+ governance:{paper_only:true,shadow_only:true,auto_promote_calibration:false,production_logic_changed:false,real_money_auto_promotion:false,min_labels_for_training:80,holdout_n:40,min_new_labels:10,fail_closed:true,review_required:true}
 };
 await fs.writeFile(OUT,JSON.stringify(out,null,2)+'\n');
 console.log(JSON.stringify({ok:true,n:rows.length,maturity:out.maturity,calibration:out.calibration.version,promotion,drift:drift.state}));

@@ -1,0 +1,152 @@
+{
+  "schema": "COURT-STATISTICAL-LEARNING-V9",
+  "generated_at": "2026-09-11T22:30:00.000Z",
+  "maturity": "COLD",
+  "source": {
+    "eligible_rows": 0,
+    "rejected": {
+      "not_settled": 0,
+      "invalid_probability": 0,
+      "invalid_outcome": 0,
+      "missing_lock_time": 0,
+      "missing_start_time": 0,
+      "temporal_leakage": 0
+    },
+    "board_versions": [
+      {
+        "league": "NBA",
+        "updated_at": "2026-09-11T20:47:06.875Z",
+        "prediction_version": "COURT-PF-1.0"
+      },
+      {
+        "league": "EUROLEAGUE",
+        "updated_at": "2026-09-11T20:47:06.875Z",
+        "prediction_version": "COURT-PF-1.0"
+      }
+    ]
+  },
+  "governance": {
+    "paper_only": true,
+    "shadow_only": true,
+    "auto_promote": false,
+    "production_logic_changed": false,
+    "fail_closed": true,
+    "review_required": true,
+    "time_ordered_walk_forward": true,
+    "shuffled_cross_validation": false,
+    "holdout_reuse": false
+  },
+  "methods": {
+    "classifier": "L2-regularized logistic regression",
+    "uncertainty": "deterministic moving-block bootstrap 95%",
+    "small_sample_control": "Beta-binomial shrinkage, prior strength 24",
+    "drift": "Population Stability Index plus log-loss shift"
+  },
+  "features": [
+    "baseline_logit",
+    "challenger_logit",
+    "model_challenger_gap",
+    "raw_calibration_gap",
+    "projected_margin_sigma",
+    "projected_total_centered_sigma",
+    "sports_confidence",
+    "data_quality",
+    "reliability",
+    "model_sample_log",
+    "rest_edge",
+    "availability_verified",
+    "league_nba"
+  ],
+  "oos": {
+    "n": 0,
+    "folds": [],
+    "baseline": {
+      "n": 0,
+      "brier": null,
+      "logloss": null,
+      "ece": null,
+      "auc": null,
+      "calibration_intercept": null,
+      "calibration_slope": null
+    },
+    "candidate": {
+      "n": 0,
+      "brier": null,
+      "logloss": null,
+      "ece": null,
+      "auc": null,
+      "calibration_intercept": null,
+      "calibration_slope": null
+    },
+    "delta": {
+      "brier": null,
+      "logloss": null,
+      "ece": null
+    },
+    "confidence_intervals": {
+      "iterations": 0,
+      "block_size": 0,
+      "brier_delta_95": [
+        null,
+        null
+      ],
+      "logloss_delta_95": [
+        null,
+        null
+      ]
+    },
+    "reliability": []
+  },
+  "score_models": {
+    "margin": {
+      "n": 0,
+      "mae": null,
+      "rmse": null,
+      "bias": null,
+      "r_squared": null
+    },
+    "total": {
+      "n": 0,
+      "mae": null,
+      "rmse": null,
+      "bias": null,
+      "r_squared": null
+    }
+  },
+  "paper_markets": {
+    "overall": {
+      "n": 0,
+      "stake_units": 0,
+      "profit_units": 0,
+      "roi": null,
+      "hit_rate": null,
+      "verified_clv_n": 0,
+      "recorded_proxy_clv_n": 0,
+      "mean_clv": null
+    },
+    "by_market": {},
+    "note": "ROI is paper-only. CLV is null unless a recorded proxy or verified closing price exists."
+  },
+  "segments": [],
+  "drift": {
+    "state": "INSUFFICIENT",
+    "psi": null,
+    "baseline_n": 0,
+    "recent_n": 0
+  },
+  "promotion": {
+    "state": "HOLD",
+    "review_eligible": false,
+    "gates": {
+      "minimum_oos": false,
+      "brier_delta_ci_below_zero": false,
+      "logloss_delta_ci_below_zero": false,
+      "ece_not_worse": false,
+      "calibration_slope_sane": false,
+      "segment_stability": true,
+      "drift_not_alert": true,
+      "no_temporal_leakage": true
+    }
+  },
+  "model": null
+}
