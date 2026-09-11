@@ -1,3 +1,4 @@
+import {calibrateCourtProb} from './scripts/court-calibration-v8.mjs';
 export const PREDICTION_VERSION='COURT-PF-1.0';
 export const FORECAST_LOCK_MIN_HOURS=.75;
 export const FORECAST_LOCK_MAX_HOURS=36;
@@ -46,7 +47,7 @@ function compactMarket(x,score){
 
 export function buildPredictionSummary({league='NBA',ev,projected,markets=[],injuryStatus='LIMITED',challenger=null,leagueAvgTotal=null}={}){
   if(!projected)throw new Error('projected required');
-  const homeProb=clamp(finite(projected.mlProb,.5),.02,.98),winnerSide=homeProb>=.5?'HOME':'AWAY';
+  const rawHomeProb=clamp(finite(projected.mlProb,.5),.02,.98),homeProb=calibrateCourtProb(rawHomeProb,{league})??rawHomeProb,winnerSide=homeProb>=.5?'HOME':'AWAY';
   const winnerProb=Math.max(homeProb,1-homeProb),winnerName=winnerSide==='HOME'?ev?.home_team:ev?.away_team;
   challenger=challenger||buildChallengerProjection(projected,league);
   const challengerGap=Math.abs(homeProb-finite(challenger.home_win_prob,.5));
@@ -68,7 +69,7 @@ export function buildPredictionSummary({league='NBA',ev,projected,markets=[],inj
   const playable=ranked.filter(({x})=>['PAPER BET','TEST VALUE'].includes(x.decision)&&Number.isFinite(x.robust_ev)&&x.robust_ev>0&&x.best_odds>1&&!(x.gate_reasons||[]).length);
   const watch=ranked.find(({x})=>Number.isFinite(x.robust_ev)&&x.robust_ev>0&&x.best_odds>1)||ranked[0]||null;
   const best=playable[0]||null;
-  return {prediction_version:PREDICTION_VERSION,winner_side:winnerSide,winner_name:winnerName||null,home_win_prob:round(homeProb,5),winner_prob:round(winnerProb,5),projected_margin:round(projected.projectedMargin,3),projected_total:round(projected.projectedTotal,3),projected_home_score:round(projectedHome,2),projected_away_score:round(projectedAway,2),sports_confidence:round(sportsConfidence,2),data_quality:round(dataQuality,2),model_sample:sample,reliability:round(rel,4),availability_status:injuryStatus,challenger_home_win_prob:round(challenger.home_win_prob,5),challenger_gap:round(challengerGap,5),scenario:{game_script:gameScript,pace,total_vs_baseline:round(totalDelta,2)},best_market:best?compactMarket(best.x,best.score):null,watch_market:watch?compactMarket(watch.x,watch.score):null,alternatives:playable.slice(1,4).map(({x,score})=>compactMarket(x,score)),price_gate:best?'PLAYABLE_PAPER':'NO_PLAYABLE_PRICE'};
+  return {prediction_version:PREDICTION_VERSION,raw_home_win_prob:round(rawHomeProb,5),winner_side:winnerSide,winner_name:winnerName||null,home_win_prob:round(homeProb,5),winner_prob:round(winnerProb,5),projected_margin:round(projected.projectedMargin,3),projected_total:round(projected.projectedTotal,3),projected_home_score:round(projectedHome,2),projected_away_score:round(projectedAway,2),sports_confidence:round(sportsConfidence,2),data_quality:round(dataQuality,2),model_sample:sample,reliability:round(rel,4),availability_status:injuryStatus,challenger_home_win_prob:round(challenger.home_win_prob,5),challenger_gap:round(challengerGap,5),scenario:{game_script:gameScript,pace,total_vs_baseline:round(totalDelta,2)},best_market:best?compactMarket(best.x,best.score):null,watch_market:watch?compactMarket(watch.x,watch.score):null,alternatives:playable.slice(1,4).map(({x,score})=>compactMarket(x,score)),price_gate:best?'PLAYABLE_PAPER':'NO_PLAYABLE_PRICE'};
 }
 
 function findResult(lock,games=[]){
