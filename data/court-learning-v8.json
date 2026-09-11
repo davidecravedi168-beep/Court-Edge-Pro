@@ -1,0 +1,37 @@
+{
+  "schema": "COURT-LEARNING-V8",
+  "generated_at": "2026-09-11T16:40:09.982Z",
+  "settled_n": 0,
+  "maturity": "COLD",
+  "raw": {
+    "n": 0,
+    "brier": null,
+    "logloss": null,
+    "ece": null
+  },
+  "calibrated": {
+    "n": 0,
+    "brier": null,
+    "logloss": null,
+    "ece": null
+  },
+  "calibration": {
+    "active": false,
+    "version": "IDENTITY_FALLBACK",
+    "promotion": "COLD_START",
+    "candidate": null
+  },
+  "drift": {
+    "state": "INSUFFICIENT",
+    "reasons": []
+  },
+  "governance": {
+    "paper_only": true,
+    "auto_promote_calibration": true,
+    "real_money_auto_promotion": false,
+    "min_labels_for_training": 80,
+    "holdout_n": 40,
+    "min_new_labels": 10,
+    "fail_closed": true
+  }
+}
