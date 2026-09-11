@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {
   COURT_STAT_SCHEMA,FEATURE_NAMES,prepareBoards,buildCourtStatisticalLearning,
   syntheticBoards
@@ -50,4 +51,14 @@ test('Court V9 reports score error, paper ROI and only labelled CLV sources',()=
   assert.equal(out.paper_markets.overall.recorded_proxy_clv_n,1);
   assert(Number.isFinite(out.paper_markets.overall.roi));
   assert(Number.isFinite(out.paper_markets.overall.mean_clv));
+});
+
+test('Court V9 artifact and automation contract stay fail-closed',()=>{
+  const artifact=JSON.parse(fs.readFileSync(new URL('../data/court-statistical-learning-v9.json',import.meta.url),'utf8'));
+  const workflow=fs.readFileSync(new URL('../.github/workflows/court-edge-autopilot.yml',import.meta.url),'utf8');
+  assert.equal(artifact.schema,COURT_STAT_SCHEMA);
+  assert.equal(artifact.governance.shadow_only,true);
+  assert.equal(artifact.governance.auto_promote,false);
+  assert.equal(artifact.promotion.state,'HOLD');
+  for(const marker of ['node --check scripts/court-statistical-learning-v9.mjs','node scripts/court-statistical-learning-v9.mjs --self-test','node scripts/court-statistical-learning-v9.mjs --validate','data/court-statistical-learning-v9.json'])assert(workflow.includes(marker),marker);
 });
