@@ -2,7 +2,7 @@
   "meta": {
     "league": "NBA",
     "version": "COURT-EDGE-4.0-BETTING-TERMINAL",
-    "updated_at": "2026-09-10T20:46:37.305Z",
+    "updated_at": "2026-09-11T00:40:26.715Z",
     "status": "PAPER BETA",
     "source": "BALLDONTLIE + The Odds API",
     "risk_mode": "PAPER_ONLY",
@@ -12,13 +12,13 @@
     "injury_health": "LIMITED",
     "prediction_version": "COURT-PF-1.0",
     "intelligence_version": "COURT-INTEL-1.0",
-    "intelligence_updated_at": "2026-09-10T20:49:26.918Z",
+    "intelligence_updated_at": "2026-09-11T00:43:16.078Z",
     "team_history_health": "VERIFIED_FREE",
     "official_live_health": "READY",
     "official_live_source": "NBA CDN",
     "player_form_health": "LEARNING",
     "player_form_players": 0,
-    "player_form_updated_at": "2026-09-10T20:49:26.918Z"
+    "player_form_updated_at": "2026-09-11T00:43:16.078Z"
   },
   "hero": null,
   "hero_prediction": null,
@@ -97,7 +97,7 @@
     "commercial_license_gate": true,
     "forecast_tracking": true,
     "prediction_version": "COURT-PF-1.0",
-    "historical_games": 1145,
+    "historical_games": 1136,
     "market_events": 0,
     "market_rows": 0,
     "best_bets": 0,
@@ -107,7 +107,7 @@
     "player_form_from_official_boxscores": true
   },
   "model_stats": {
-    "historical_games": 1145,
+    "historical_games": 1136,
     "teams": 30,
     "league_avg_total": 227,
     "league_margin_sd": 17.5,
