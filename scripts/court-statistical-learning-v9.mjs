@@ -5,7 +5,7 @@ import {pathToFileURL} from 'node:url';
 
 export const COURT_STAT_SCHEMA='COURT-STATISTICAL-LEARNING-V9';
 export const FEATURE_NAMES=[
-  'baseline_logit','challenger_logit','model_challenger_gap',
+  'baseline_logit','challenger_logit','model_challenger_gap','raw_calibration_gap',
   'projected_margin_sigma','projected_total_centered_sigma',
   'sports_confidence','data_quality','reliability','model_sample_log',
   'rest_edge','availability_verified','league_nba'
@@ -60,6 +60,7 @@ export function prepareBoards(boards){
       baseline_logit:logit(p),
       challenger_logit:logit(q),
       model_challenger_gap:p-q,
+      raw_calibration_gap:p-(finite(x.raw_home_win_prob)??p),
       projected_margin_sigma:(finite(x.projected_margin)??0)/marginSigma,
       projected_total_centered_sigma:((finite(x.projected_total)??totalBase)-totalBase)/totalSigma,
       sports_confidence:(finite(x.sports_confidence)??50)/100,
