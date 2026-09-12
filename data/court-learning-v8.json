@@ -1,6 +1,6 @@
 {
   "schema": "COURT-LEARNING-V8",
-  "generated_at": "2026-09-11T20:50:15.999Z",
+  "generated_at": "2026-09-12T00:40:08.025Z",
   "settled_n": 0,
   "maturity": "COLD",
   "raw": {
@@ -27,11 +27,14 @@
   },
   "governance": {
     "paper_only": true,
-    "auto_promote_calibration": true,
+    "shadow_only": true,
+    "auto_promote_calibration": false,
+    "production_logic_changed": false,
     "real_money_auto_promotion": false,
     "min_labels_for_training": 80,
     "holdout_n": 40,
     "min_new_labels": 10,
-    "fail_closed": true
+    "fail_closed": true,
+    "review_required": true
   }
 }
