@@ -131,7 +131,9 @@ jobs:
           node --check quant-desk-v5.js
           node --check court-quality-governance-v6.js
           node --check court-intel.js
-          node --check court-simple-ui.js && node --check court-data-center-v10.js
+          node --check court-simple-ui.js
+          node --check court-schedule-fallback.js
+          node --check court-data-center-v10.js
           node --check scripts/run-v4-budgeted.mjs
           node --check scripts/enrich-court-intel.mjs
           node --check scripts/enrich-nba-player-form.mjs
@@ -207,9 +209,9 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/assets _site/data
-          cp index.html surebet.html betting-ux.js match-details-v43.js quant-math-v5.js quant-desk-v5.js court-quality-governance-v6.js court-intel.js court-simple-ui.js court-data-center-v10.js legal.html manifest.webmanifest sw.js robots.txt _site/
+          cp index.html surebet.html betting-ux.js match-details-v43.js quant-math-v5.js quant-desk-v5.js court-quality-governance-v6.js court-intel.js court-simple-ui.js court-schedule-fallback.js court-data-center-v10.js legal.html manifest.webmanifest sw.js robots.txt _site/
           cp assets/icon-192.png assets/icon-512.png _site/assets/
-          cp data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/surebet-board.json _site/data/
+          cp data/nba-v4-board.json data/euroleague-v4-board.json data/nba-intel-cache.json data/euroleague-intel-cache.json data/automation-health.json data/surebet-board.json _site/data/
           [ ! -f data/court-learning-v8.json ] || cp data/court-learning-v8.json _site/data/
           [ ! -f data/court-statistical-learning-v9.json ] || cp data/court-statistical-learning-v9.json _site/data/
           [ ! -f data/court-calibration-model-v8.json ] || cp data/court-calibration-model-v8.json _site/data/
