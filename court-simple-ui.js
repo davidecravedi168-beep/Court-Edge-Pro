@@ -13,12 +13,12 @@ function injectCss(){
  if(q('#courtSimpleCss'))return;
  const s=document.createElement('style');s.id='courtSimpleCss';s.textContent=`
 .ceSimpleSummary{border:1px solid rgba(100,168,255,.32);background:linear-gradient(145deg,rgba(18,43,67,.98),rgba(8,20,32,.98));border-radius:22px;padding:15px;margin:0 0 10px;box-shadow:0 18px 48px rgba(0,0,0,.22)}
-.ceSimpleTop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.ceSimpleKicker{font-size:7px;letter-spacing:.14em;color:var(--c);font-weight:950}.ceSimpleWinner{font-size:22px;line-height:1.05;font-weight:1000;letter-spacing:-.035em;margin-top:5px}.ceSimpleDecision{border:1px solid rgba(66,216,155,.42);background:rgba(66,216,155,.08);color:#c8f8e1;border-radius:999px;padding:7px 10px;font-size:8px;font-weight:1000;white-space:nowrap}.ceSimpleDecision.no{border-color:rgba(242,188,86,.4);background:rgba(242,188,86,.07);color:#ffe3a7}.ceSimpleGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}.ceSimpleStat{border:1px solid rgba(49,81,111,.8);border-radius:12px;padding:9px}.ceSimpleStat b{display:block;font-size:15px}.ceSimpleStat span{display:block;font-size:6.5px;color:var(--muted);margin-top:2px}.ceSimpleWhy{margin-top:11px;border-left:3px solid var(--b);padding:9px 10px;background:rgba(100,168,255,.06);border-radius:0 12px 12px 0;font-size:8px;line-height:1.55;color:#dce7f1}.ceSimpleWhy b{color:#fff}.ceSimpleToggle{margin-top:10px;border:1px solid var(--line2);background:#10263b;color:#eef7ff;border-radius:12px;min-height:38px;padding:0 12px;font-size:8px;font-weight:950;cursor:pointer}.ceSimpleMode>.ceGrid2,.ceSimpleMode>.ceStory{display:none}.ceSimpleMode.ceTechVisible>.ceGrid2{display:grid}.ceSimpleMode.ceTechVisible>.ceStory{display:block}.ceSimpleHint{font-size:6.7px;color:var(--muted);margin-top:7px;line-height:1.4}
+.ceSimpleTop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.ceSimpleKicker{font-size:10px;letter-spacing:.14em;color:var(--c);font-weight:950}.ceSimpleWinner{font-size:22px;line-height:1.05;font-weight:1000;letter-spacing:-.035em;margin-top:5px}.ceSimpleDecision{border:1px solid rgba(66,216,155,.42);background:rgba(66,216,155,.08);color:#c8f8e1;border-radius:999px;padding:7px 10px;font-size:8px;font-weight:1000;white-space:nowrap}.ceSimpleDecision.no{border-color:rgba(242,188,86,.4);background:rgba(242,188,86,.07);color:#ffe3a7}.ceSimpleGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}.ceSimpleStat{border:1px solid rgba(49,81,111,.8);border-radius:12px;padding:9px}.ceSimpleStat b{display:block;font-size:15px}.ceSimpleStat span{display:block;font-size:10px;color:var(--muted);margin-top:2px}.ceSimpleWhy{margin-top:11px;border-left:3px solid var(--b);padding:9px 10px;background:rgba(100,168,255,.06);border-radius:0 12px 12px 0;font-size:8px;line-height:1.55;color:#dce7f1}.ceSimpleWhy b{color:#fff}.ceSimpleToggle{margin-top:10px;border:1px solid var(--line2);background:#10263b;color:#eef7ff;border-radius:12px;min-height:38px;padding:0 12px;font-size:8px;font-weight:950;cursor:pointer}.ceSimpleMode>.ceGrid2,.ceSimpleMode>.ceStory{display:none}.ceSimpleMode.ceTechVisible>.ceGrid2{display:grid}.ceSimpleMode.ceTechVisible>.ceStory{display:block}.ceTeamDuel{display:flex;align-items:center;gap:7px;margin:8px 0 3px}.ceTeamDuel .ce10Logo{width:30px;height:30px}.ceTeamDuel .ceTeamNames{min-width:0;font-size:11px;color:#dbe8f4;line-height:1.25;overflow-wrap:anywhere}.ceSimpleHint{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.4}
 .bottom .ceNavLabel{font-size:7.2px!important;letter-spacing:0!important}
 #courtSureBetFixed{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:calc(82px + env(safe-area-inset-bottom));z-index:9999;display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 15px;border-radius:999px;border:1px solid rgba(66,216,155,.65);background:linear-gradient(135deg,#123c32,#0a211c);color:#d9ffec;text-decoration:none;font-size:10px;font-weight:1000;letter-spacing:.04em;box-shadow:0 12px 34px rgba(0,0,0,.42)}
 #courtSureBetFixed:active{transform:scale(.97)}
 #courtIntegrityBanner{margin:10px 0;border:1px solid rgba(255,115,123,.46);background:rgba(255,115,123,.08);color:#ffd7d9;border-radius:15px;padding:11px 12px;font-size:8px;line-height:1.5;font-weight:800}#courtIntegrityBanner b{display:block;font-size:10px;margin-bottom:3px;color:#fff}
-@media(max-width:560px){.ceSimpleWinner{font-size:19px}.ceSimpleStat b{font-size:13px}.ceSimpleSummary{padding:13px}#courtSureBetFixed{right:10px;bottom:calc(80px + env(safe-area-inset-bottom));min-height:44px;padding:0 13px}}
+.ceSimpleWhy{font-size:12px}.ceSimpleToggle{min-height:44px;font-size:12px}.ceTeamDuel .ce10Logo{width:30px;height:30px}@media(max-width:560px){.forecastCard,.betcard,.market,.live,.card,.metric,.kpi{overflow-wrap:anywhere;min-width:0}.forecastPick,.pick,.match,.market strong,.market span{overflow-wrap:anywhere}.ceNavLabel{font-size:10px!important}.ceSimpleWinner{font-size:19px}.ceSimpleStat b{font-size:13px}.ceSimpleSummary{padding:13px}#courtSureBetFixed{right:10px;bottom:calc(80px + env(safe-area-inset-bottom));min-height:44px;padding:0 13px}}
 `;
  document.head.appendChild(s);
 }
@@ -122,6 +122,13 @@ function enhanceIntel(){
 function simplifyHero(){
  const v=q('#heroVerdict');if(v?.textContent==='PRONOSTICO')v.textContent='FAVORITA';
 }
+function enhanceTeamLogos(){
+ if(!window.CourtDataCenter||typeof D==='undefined'||!D)return;
+ const rows=[...(D.radar||[]),...(D.best_bets||[])],by=new Map(rows.map(x=>[String(x.event_id),x]));
+ const add=(card,id)=>{if(card.querySelector('.ceTeamDuel'))return;const row=by.get(String(id));if(!row)return;const league=String(D?.meta?.league||L||'');const html=`<div class="ceTeamDuel">${CourtDataCenter.logoHtml(row.away_team,league,'sm')}${CourtDataCenter.logoHtml(row.home_team,league,'sm')}<span class="ceTeamNames">${esc(row.away_team)} · ${esc(row.home_team)}</span></div>`;card.insertAdjacentHTML('afterbegin',html)};
+ qa('#forecastGrid .forecastCard, #bestGrid .betcard').forEach(card=>add(card,card.dataset.ceEventId||card.dataset.eventId));
+ qa('#marketGrid .market, #liveGrid .live').forEach((card,i)=>{const id=card.dataset.ceEventId||card.dataset.eventId||card.getAttribute('data-event-id');if(id)add(card,id)});
+}
 function ensureSureBet(){
  let a=q('#courtSureBetFixed');
  if(!a){
@@ -133,7 +140,7 @@ function ensureSureBet(){
    document.body.appendChild(a);
  }
 }
-function run(){try{injectCss();applyDataIntegrityGuard();simplifyStaticCopy();simplifyHero();enhanceIntel();ensureSureBet()}catch(err){console.error('Court simple UI:',err)}}
+function run(){try{injectCss();applyDataIntegrityGuard();simplifyStaticCopy();simplifyHero();enhanceIntel();enhanceTeamLogos();ensureSureBet()}catch(err){console.error('Court simple UI:',err)}}
 function init(){run();setInterval(run,1500);document.documentElement.dataset.courtSimpleUi=VERSION}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();

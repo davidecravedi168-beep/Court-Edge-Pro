@@ -1,4 +1,5 @@
-const CACHE='court-edge-pro-v4-3-4-surebet-fixed';
+// court-edge-pro-v4-0 compatibility cache
+const CACHE='court-edge-pro-v10-data-center-r2';
 const CORE=[
   './','./index.html','./surebet.html','./betting-ux.js','./match-details-v43.js','./quant-math-v5.js','./quant-desk-v5.js',
   './court-quality-governance-v6.js','./court-intel.js','./court-simple-ui.js','./court-data-center-v10.js','./legal.html','./manifest.webmanifest',
@@ -9,7 +10,7 @@ self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.al
 self.addEventListener('fetch',e=>{
   if(e.request.method!=='GET')return;
   const u=new URL(e.request.url);
-  const live=/\/data\/((nba|euroleague)-(v4|quant)-board|automation-health)\.json$/.test(u.pathname);
+  const live=/\/data\/((nba|euroleague)-(v4|quant)-board|(nba|euroleague)-intel-cache|automation-health)\.json$/.test(u.pathname);
   const nav=e.request.mode==='navigate';
   const runtime=/\.(js|css)$/.test(u.pathname);
   if(live||nav||runtime){
