@@ -1,5 +1,5 @@
 // court-edge-pro-v4-0 compatibility cache
-const CACHE='court-edge-pro-v10-data-center-r2';
+const CACHE='court-edge-pro-v11-visual-1-5';
 const CORE=[
   './','./index.html','./surebet.html','./betting-ux.js','./match-details-v43.js','./quant-math-v5.js','./quant-desk-v5.js',
   './court-quality-governance-v6.js','./court-intel.js','./court-simple-ui.js','./court-schedule-fallback.js','./court-data-center-v10.js','./legal.html','./manifest.webmanifest',
