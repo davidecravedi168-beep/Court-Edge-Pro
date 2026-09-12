@@ -1,7 +1,7 @@
 const CACHE='court-edge-pro-v4-3-4-surebet-fixed';
 const CORE=[
   './','./index.html','./surebet.html','./betting-ux.js','./match-details-v43.js','./quant-math-v5.js','./quant-desk-v5.js',
-  './court-quality-governance-v6.js','./court-intel.js','./court-simple-ui.js','./legal.html','./manifest.webmanifest',
+  './court-quality-governance-v6.js','./court-intel.js','./court-simple-ui.js','./court-data-center-v10.js','./legal.html','./manifest.webmanifest',
   './assets/icon-192.png','./assets/icon-512.png'
 ];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
