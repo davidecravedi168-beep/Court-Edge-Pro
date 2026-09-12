@@ -1,6 +1,6 @@
 {
   "schema": "COURT-STATISTICAL-LEARNING-V9",
-  "generated_at": "2026-09-12T20:41:55.066Z",
+  "generated_at": "2026-09-12T22:34:38.558Z",
   "maturity": "COLD",
   "source": {
     "eligible_rows": 0,
@@ -15,12 +15,12 @@
     "board_versions": [
       {
         "league": "NBA",
-        "updated_at": "2026-09-12T20:38:43.307Z",
+        "updated_at": "2026-09-12T22:31:26.759Z",
         "prediction_version": "COURT-PF-1.0"
       },
       {
         "league": "EUROLEAGUE",
-        "updated_at": "2026-09-12T20:38:43.307Z",
+        "updated_at": "2026-09-12T22:31:26.759Z",
         "prediction_version": "COURT-PF-1.0"
       }
     ]
