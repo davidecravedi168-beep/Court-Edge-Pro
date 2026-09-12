@@ -131,7 +131,7 @@ jobs:
           node --check quant-desk-v5.js
           node --check court-quality-governance-v6.js
           node --check court-intel.js
-          node --check court-simple-ui.js
+          node --check court-simple-ui.js && node --check court-data-center-v10.js
           node --check scripts/run-v4-budgeted.mjs
           node --check scripts/enrich-court-intel.mjs
           node --check scripts/enrich-nba-player-form.mjs
