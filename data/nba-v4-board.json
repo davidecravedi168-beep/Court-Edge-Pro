@@ -2,7 +2,7 @@
   "meta": {
     "league": "NBA",
     "version": "COURT-EDGE-4.0-BETTING-TERMINAL",
-    "updated_at": "2026-09-12T19:25:41.513Z",
+    "updated_at": "2026-09-12T20:38:43.307Z",
     "status": "PAPER BETA",
     "source": "BALLDONTLIE + The Odds API",
     "risk_mode": "PAPER_ONLY",
@@ -12,13 +12,13 @@
     "injury_health": "LIMITED",
     "prediction_version": "COURT-PF-1.0",
     "intelligence_version": "COURT-INTEL-1.0",
-    "intelligence_updated_at": "2026-09-12T19:28:30.835Z",
+    "intelligence_updated_at": "2026-09-12T20:41:32.787Z",
     "team_history_health": "VERIFIED_FREE",
     "official_live_health": "READY",
     "official_live_source": "NBA CDN",
     "player_form_health": "LEARNING",
     "player_form_players": 0,
-    "player_form_updated_at": "2026-09-12T19:28:30.835Z"
+    "player_form_updated_at": "2026-09-12T20:41:32.787Z"
   },
   "hero": null,
   "hero_prediction": null,
