@@ -1,6 +1,6 @@
 (()=>{
 'use strict';
-const VERSION='COURT-SIMPLE-UI-1.3';
+const VERSION='COURT-SIMPLE-UI-1.5';
 const q=(s,r=document)=>r.querySelector(s);
 const qa=(s,r=document)=>[...r.querySelectorAll(s)];
 const n=(v,d=null)=>Number.isFinite(Number(v))?Number(v):d;
@@ -19,6 +19,14 @@ function injectCss(){
 #courtSureBetFixed:active{transform:scale(.97)}
 #courtIntegrityBanner{margin:10px 0;border:1px solid rgba(255,115,123,.46);background:rgba(255,115,123,.08);color:#ffd7d9;border-radius:15px;padding:11px 12px;font-size:8px;line-height:1.5;font-weight:800}#courtIntegrityBanner b{display:block;font-size:10px;margin-bottom:3px;color:#fff}
 .ceSimpleWhy{font-size:12px}.ceSimpleToggle{min-height:44px;font-size:12px}.ceTeamDuel .ce10Logo{width:30px;height:30px}@media(max-width:560px){.forecastCard,.betcard,.market,.live,.card,.metric,.kpi{overflow-wrap:anywhere;min-width:0}.forecastPick,.pick,.match,.market strong,.market span{overflow-wrap:anywhere}.ceNavLabel{font-size:10px!important}.ceSimpleWinner{font-size:19px}.ceSimpleStat b{font-size:13px}.ceSimpleSummary{padding:13px}#courtSureBetFixed{right:10px;bottom:calc(80px + env(safe-area-inset-bottom));min-height:44px;padding:0 13px}}
+/* COURT EDGE PRO VISUAL REFRESH */
+body{font-size:15px;line-height:1.45}.app{max-width:1180px;padding:16px 20px calc(var(--nav) + 34px)}
+.top{padding:10px 0 14px;gap:16px}.brand h1{font-size:24px}.brand small{font-size:11px}.league{background:rgba(15,35,55,.72);padding:4px;border-radius:15px}.tab,.btn,.chip{min-height:44px;font-size:12px;padding:0 15px}.tab.active,.chip.active{box-shadow:0 8px 24px rgba(65,145,220,.18)}
+.hero{padding:28px;border-radius:30px;background:radial-gradient(500px 200px at 100% 0,rgba(92,224,236,.14),transparent 70%),linear-gradient(135deg,#142f4b,#081521);box-shadow:0 25px 70px rgba(0,0,0,.35)}.eyebrow{font-size:11px}.verdict{font-size:clamp(42px,6vw,70px)}.heroTitle{font-size:25px}.sub{font-size:14px;line-height:1.55}.priceGuard{font-size:14px;padding:14px}.edgeStrip span{font-size:11px;padding:8px 11px}.metric{padding:15px}.metric b{font-size:25px}.metric span{font-size:10px}
+.kpis{grid-template-columns:repeat(9,minmax(0,1fr));gap:9px}.kpi{padding:13px}.kpi b{font-size:20px}.kpi span{font-size:10px}.nav{gap:8px;margin:14px 0}.nav .chip{font-size:12px}.card{padding:20px;border-radius:22px;margin-bottom:14px}.head h2{font-size:20px}.pill{font-size:11px;padding:8px 11px}.forecastGrid,.bestgrid{gap:12px}.forecastCard,.betcard{padding:17px;border-radius:20px}.forecastTag,.rank{font-size:10px}.forecastPick,.pick{font-size:19px}.match{font-size:13px}.forecastScore{font-size:28px}.mini{padding:10px}.mini b{font-size:14px}.mini span{font-size:10px}.why,.against,.move{font-size:12px}.market{padding:14px;border-radius:16px}.market strong{font-size:14px}.market span{font-size:11px}.live{padding:17px;border-radius:20px}.score{font-size:34px}.clock{font-size:11px}.liveResearch{font-size:12px}.empty{font-size:14px;padding:25px}.bottom{width:min(760px,calc(100% - 28px));padding:8px;border-radius:24px;box-shadow:0 14px 45px rgba(0,0,0,.5)}.bottom button{min-height:62px;font-size:11px}.bottom b{font-size:20px}.ceNavLabel{font-size:11px!important}.ceSchedule{margin-top:24px;padding-top:20px}.ceScheduleHead h2{font-size:21px}.ceScheduleHead p{font-size:13px}.ceScheduleCard{padding:15px;border-radius:18px}.ceScheduleMeta{font-size:11px}.ceScheduleTeams strong{font-size:13px}.ceScheduleNote{font-size:11px}
+@media(max-width:900px){.kpis{overflow:auto;grid-template-columns:repeat(9,125px)}.heroGrid{gap:20px}.forecastGrid,.bestgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.app{padding:10px 12px 104px}.top{align-items:flex-start}.brand h1{font-size:19px}.brand small{font-size:10px}.status{display:flex;font-size:10px}.league{order:3;width:100%;justify-content:stretch}.league .tab{flex:1}.top{flex-wrap:wrap}.hero{padding:21px}.verdict{font-size:42px}.heroTitle{font-size:20px}.sub{font-size:13px}.metrics{grid-template-columns:repeat(3,1fr)}.metric{padding:10px}.metric b{font-size:19px}.metric span{font-size:9px}.nav{margin:12px 0;overflow-x:auto;padding-bottom:3px}.nav .chip{flex:0 0 auto;font-size:11px}.forecastGrid,.bestgrid{grid-template-columns:1fr}.bottom{width:calc(100% - 18px)}.bottom button{min-height:58px;font-size:10px;padding:5px 2px}.bottom b{font-size:18px}.ceScheduleGrid{grid-template-columns:1fr}}
+
 `;
  document.head.appendChild(s);
 }
