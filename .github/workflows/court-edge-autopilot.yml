@@ -25,7 +25,7 @@ permissions:
 
 concurrency:
   group: court-edge-v7-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   verify-build:
@@ -194,15 +194,52 @@ jobs:
           set -euo pipefail
           git config user.name "court-edge-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/nba-v4-board.json data/euroleague-v4-board.json data/automation-health.json data/nba-intel-cache.json data/nba-player-form.json data/euroleague-intel-cache.json data/surebet-board.json data/court-learning-v8.json data/court-statistical-learning-v9.json
-          if [ -f data/court-calibration-model-v8.json ]; then git add data/court-calibration-model-v8.json; fi
-          if git diff --cached --quiet; then
-            echo "No verified data/intelligence/SureBet changes to persist"
-          else
+          files=(
+            data/nba-v4-board.json
+            data/euroleague-v4-board.json
+            data/automation-health.json
+            data/nba-intel-cache.json
+            data/nba-player-form.json
+            data/euroleague-intel-cache.json
+            data/surebet-board.json
+            data/court-learning-v8.json
+            data/court-statistical-learning-v9.json
+          )
+          if [ -f data/court-calibration-model-v8.json ]; then files+=(data/court-calibration-model-v8.json); fi
+
+          rm -rf /tmp/court-publish
+          mkdir -p /tmp/court-publish
+          for f in "${files[@]}"; do
+            mkdir -p "/tmp/court-publish/$(dirname "$f")"
+            cp "$f" "/tmp/court-publish/$f"
+          done
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+
+            for f in "${files[@]}"; do
+              cp "/tmp/court-publish/$f" "$f"
+            done
+
+            git add "${files[@]}"
+            if git diff --cached --quiet; then
+              echo "Remote Court snapshot is already equivalent; nothing to persist."
+              exit 0
+            fi
+
             git commit -m "chore: persist Court intelligence and SureBet snapshot"
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
+            if git push origin HEAD:main; then
+              echo "Court verified snapshot persisted successfully."
+              exit 0
+            fi
+
+            echo "Main advanced during publish; retrying safely without rebasing generated data (attempt $attempt/5)."
+            sleep $((attempt * 3))
+          done
+
+          echo "Unable to persist Court verified snapshot after 5 race-safe attempts."
+          exit 1
 
       - name: Build production site
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
