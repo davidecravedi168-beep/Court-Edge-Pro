@@ -2,7 +2,7 @@
   "meta": {
     "league": "EUROLEAGUE",
     "version": "COURT-EDGE-4.0-BETTING-TERMINAL",
-    "updated_at": "2026-09-13T02:15:14.162Z",
+    "updated_at": "2026-09-13T04:56:10.199Z",
     "status": "PAPER BETA",
     "source": "EuroLeague upstream research feed + The Odds API",
     "risk_mode": "PAPER_ONLY",
@@ -12,7 +12,7 @@
     "injury_health": "LIMITED",
     "prediction_version": "COURT-PF-1.0",
     "intelligence_version": "COURT-INTEL-1.0",
-    "intelligence_updated_at": "2026-09-13T02:18:18.916Z",
+    "intelligence_updated_at": "2026-09-13T04:59:14.991Z",
     "team_history_health": "VERIFIED_PUBLIC",
     "player_form_health": "LIMITED_PUBLIC_FEED"
   },
