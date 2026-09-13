@@ -53,11 +53,21 @@ test('production artifact contains every browser runtime dependency',()=>{
 });
 
 test('board persistence cannot fail silently',()=>{
-  assert.match(y,/git add data\/nba-v4-board\.json data\/euroleague-v4-board\.json data\/automation-health\.json/);
-  assert.match(y,/nba-intel-cache\.json/);
-  assert.match(y,/nba-player-form\.json/);
-  assert.match(y,/euroleague-intel-cache\.json/);
-  assert.match(y,/git push/);
+  for(const file of [
+    'data/nba-v4-board.json',
+    'data/euroleague-v4-board.json',
+    'data/automation-health.json',
+    'data/nba-intel-cache.json',
+    'data/nba-player-form.json',
+    'data/euroleague-intel-cache.json',
+    'data/surebet-board.json'
+  ]) assert.ok(y.includes(file),`missing persisted file ${file}`);
+  assert.match(y,/git fetch origin main/);
+  assert.match(y,/git reset --hard origin\/main/);
+  assert.match(y,/git add "\\\$\\\{files\[@\]\}"/);
+  assert.match(y,/git push origin HEAD:main/);
+  assert.match(y,/retrying safely without rebasing generated data/);
+  assert.match(y,/Unable to persist Court verified snapshot after 5 race-safe attempts/);
   assert.doesNotMatch(y,/git push \|\| true/);
 });
 
