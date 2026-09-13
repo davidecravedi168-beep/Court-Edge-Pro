@@ -64,7 +64,7 @@ test('board persistence cannot fail silently',()=>{
   ]) assert.ok(y.includes(file),`missing persisted file ${file}`);
   assert.match(y,/git fetch origin main/);
   assert.match(y,/git reset --hard origin\/main/);
-  assert.match(y,/git add "\\\$\\\{files\[@\]\}"/);
+  assert.ok(y.includes('git add "${files[@]}"'),'race-safe publish must stage the preserved verified file set');
   assert.match(y,/git push origin HEAD:main/);
   assert.match(y,/retrying safely without rebasing generated data/);
   assert.match(y,/Unable to persist Court verified snapshot after 5 race-safe attempts/);
